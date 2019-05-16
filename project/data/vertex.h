@@ -7,9 +7,11 @@
 class Vertex
 {
 public:
-    Vertex(QString name): displayName(name) {}
+    Vertex(QString name, QString graph, QString desc): displayName(name), GraphName(graph), Description(desc) {}
     bool isVisited = false;
     const QString displayName;
+    QString GraphName;
+    QString Description;
 
 };
 

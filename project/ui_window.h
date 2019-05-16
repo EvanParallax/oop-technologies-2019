@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -29,6 +30,7 @@ public:
     QPushButton *addItem;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *layout;
+    QComboBox *GraphBox;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -42,10 +44,10 @@ public:
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         Remove = new QPushButton(centralWidget);
         Remove->setObjectName(QString::fromUtf8("Remove"));
-        Remove->setGeometry(QRect(10, 50, 80, 25));
+        Remove->setGeometry(QRect(10, 320, 80, 25));
         addItem = new QPushButton(centralWidget);
         addItem->setObjectName(QString::fromUtf8("addItem"));
-        addItem->setGeometry(QRect(10, 10, 80, 25));
+        addItem->setGeometry(QRect(10, 290, 80, 25));
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
         verticalLayoutWidget->setGeometry(QRect(100, 0, 611, 421));
@@ -55,6 +57,9 @@ public:
         layout->setObjectName(QString::fromUtf8("layout"));
         layout->setSizeConstraint(QLayout::SetNoConstraint);
         layout->setContentsMargins(0, 0, 0, 0);
+        GraphBox = new QComboBox(centralWidget);
+        GraphBox->setObjectName(QString::fromUtf8("GraphBox"));
+        GraphBox->setGeometry(QRect(8, 80, 81, 22));
         Window->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(Window);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));

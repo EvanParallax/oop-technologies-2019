@@ -9,7 +9,7 @@
 #include "data/edge.h"
 #include "data/graph.h"
 #include "windowadd.h"
-#include "graphdbhelper.h"
+#include <QList>
 
 Window::Window(QWidget *parent) :
     QMainWindow(parent),
@@ -17,28 +17,28 @@ Window::Window(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    GraphDbHelper *helper = new GraphDbHelper();
+    helper = new GraphDbHelper();
 
     graph = helper->Read();
+
+    for(auto g : *graph){
+        ui->GraphBox->addItem(g->name);
+        currGraph = g;
+        break;
+    }
+    //currGraph = graph->first();
 
     svgTree = new QSvgWidget();
 
     ui->layout->addWidget(svgTree);
     svgTree->resize(svgTree->sizeHint());
 
-    window = new WindowAdd(this);
-    connect(window, SIGNAL(VertexAdded(Vertex*)),this,SLOT(onVertexAdded(Vertex*)));
-    connect(window, SIGNAL(EdgeAdded(Edge*)),this,SLOT(onEdgeAdded(Edge*)));
-
-    win = new DeleteWindow(this);
-    connect(win, SIGNAL(VertexDeleted(Vertex*)),this,SLOT(onVertexDeleted(Vertex*)));
-    connect(win, SIGNAL(EdgeDeleted(Edge*)),this,SLOT(onEdgeDeleted(Edge*)));
-
-    onGraphChanged(graph);
+    onGraphChanged(currGraph);
 }
 
 Window::~Window()
 {
+    /*
     disconnect(window, SIGNAL(VertexAdded(Vertex*)),this,SLOT(onVertexAdded(Vertex*)));
     disconnect(window, SIGNAL(EdgeAdded(Edge*)),this,SLOT(onEdgeAdded(Edge*)));
     delete window;
@@ -46,8 +46,9 @@ Window::~Window()
     disconnect(win, SIGNAL(VertexDeleted(Vertex*)),this,SLOT(onVertexDeleted(Vertex*)));
     disconnect(win, SIGNAL(EdgeDeleted(Edge*)),this,SLOT(onEdgeDeleted(Edge*)));
     delete win;
-
+*/
     delete ui;
+    helper->Write(graph);
     delete graph;
 }
 
@@ -94,30 +95,33 @@ void Window::onGraphChanged(Graph *graph)
 
 void Window::onVertexAdded(Vertex *v)
 {
-    graph->addVertex(v);
-    onGraphChanged(graph);
+    currGraph->addVertex(v);
+    onGraphChanged(currGraph);
 }
 
 void Window::onEdgeAdded(Edge *e)
 {
-    graph->addEdge(e);
-    onGraphChanged(graph);
+    currGraph->addEdge(e);
+    onGraphChanged(currGraph);
 }
 
 void Window::onVertexDeleted(Vertex *v)
 {
-    graph->removeVertex(v);
-    onGraphChanged(graph);
+    currGraph->removeVertex(v);
+    onGraphChanged(currGraph);
 }
 
 void Window::onEdgeDeleted(Edge *e)
 {
-    graph->removeEdge(e);
-    onGraphChanged(graph);
+    currGraph->removeEdge(e);
+    onGraphChanged(currGraph);
 }
 
 void Window::on_addItem_clicked()
 {
+    WindowAdd* window = new WindowAdd(currGraph, this);
+    connect(window, SIGNAL(VertexAdded(Vertex*)),this,SLOT(onVertexAdded(Vertex*)));
+    connect(window, SIGNAL(EdgeAdded(Edge*)),this,SLOT(onEdgeAdded(Edge*)));
     window->show();
 }
 
@@ -128,5 +132,8 @@ void Window::on_addEdge_clicked()
 
 void Window::on_Remove_clicked()
 {
+    DeleteWindow* win = new DeleteWindow(currGraph, this);
+    connect(win, SIGNAL(VertexDeleted(Vertex*)),this,SLOT(onVertexDeleted(Vertex*)));
+    connect(win, SIGNAL(EdgeDeleted(Edge*)),this,SLOT(onEdgeDeleted(Edge*)));
     win->show();
 }

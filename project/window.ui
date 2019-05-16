@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
+      <y>320</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>290</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -54,6 +54,16 @@
       <enum>QLayout::SetNoConstraint</enum>
      </property>
     </layout>
+   </widget>
+   <widget class="QComboBox" name="GraphBox">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>80</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

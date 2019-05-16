@@ -6,11 +6,13 @@
 #include "edge.h"
 #include "queue.h"
 #include "stack.h"
+#include <QString>
 
 class Graph
 {
     List<Vertex> *vertices = new List<Vertex>();
     List<Edge> *edges = new List<Edge>();
+
 
     void resetVertices() {
         bool isEnd = false;
@@ -24,7 +26,13 @@ class Graph
     }
 
 public:
-    Graph() { }
+    QString name;
+
+    Graph(QString name)
+    {
+        this->name = name;
+    }
+
     ~Graph() {
         delete vertices;
         delete edges;

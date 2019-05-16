@@ -6,6 +6,7 @@
 #include "data/graph.h"
 #include "windowadd.h"
 #include "deletewindow.h"
+#include "graphdbhelper.h"
 
 namespace Ui {
 class Window;
@@ -22,9 +23,9 @@ public:
 private:
     Ui::Window *ui;
 
-    DeleteWindow *win;
-    WindowAdd *window;
-    Graph *graph;
+    GraphDbHelper *helper;
+    QList<Graph*> *graph;
+    Graph* currGraph;
     QSvgWidget *svgTree;
 
     void onGraphChanged(Graph *graph);
