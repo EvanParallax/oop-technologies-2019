@@ -13,7 +13,8 @@ class WindowAdd : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit WindowAdd(Graph* g, QWidget *parent = nullptr);
+    explicit WindowAdd(QWidget *parent = nullptr);
+
     ~WindowAdd();
 signals:
     void VertexAdded(Vertex *v);
@@ -27,7 +28,6 @@ private slots:
 
 private:
     Ui::WindowAdd *ui;
-    Graph* graph;
 };
 
 #endif // WINDOWADD_H

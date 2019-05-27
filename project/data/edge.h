@@ -6,15 +6,13 @@
 
 class Edge
 {
-
-
-public:
     Vertex *from;
     Vertex *to;
 
-    Edge(Vertex *from, Vertex *to, QString g) : from(from), to(to), graph(g) {}
+public:
+    QString graphName;
+    Edge(Vertex *from, Vertex *to, QString graph) : from(from), to(to), graphName(graph) {}
 
-    QString graph;
     Vertex *getFrom() {return from;}
     Vertex *getTo() {return to;}
 };

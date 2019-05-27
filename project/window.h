@@ -6,7 +6,6 @@
 #include "data/graph.h"
 #include "windowadd.h"
 #include "deletewindow.h"
-#include "graphdbhelper.h"
 
 namespace Ui {
 class Window;
@@ -23,9 +22,13 @@ public:
 private:
     Ui::Window *ui;
 
-    GraphDbHelper *helper;
-    QList<Graph*> *graph;
-    Graph* currGraph;
+    QList<QString> selectedGraphs;
+
+    QList<Graph*> *graphs;
+
+    DeleteWindow *win;
+    WindowAdd *window;
+    Graph *graph;
     QSvgWidget *svgTree;
 
     void onGraphChanged(Graph *graph);
@@ -39,6 +42,8 @@ private slots:
     void on_addItem_clicked();
     void on_addEdge_clicked();
     void on_Remove_clicked();
+    void on_GoalBox_currentTextChanged(const QString &arg1);
+    void on_ThemeBox_currentTextChanged(const QString &arg1);
 };
 
 #endif // WINDOW_H

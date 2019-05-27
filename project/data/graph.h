@@ -6,33 +6,26 @@
 #include "edge.h"
 #include "queue.h"
 #include "stack.h"
-#include <QString>
 
 class Graph
 {
     List<Vertex> *vertices = new List<Vertex>();
     List<Edge> *edges = new List<Edge>();
 
-
     void resetVertices() {
-        bool isEnd = false;
-        vertices->toStart();
-        while (!isEnd) {
-            Vertex *curr = vertices->get();
-            curr->isVisited = false;
-            isEnd = vertices->isEnd();
-            vertices->next();
+        for (Vertex *v : *vertices) {
+            v->isVisited = false;
+        }
+        for (Edge *e : *edges) {
+            e->getFrom()->isVisited = false;
+            e->getTo()->isVisited = false;
         }
     }
 
 public:
-    QString name;
-
-    Graph(QString name)
-    {
-        this->name = name;
-    }
-
+    QString graphName;
+    Graph(){ }
+    Graph(QString name) {graphName = name; }
     ~Graph() {
         delete vertices;
         delete edges;
@@ -47,18 +40,11 @@ public:
     }
 
     Vertex *findVertex(QString name) {
-        vertices->toStart();
-        bool isEnd = false;
-        while (!isEnd && !vertices->isEmpty()) {
-
-            if (vertices->get()->displayName == name) {
-                return vertices->get();
+        for (Vertex *v : *vertices) {
+            if (v->displayName == name) {
+                return v;
             }
-
-            isEnd = vertices->isEnd();
-            vertices->next();
         }
-
         return nullptr;
     }
 
@@ -73,16 +59,13 @@ public:
         }
         Vertex *from = e->getFrom();
         Vertex *to = e->getTo();
-        bool isEnd = false;
-        edges->toStart();
-        while (!isEnd) {
-            Edge *curr = edges->get();
-            if (curr->getFrom() == from && curr->getTo() == to) {
+
+        for (Edge *ed : *edges) {
+            if (ed->getFrom() == from && ed->getTo() == to) {
                 return true;
             }
-            isEnd = edges->isEnd();
-            edges->next();
         }
+
         return false;
     }
 
@@ -107,7 +90,7 @@ public:
     void removeEdge(Edge *e) {
         Vertex *from = e->getFrom();
         Vertex *to = e->getTo();
-        bool isEnd = false;
+        bool isEnd = edges->isEmpty();
         edges->toStart();
         while (!isEnd) {
             Edge *curr = edges->get();
@@ -121,11 +104,26 @@ public:
         throw;
     }
 
+    void removeEdge(QString from, QString to) {
+        bool isEnd = edges->isEmpty();
+        edges->toStart();
+        while (!isEnd) {
+            Edge *curr = edges->get();
+            if (curr->getFrom()->displayName == from && curr->getTo()->displayName == to) {
+                edges->deleteCurr();
+                return;
+            }
+            isEnd = edges->isEnd();
+            edges->next();
+        }
+        throw;
+    }
+
     void removeVertex(Vertex *v) {
         if (!containsVertex(v)) {
             throw;
         }
-        bool isEnd = false;
+        bool isEnd = edges->isEmpty();
         edges->toStart();
         while (!isEnd) {
             Edge *curr = edges->get();
@@ -138,9 +136,37 @@ public:
         }
 
         vertices->toStart();
+        isEnd = vertices->isEmpty();
         while (!isEnd) {
             Vertex *curr = vertices->get();
             if (curr == v) {
+                vertices->deleteCurr();
+                return;
+            }
+            isEnd = vertices->isEnd();
+            vertices->next();
+        }
+        throw;
+    }
+
+    void removeVertex(QString v) {
+        bool isEnd = edges->isEmpty();
+        edges->toStart();
+        while (!isEnd) {
+            Edge *curr = edges->get();
+            if (curr->getFrom()->displayName == v || curr->getTo()->displayName == v) {
+                edges->deleteCurr();
+                edges->prev();
+            }
+            isEnd = edges->isEnd();
+            edges->next();
+        }
+
+        vertices->toStart();
+        isEnd = vertices->isEmpty();
+        while (!isEnd) {
+            Vertex *curr = vertices->get();
+            if (curr->displayName == v) {
                 vertices->deleteCurr();
                 return;
             }
@@ -165,7 +191,7 @@ public:
         while (!queue->isEmpty()) {
              Vertex *currVertex = queue->pop();
 
-             bool isEnd = false;
+             bool isEnd = edges->isEmpty();
              edges->toStart();
              while (!isEnd) {
                  Edge *currEdge = edges->get();
@@ -201,7 +227,7 @@ public:
 
             bool isDeeper = false;
 
-            bool isEnd = false;
+            bool isEnd = edges->isEmpty();
             edges->toStart();
             while (!isEnd) {
                 Edge *currEdge = edges->get();
@@ -231,13 +257,47 @@ public:
         return list;
     }
 
-    bool isCyclic() {
 
-        if (edges->isEmpty()) {
-            return false;
+    List<Vertex> *getLearningOrder(Vertex *finalTopic) {
+
+        resetVertices();
+        List<Vertex> *list = new List<Vertex>();
+
+        Vertex *final = findVertex(finalTopic->displayName);
+
+        list->addBefore(final);
+        final->isVisited = true;
+
+        for (Edge *e : *edges) {
+            if (e->getTo()->displayName == final->displayName) {
+                e->getTo()->isVisited = true;
+            }
+            if (e->getFrom()->displayName == final->displayName) {
+                e->getFrom()->isVisited = true;
+            }
         }
 
-        return false;
+        bool is_end = false;
+        while (!is_end) {
+            is_end = true;
+
+            for (Edge *e : *edges) {
+                if (e->getTo()->isVisited && !e->getFrom()->isVisited) {
+
+                    Vertex *curr = findVertex(e->getFrom()->displayName);
+                    list->addAfter(curr);
+
+                    e->getFrom()->isVisited = true;
+                    curr->isVisited = true;
+
+                    is_end = false;
+                }
+            }
+        }
+
+        resetVertices();
+
+        return list;
     }
 
 };

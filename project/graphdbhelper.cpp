@@ -1,5 +1,6 @@
 #include "graphdbhelper.h"
 #include <QMessageBox>
+#include <QDebug>
 
 GraphDbHelper::GraphDbHelper()
 {
@@ -16,26 +17,30 @@ QList<Graph*>* GraphDbHelper::Read()
            qDebug() << sdb.lastError().text();
     }
     QList<Graph*>* g = new QList<Graph*>();
-    QSqlQuery queryGraph("SELECT Name FROM Graphs");
+    QSqlQuery queryGraph;
+    queryGraph.exec("SELECT * FROM Graphs");
     while (queryGraph.next()) {
              QString name = queryGraph.value(0).toString();
-             QMessageBox b;
-             b.setText(name);
-             b.show();
              g->push_back(new Graph(name));
     }
 
-    QSqlQuery queryVert("SELECT * FROM Vertices");
-    while (queryVert.next()) {
-             QString name = queryGraph.value(1).toString();
+    QSqlQuery queryVert;
+    queryVert.exec("SELECT * FROM Vertices");
+    while (queryVert.next())
+    {
+        QSqlRecord rec = queryVert.record();
+             QString name = rec.value(1).toString();
+             QString display = rec.value(0).toString();
+             QString cont = rec.value(2).toString();
              for(Graph* var : *g)
              {
-                if(var->name == name)
-                    var->addVertex(new Vertex(queryGraph.value(0).toString(), queryGraph.value(1).toString(), queryGraph.value(2).toString()));
+                if(var->graphName == name)
+                    var->addVertex(new Vertex(display,name,cont));
              }
     }
 
-    QSqlQuery queryEdge("SELECT * FROM Edges");
+    QSqlQuery queryEdge;
+    queryEdge.exec("SELECT * FROM Edges");
     while (queryEdge.next()) {
              QString from = queryEdge.value(0).toString();
              QString to = queryEdge.value(1).toString();
@@ -44,7 +49,7 @@ QList<Graph*>* GraphDbHelper::Read()
              Vertex *tov = new Vertex(to,"","");
              for(Graph* var : *g)
              {
-                if(var->name == graphName)
+                if(var->graphName == graphName)
                     var->addEdge(new Edge(fromv, tov, graphName));
              }
     }
@@ -52,7 +57,7 @@ QList<Graph*>* GraphDbHelper::Read()
     return g;
 }
 
-void GraphDbHelper::Write(QList<Graph*> *graph)
+void GraphDbHelper::writeVert(Vertex *v)
 {
     QSqlDatabase sdb = QSqlDatabase::addDatabase("QSQLITE");
     sdb.setDatabaseName("graph.db");
@@ -62,38 +67,103 @@ void GraphDbHelper::Write(QList<Graph*> *graph)
            qDebug() << sdb.lastError().text();
     }
 
-    QSqlQuery queryGraph("DELETE FROM Graphs");
-    QSqlQuery queryEdge("DELETE FROM Edges");
-    QSqlQuery queryVert("DELETE FROM Vertices");
-
-    for(Graph* var : *graph)
-    {
-        QSqlQuery graphQuery;
-        graphQuery.prepare(
-                  QString("INSERT INTO Graphs (Name) VALUES (%1);")
-                                  .arg(var->name)
-                  );
-        graphQuery.exec();
-        /*
-        for(Vertex* item : var->getVertices())
-        {
-            QSqlQuery vertQuery;
-            vertQuery.prepare(
-                      QString("INSERT INTO Vertices (Name, GraphName, Description) VALUES (%1, %2, %3);")
-                                      .arg(item->displayName).arg(item->GraphName).arg(item->Description)
-                      );
-            vertQuery.exec();
-        }
-
-        for(Edge* item : var->getEdges())
-        {
-            QSqlQuery edgeQuery;
-            edgeQuery.prepare(
-                      QString("INSERT INTO Edges (From, To, GraphName) VALUES (%1, %2, %3);")
-                                      .arg(item->from->displayName).arg(item->to->displayName).arg(item->graph)
-                      );
-            edgeQuery.exec();
-        }
-        */
-    }
+    QSqlQuery vertQuery;
+    auto f = v->graphName;
+    vertQuery.prepare(
+              QString("INSERT INTO Vertices(Name,GraphName,Description) values(:Name,:GraphName,:Description);"));
+    vertQuery.bindValue(":Name",v->displayName);
+    vertQuery.bindValue(":GraphName",v->graphName);
+    vertQuery.bindValue(":Description",v->graphName);
+    qDebug() << vertQuery.exec() << endl;
+    sdb.close();
 }
+
+void GraphDbHelper::writeEdge(Edge *e)
+{
+    QSqlDatabase sdb = QSqlDatabase::addDatabase("QSQLITE");
+    sdb.setDatabaseName("graph.db");
+
+    if (!sdb.open())
+    {
+           qDebug() << sdb.lastError().text();
+    }
+
+    QSqlQuery edgeQuery;
+    auto f = e->graphName;
+    edgeQuery.prepare(
+              QString("INSERT INTO Edges(FromEdge,ToEdge,GraphName) values(:FromEdge,:ToEdge,:GraphName);"));
+    edgeQuery.bindValue(":FromEdge",e->getFrom()->displayName);
+    edgeQuery.bindValue(":ToEdge",e->getTo()->displayName);
+    edgeQuery.bindValue(":GraphName",e->graphName);
+    qDebug() << edgeQuery.exec() << endl;
+    sdb.close();
+}
+
+void GraphDbHelper::deleteVert(Graph *g, Vertex *v)
+{
+    QSqlDatabase sdb = QSqlDatabase::addDatabase("QSQLITE");
+    sdb.setDatabaseName("graph.db");
+
+    if (!sdb.open())
+    {
+           qDebug() << sdb.lastError().text();
+    }
+
+    QSqlQuery query;
+
+    query.prepare("DELETE FROM Vertices WHERE Name='" + v->displayName +
+                  "' AND GraphName='" + v->graphName +"';");
+    qDebug() << query.exec();
+
+    for(auto item : *g->getEdges())
+    {
+        if(item->getFrom()->displayName == v->displayName)
+        {
+            QSqlQuery query;
+
+            query.prepare("DELETE FROM Edges WHERE FromEdge='" + item->getFrom()->displayName +
+                          "' AND GraphName='" + v->graphName +"';");
+            qDebug() << query.exec();
+        }
+
+        if(item->getTo()->displayName == v->displayName)
+        {
+            QSqlQuery query;
+
+            query.prepare("DELETE FROM Edges WHERE ToEdge='" + v->displayName +
+                          "' AND GraphName='" + v->graphName +"';");
+
+            qDebug() << query.exec();
+        }
+    }
+
+    sdb.close();
+}
+
+
+void GraphDbHelper::deleteEdge(Edge *e)
+{
+    QSqlDatabase sdb = QSqlDatabase::addDatabase("QSQLITE");
+    sdb.setDatabaseName("graph.db");
+
+    if (!sdb.open())
+    {
+           qDebug() << sdb.lastError().text();
+    }
+
+    QSqlQuery query;
+
+    auto a = e->getFrom()->displayName;
+    auto b  =e->getTo()->displayName  ;
+    auto c =e->graphName;
+
+    query.prepare("DELETE FROM Edges WHERE FromEdge='" + e->getFrom()->displayName +
+                  "' AND ToEdge='" + e->getTo()->displayName +
+                  "' AND GraphName='" + e->graphName +"';");
+    qDebug() << query.exec();
+
+    sdb.close();
+
+}
+
+

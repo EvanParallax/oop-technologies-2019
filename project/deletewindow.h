@@ -13,7 +13,7 @@ class DeleteWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit DeleteWindow(Graph* g, QWidget *parent = nullptr);
+    explicit DeleteWindow(QWidget *parent = nullptr);
     ~DeleteWindow();
 
 signals:
@@ -28,7 +28,6 @@ private slots:
 
 private:
     Ui::DeleteWindow *ui;
-    Graph* graph;
 };
 
 #endif // DELETEWINDOW_H
