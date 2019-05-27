@@ -1,0 +1,54 @@
+<h2 style="text-align: center;">Errors in programs</h2>
+
+<p>The first thing you need to know about programming is how to print “Hello, World”. The second one is that this might be a challenging task, as even such a tiny script can contain different errors.</p>
+
+<pre><code>print(“Hello, World!”</code></pre>
+
+<p>As you can see, the general name for errors in Python is “<strong>Traceback</strong>”. Then there goes detailed information on the error, indicating the <strong>definite files</strong> (there can be plenty of them, depending on how many import statements there are in your script) <strong>in which errors occurred</strong>. The lines which are the most informative for us right now are the last two, they point onto a mistake in your script:</p>
+
+<pre><code><span style="color: #ff0000;">File "FULL/PATH/TO_YOUR/SCRIPT.PY", line 1
+    print("Hello, world!"
+                        ^
+SyntaxError: unexpected EOF while parsing
+</span></code></pre>
+
+<p>This might seem a little bit frustrating, but generally what errors are designed for is to allow Python communicating with you. Whenever you see those red threatening lines – don’t panic! Just read carefully what they are saying. </p>
+
+<h2 style="text-align: center;">Syntax Errors</h2>
+
+<p>In the example above we can clearly see the magic words “<strong>Syntax error</strong>”, which will probably be chasing you during all the period of getting used to Python. A large variety of different errors are called Syntax errors. What they usually mean is that Python has encountered a problem while trying <strong>to compile</strong> your program and it can’t even execute it.</p>
+
+<p>Carefully reading the text of the traceback helps to find and correct them quite easily, as you can see <strong>an arrow</strong> pointing to the exact place where Python finds the mistake in your code. Every Syntax error has also got an “<strong>associated value</strong>”, which describes the error in details. In the example above you can see “<strong>SyntaxError: unexpected EOF while parsing</strong>” which means that Python expected something else after you statement, but you haven’t given it to him. In this case, there must be a closing bracket “)”.</p>
+
+<p>Although they aren’t going to be so obvious all the time. It is quite likely that the message you’ll get as an “associated value” will be just “invalid syntax”, which is not really informative. Well, anyway, it’s really enough to know, that the error you get is Syntax to locate the problem. </p>
+
+<h2 style="text-align: center;">Common errors for beginners</h2>
+
+<p>Some very common Syntax errors are:</p>
+
+<ul>
+	<li><strong>wrong spelling</strong> of keywords, e.g.: While instead of while, ‘=’ sign instead of ‘==’ in comparing variables etc;</li>
+	<li>forgetting the <strong>colon</strong> after statements;</li>
+	<li>the wrong number of <strong>brackets</strong> in function calls;</li>
+	<li><strong>indentation blocks </strong>are also the fertile soil for errors;</li>
+	<li>troubles with <strong>quotes</strong>. Don’t forget to embrace the string in the quotes of the same type: triple quotes for <strong>docstrings</strong>, double or single quotes for usual strings;</li>
+</ul>
+
+<p>Modern IDEs tend to check everything for you and kindly highlight the places where you have done a mistake, but don’t rely on it too much and be ready to read the traceback yourself.</p>
+
+<p>NB!! Mind that Python stops compiling your program after finding<strong> the first</strong> Syntax error, so it might take a while to fix everything. Check the following piece of code, for example:</p>
+
+<pre><code class="language-no-highlight">my_string  = "this is a mistake!
+another_string = this is not a string!
+string_to_compare = "one string"
+string_to_be_compared = "another string"
+
+if string_to_compare = string_to_be_compared
+    print(my_string, another_string))
+else:
+    print("string_to_compare and string_to_be_compared are different")
+</code></pre>
+
+<h2 style="text-align: center;">Conclusion</h2>
+
+<p>As you can see, there are plenty of Syntax errors in this tiny piece of code. If you’ve checked and corrected everything from the list above and yet you encounter those annoying red lines – don’t worry! Once again, it’s just Python trying to tell you that something went wrong. Deep breath, reread the article, and continue perfecting your programming skills!</p>

@@ -1,0 +1,96 @@
+<h2 style="text-align: center;">Definition</h2>
+
+<p>Often enough, built-in functions cannot suffice even beginners. In such a case, there is no choice but to create your own function using the keyword <code>def</code> (right, derived from <strong>define</strong>). Let's take a brief look at the syntax:</p>
+
+<pre><code class="language-python">def function_name(argument0, argument1):
+    # function's body
+    return argument0 * argument1
+
+
+a = function_name(3, 5)  # 15
+b = function_name(a, 10)  # 150</code></pre>
+
+<p>After <code>def</code> we write the name of our function (so as to invoke it later) and the arguments enclosed in parentheses. Do not miss the colon at the end. Names of a function and its arguments follow the same convention as <strong>variable names</strong>, that is, they should be written in lowercase with underscores between words. The argument names are assigned to the values passed in parentheses at the function call. An indent of 4 spaces shows the interpreter where the function's body starts and where it ends. Only when the indentation is absent, the definition of the function ends.</p>
+
+<h2 style="text-align: center;">Execution and return</h2>
+
+<p>The keyword <code>return</code> is used to indicate what values the function outputs (the product of the arguments in our previous example). Basically, it is the result of the function call. So, <code>a</code> refers to the value 15 and <code>b</code> to 150. Importantly, Python interpreter stops performing the function after <code>return</code>. But what if the function body contains more than one <strong>return statement</strong>? Then the execution will end after the first one.</p>
+
+<p>One more thing to say is that functions do not have to return values. The well-known <code>print()</code> function does not, in fact, return anything. Examine the code below:</p>
+
+<pre><code class="language-python">chant = print("We Will Rock You")
+print(chant)
+type(chant)</code></pre>
+
+<p>And its output:</p>
+
+<pre><code class="language-python">We Will Rock You
+None
+&lt;class 'NoneType'&gt;</code></pre>
+
+<p>We declared the variable <code>chant</code> and invoked <code>print()</code>. Obviously, the function was executed. But the variable itself turned out to be the <strong>None</strong> object, which means the called function had nothing to return. This value is of <strong>Nonetype</strong>.</p>
+
+<h2 style="text-align: center;">Arguments</h2>
+
+<p>Each time we call a function, we initialize its arguments again (so that all the calculations start from scratch). There are different ways to assign the arguments:</p>
+
+<ul>
+	<li><strong>Positional</strong> <strong>arguments</strong> (alias <strong>non-keyword</strong>) are passed to a function by position, from left to right.
+
+	<pre><code class="language-python">def count_args(x, y):
+    print("The first argument is", x)
+    print("The second one is", y)
+
+
+count_args(0, 1)
+# The first argument is 0
+# The second one is 1
+count_args(1, 0)
+# The first argument is 1
+# The second one is 0</code></pre>
+
+	<p>The order of the arguments determines how they are assigned.</p>
+	</li>
+	<li><strong>Keyword</strong> <strong>arguments</strong> are matched by name.
+	<pre><code class="language-python">def print_args(x, y):
+    print(x, y)
+
+
+print_args(x=1, y=2)  # 1 2
+print_args(y=3, x=2)  # 2 3</code></pre>
+
+	<p>The order doesn't matter here, but keyword arguments are always written after non-keyword arguments:</p>
+
+	<pre><code class="language-python">print_args(1, y=3)  # 1 3
+print_args(x=1, 3)  # SyntaxError: positional argument follows keyword argument</code></pre>
+	</li>
+	<li><strong>Defaults </strong>are specified in a function definition and represent <strong>default values</strong> for arguments that are not passed.
+	<pre><code class="language-python">def location(place, planet="Earth"):
+    print(place, "on", planet)
+
+
+location("Berlin")  # Berlin on Earth
+location("Breakfast", planet="Pluto")  # Breakfast on Pluto
+location("Craters", "Mercury")  # Craters on Mercury</code></pre>
+
+	<p>Arguments with default values are optional in some way. However, new values can be assigned to them either by name or by position.</p>
+	</li>
+</ul>
+
+<p>Finally, the syntax in Python enables us to pass all items from a sequence as individual positional arguments using <code>*</code>. We can also get key-value pairs from a dictionary and pass them as keyword arguments using <code>**</code>:</p>
+
+<pre><code class="language-python">def say_bye(x, y):
+    print("Bye,", x)
+    print("Au revoir,", y)
+
+
+names = ["Peter", "Sophie"]
+say_bye(*names)
+# Bye, Peter
+# Au revoir, Sophie
+dict_names = {'y' : "Laura", 'x' : "Robin"}
+say_bye(**dict_names)
+# Bye, Robin
+# Au revoir, Laura</code></pre>
+
+<p> </p>

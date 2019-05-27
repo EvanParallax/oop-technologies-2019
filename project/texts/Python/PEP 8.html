@@ -1,0 +1,67 @@
+<h2 style="text-align: center;"><strong>General considerations</strong></h2>
+
+<p>When moving from simple single-line programs to more complicated ones there is another question appearing: how to write code that is clean and easy to read. It may seem not very important at the beginning, but because in real life programming is a process that involves a lot of people working together, you spend more time reading code than writing it.</p>
+
+<p>Although Python is often more readable than other programming languages because of its minimalistic syntax, just syntax itself is not enough for programs to be well readable. The way you write code affects general readability a lot. So it makes sense to follow common conventions about code style in order for your code to be understood by other programmers.</p>
+
+<p>But where do these conventions come from? In Python, there is such document as<strong> </strong><a href="https://www.python.org/dev/peps/pep-0008/" rel="nofollow noopener noreferrer">PEP 8</a>. The key idea of this document is to use the same code style for all python projects, as if they were written by the same programmer. It makes easy to understand such projects by any developers, especially beginners.<strong> </strong></p>
+
+<h2 style="text-align: center;"><strong>PEPs</strong></h2>
+
+<p>Before going further, let’s say a bit about PEPs. PEP stands for <strong>Python Enhancement Proposal</strong>. There are different types of PEP and the most useful one for beginners is informational PEP. PEPs of this kind typically describe commonly accepted guidelines or conventions about the language and may be very helpful. Besides PEP 8, that is an official style guide, another great PEP to check out is <a href="https://www.python.org/dev/peps/pep-0020/" rel="nofollow noopener noreferrer">the Zen of Python</a>.</p>
+
+<p>Now, when we know what PEP 8 is, let’s cover some recommendations it provides.</p>
+
+<h2 style="text-align: center;">The length of a line</h2>
+
+<p>Do not use more than 79 characters in a line of code. Short lines are easier to observe in code editors. Throughout this course we will learn different ways to achieve it.</p>
+
+<h2 style="text-align: center;"><strong>Avoid extra spaces</strong></h2>
+
+<p>Sometimes you may add some spaces where they are not actually needed. This will reduce the readability of your code.</p>
+
+<ul>
+	<li><strong>Avoid extra spaces within parentheses.</strong></li>
+</ul>
+
+<p>Good:</p>
+
+<pre><code class="language-python">print('Hello!')</code></pre>
+
+<p>Bad:</p>
+
+<pre><code class="language-python">print( 'Hello!' )</code></pre>
+
+<ul>
+	<li><strong>Avoid an extra space before an open bracket.</strong></li>
+</ul>
+
+<p>Good:</p>
+
+<pre><code class="language-python">print('some text')</code></pre>
+
+<p>Bad:</p>
+
+<pre><code class="language-python">print ('some text')</code></pre>
+
+<h2 style="text-align: center;"><strong>Quotes</strong></h2>
+
+<p>We already mentioned earlier that you can use either single or double quotes to define strings. To be consistent choose one that you like and use them all along in your code. PEP 8 only states that if string contains single or double quotes, you should use the other one to avoid backslashes.</p>
+
+<p>Good:</p>
+
+<pre><code class="language-language-python language-python">print("It's a good string!")</code></pre>
+
+<p>Bad and harder to read:</p>
+
+<pre><code class="language-language-python language-python">print('It\'s a bad string!')</code></pre>
+
+<p>You can notice that the first example is more readable.</p>
+
+<h2 style="text-align: center;"><strong>What’s next?</strong></h2>
+
+<p>Further, you will learn a lot of concepts about Python and become more powerful as a programmer, but following the code style will always remain important. We strongly recommend you to always check PEP 8 after learning something new. It will help you to build a skill of writing clean and readable code.</p>
+
+<p>Do not try to learn all the conventions at once; just open them from time to time after learning some new concepts. We will also give parts of these conventions in this course.</p>
+
+<p>Also here is a <a href="http://pep8online.com" rel="nofollow noopener noreferrer">helpful tool</a> to find out does your code conform to PEP 8.</p>

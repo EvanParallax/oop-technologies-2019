@@ -1,0 +1,26 @@
+<p>Real numbers are often used to perform various types kind of calculations in science, statistics, engineering and many other fields. Kotlin has two basic types to represent such numbers: <code>Float</code> and <code>Double</code>. They are called <b>floating-point types</b>. In fact, these types cannot represent an arbitrary real number, because they support only a limited number of significant decimal digits (6-7 for <code>Float</code>, and 14-16 for <code>Double</code>). In addition, <code>Double</code> can represent a wider range of numbers than <code>Float</code>.</p><p>In practice, programmers mostly use the <code>Double</code> type. We will mainly consider this type and also recommend using it to solve our code challenges. But all the information below is true for the <code>Float</code> type as well.</p><h2 style="text-align: center;">Arithmetic operations with Double</h2><p>It is easy to create a variable with <code>Double</code>:</p><pre><code class="language-kotlin">val zero = 0.0
+val one = 1.0
+val negNumber = -1.75
+
+val pi = 3.1415
+val e = 2.71828
+
+val a = 5.5
+val b = 8.75</code></pre><p>You can perform arithmetic operations with variables of the <code>Double</code> type:<br></p><pre><code class="language-kotlin">val number = one + 1.5 // 2.5
+val c = b - a // 3.25
+val squaredPi = pi * pi // 9.86902225</code></pre><p>For fractional operands, the operator <code>/</code> performs a division, not an integer division.<br></p><pre><code class="language-kotlin">println(squaredPi / 2) // prints 4.934511125</code></pre><h2 style="text-align: center;">Errors during computation</h2><h2 style="text-align: center;"></h2><h2 style="text-align: center;"></h2><p>Be careful; operations with floating-point numbers can produce an inaccurate result:</p><pre><code class="language-java">println(3.3 / 3) // prints 1.0999999999999999</code></pre><p>Errors can accumulate during computation.</p><pre><code class="language-java">val num = 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1
+println(num) // it prints 0.9999999999999999</code></pre><div></div>In the following lessons, we will <b></b>find out how to deal with this issue. <b></b>For now, just take it into consideration.<b></b><b></b><div><h2 style="text-align: center;">Reading numbers</h2><p>You can use <code>Scanner</code> to read <code>Double</code>s and <code>Float</code>s from the standard input.</p><pre><code class="language-kotlin">val scanner = Scanner(System.`in`)
+
+val f = scanner.nextFloat()  // Float
+val d = scanner.nextDouble() // Double</code></pre><p>For example, consider a program that calculates the <code>area</code> of a triangle. To find it, the program reads the <code>base</code> and the <code>height</code> from the standard input, then multiplies them, and divide by 2. Note that the base and the height are perpendicular to each other.</p><pre><code class="language-kotlin">import java.util.*
+
+fun main(args: Array&lt;String&gt;) {
+    val scanner = Scanner(System.`in`)
+
+    val base = scanner.nextDouble()
+    val height = scanner.nextDouble()
+
+    val area = (base * height) / 2
+
+    println(area)
+}</code></pre><p>Let's calculate the area of a triangle with a base of 3.3 meters and a height of 4.5 meters.</p><p><b>Input 1:</b></p><pre><code class="language-css">3.3 4.5</code></pre><p><b>Output 1:</b></p><pre><code class="language-css">7.425</code></pre><p>As you can see, It has an area of 7.425 square meters!</p><p><b>Note:</b> If you solve practice lessons locally and your computer has different region settings <b></b>for keyboard input<b></b>, these input values may crash the program. Try using <code>,</code> as the decimal separator. If you want to use the dot character without modifying your local settings, try using the following code to create a scanner:</p><pre><code>val scanner = Scanner(System.`in`).useLocale(Locale.US)</code></pre><p><b>Keep in mind</b> that the output of this program may have a lot of zeroes like the output below, because an operation with floating-point numbers can produce inaccurate results.</p><p><b>Input 2:</b></p><pre><code class="language-css">2.2 4.01</code></pre><p><b>Output 2:</b></p><pre><code class="language-css">4.4110000000000005</code></pre><div><p>It is possible to round or format a double result, but we will not do it in this lesson. In the code challenges, output a result as-is.</p></div></div>

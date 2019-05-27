@@ -1,0 +1,105 @@
+<p>Sometimes we face the lack of controlling the flow during loop iterations. Have you ever had a situation, when you wanted to jump out of a loop manually?  It may happen if a special condition occurs or you want to process only certain cases and skip others. Fortunately, Kotlin prepared a special tool for it - <strong>structural jumps</strong>. There are three structural jump expressions in Kotlin: <code>break</code>, <code>continue</code> and <code>return</code>. They might work even more flexible with <strong>labels</strong>. Before we move on to these expressions, let's look at labels.</p>
+
+<h2 style="text-align: center;">Labels in Kotlin</h2>
+
+<p>What is a <strong>label</strong>? Technically, it's just an identifier with the <code>@</code> sign at the end of it, for example: <code>loop@</code>, <code>kotlin@</code>. You can use almost any word for it, apart from reserved words in Kotlin. Why do you need it? Just keep in mind the next information: you could add your label to the loop:</p>
+
+<pre><code class="language-kotlin">loop@ for (i in 1..10) {
+    // do something
+}</code></pre>
+
+<p>Let's now combine labels with jump expressions described below and see what will happen.</p>
+
+<h2 style="text-align: center;">The Break Statement</h2>
+
+<p>A <code>break</code> expression is used to terminate the nearest enclosing loop. You can literally <strong>break </strong>the loop by your own condition. In the following example, it is used with if-else-case:</p>
+
+<pre><code class="language-kotlin">for (i in 1..10) {  
+   // do something
+   if (checkCondition){  
+       break;  
+   }  
+}</code></pre>
+
+<p><code>A for</code> loop terminates its loop, when <code>if</code> condition executes break expression. Let's look at a more specific example:</p>
+
+<pre><code class="language-kotlin">for (i in 1..10) {  
+    if (i == 3) {  
+        break  
+    }  
+    println(i)  
+}  </code></pre>
+
+<p>In the third iteration, the <code>break</code> expression will leave the <code>for</code> loop. And the output will be:</p>
+
+<pre><code class="language-kotlin">1
+2</code></pre>
+
+<p>There is also a way how to use <code>break</code> statement with labels:</p>
+
+<pre><code class="language-kotlin">loop@ for (i in 1..3) { 
+    for (j in 1..3) {
+        println("i = $i, j = $j")   
+        if (j == 3) break@loop  
+    }  
+}  </code></pre>
+
+<p>The internal <code>for</code> loop will be terminated at the third iteration and the flow of program execution will be returned to <code>loop@</code>.  And the output will be:</p>
+
+<pre><code class="language-kotlin">i = 1, j = 1
+i = 1, j = 2
+i = 1, j = 3</code></pre>
+
+<p>In this way, a label can help us to break not only the inner loop but also outer. Once again, <code>break</code> with a label will terminate the loop with that label. Sounds unbelievable, right? But Kotlin provides such a powerful mechanism.</p>
+
+<h2 style="text-align: center;">The Continue Statement</h2>
+
+<p>Let’s have a look at the next keyword - <code>continue</code>, which we can also use with or without a label. It lets us proceed to the next iteration of the enclosing loop. In other words, in case of skipping the rest of the loop code by your own condition, you may use <code>continue</code>. For instance:</p>
+
+<pre><code class="language-kotlin">var result = ""
+for (i in "hello world") {
+    if (i == 'o') continue
+    result += i
+}
+println(result)</code></pre>
+
+<p>This code will produce the next output:</p>
+
+<pre><code class="language-kotlin">hell wrld</code></pre>
+
+<p>Let's modify the example from the previous part for <code>continue</code> keyword usage:</p>
+
+<pre><code class="language-kotlin">loop@ for (i in 1..3) {
+    for (j in 1..3) {
+        for (k in 1..3) {
+            if (k == 2) continue@loop
+            println("i = $i, j = $j, k = $k")
+        }
+    }
+}</code></pre>
+
+<p>with the next output result:</p>
+
+<pre><code class="language-kotlin">i = 1, j = 1, k = 1
+i = 2, j = 1, k = 1
+i = 3, j = 1, k = 1</code></pre>
+
+<p>With the label, we changed the default behavior of <code>continue</code> keyword. Instead of skipping the rest in the inner loop at the second iteration and continue our trip there, we returned to the outer loop and continued the processing there. Without labels<strong>,</strong> we couldn't do such a trick.</p>
+
+<h2 style="text-align: center;">The Return Statement</h2>
+
+<p>Without a label, <code>return</code> statement lets us return the result to the nearest enclosing function. It might be really helpful if we want to jump out of a loop for some reason and skip everything after it, no matter was it within a loop or not.</p>
+
+<pre><code class="language-kotlin">fun main() {
+    for (i in 1..10) {
+        for (j in 1..10) {
+            if (j == 3) return
+        }
+    }
+}</code></pre>
+
+<p>In the example above, the internal loop will be interrupted at the third interaction and return the flow of program execution. In this way, the outer loop will never reach further than the first interaction.</p>
+
+<h2 style="text-align: center;">Conclusion</h2>
+
+<p>Let's summarize how to use structural jumps. The main difference between <code><span style="color: #000000;">break</span></code> and <code>continue</code> is that <code>continue</code> will just skip the rest after the keyword in the current cycle, but will continue the next iterations. <code><span style="color: #000000;">break</span></code> will exit the loop immediately and skip the rest of iterations. <code>return</code> does almost the same with <code>break</code>, but it will also return the result from the function, so the rest after <code>return</code> keyword will be never achieved. Finally, with labels, you can exit the outer/inner loop and continue your further processing from the place you need. All the considered statements can be also used together with the <code>while</code> loop.</p>

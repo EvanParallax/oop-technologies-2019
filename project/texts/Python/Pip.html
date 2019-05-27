@@ -1,0 +1,77 @@
+<h2 style="text-align: center;">Introduction</h2>
+
+<p>One astonishing fact about Python is that it has a huge and diverse community of contributors. Essentially, that means that there are plenty of solutions to a significantly vast range of problems in open access. This fact comes particularly in handy when you are working on your own projects, for it's highly likely that you'll be able to find a proper task-specific package and use it effectively to meet your needs. Now we are going to learn about standard tools for package management in Python.</p>
+
+<h2 style="text-align: center;">What is pip</h2>
+
+<p>By this time, you are probably familiar with the Python standard library. It contains a lot of useful built-in modules and should be preinstalled with your Python distribution. In fact, one more thing that is preinstalled (starting with <strong>Python 3.4</strong>) is the standard package manager called <strong>pip</strong> (the acronym is commonly expanded as <samp>"Pip Installs Packages"</samp>).</p>
+
+<p><strong>Pip </strong>is designed both to extend the functionality of the standard library through the installation of additional packages on your computer and to help you share your own projects and thereby contribute to the development of Python.</p>
+
+<p>Now let's make sure that you have <strong>pip </strong>installed. All you need to do is to open a command prompt/terminal and run this line:</p>
+
+<pre><code class="language-no-highlight">pip --version</code></pre>
+
+<p>The output should report your current pip version. For example, the latest version is:</p>
+
+<pre><code class="language-no-highlight">pip 19.1.1</code></pre>
+
+<p>In case it's not installed (or you want to upgrade it), please follow <a href="https://pip.pypa.io/en/stable/installing/" rel="noopener noreferrer nofollow">these</a> installation instructions specifically for your operating system.</p>
+
+<h2 style="text-align: center;">Pip capabilities</h2>
+
+<p>Since pip is recommended installer, the most obvious and crucial command to begin with is <code>install</code>.  Have a look at the following line:</p>
+
+<pre><code class="language-no-highlight">pip install some_package</code></pre>
+
+<p>The installation is really that simple. However, if you are interested in a certain version of the package, you need to specify it after the package name like this:</p>
+
+<pre><code class="language-no-highlight">pip install some_package==1.1.2</code></pre>
+
+<p>Or, at least, define a minimum version:</p>
+
+<pre><code class="language-no-highlight">pip install "some_package&gt;=1.1.2"</code></pre>
+
+<p>Note that the last expression should be enclosed within double quotes for the comparison operator to be interpreted without any problem.</p>
+
+<p>Another useful thing is the <code>show</code> command. It shows information about installed packages, for instance, their version, author, license, location or requirements. Here is a general example:</p>
+
+<pre><code class="language-no-highlight">pip show some_package</code></pre>
+
+<p>To remove a package from your computer run the <code>uninstall</code> command:</p>
+
+<pre><code class="language-no-highlight">pip uninstall some_package</code></pre>
+
+<p>When developing your project, it may be advantageous to keep a list of packages to be installed (i.e. dependencies) in a special file (see <a href="https://pip.pypa.io/en/stable/reference/pip_install/#requirements-file-format" rel="noopener noreferrer nofollow">Requirements File Format</a>). It is convenient because you can install the packages directly from it:</p>
+
+<pre><code class="language-no-highlight">pip install -r requirements.txt</code></pre>
+
+<p>Of course, you are not supposed to write the file yourself listing all the names of necessary packages. It will be enough to run the code below in order to obtain the requirements file:</p>
+
+<pre><code class="language-no-highlight">pip freeze &gt; requirements.txt</code></pre>
+
+<p>Let's examine the line above in detail. <code>freeze</code> is a command used to get all installed packages in requirements format. So all the packages you had installed before the execution of the command and presumably used in some project would be listed in the file named <samp>"requirements.txt"</samp>.  Furthermore, their exact versions would be specified (see <a href="https://pip.pypa.io/en/stable/reference/pip_install/#requirement-specifiers" rel="noopener noreferrer nofollow">Requirement Specifiers</a>).</p>
+
+<p>Consider an example output of the <code>freeze</code> command:</p>
+
+<pre><code class="language-no-highlight">beautifulsoup4==4.7.1
+nltk==3.4.1
+numpy==1.16.3
+scikit-learn==0.21.1
+scipy==1.3.0
+six==1.12.0</code></pre>
+
+<h2 style="text-align: center;">Recap</h2>
+
+<p>On the whole, we've learned the basics for package installation through <strong>pip</strong>:</p>
+
+<ul>
+	<li>how to install packages (either a specific version or non-specific one),</li>
+	<li>how to create a requirements file and use it for installation,</li>
+	<li>how to obtain information about an installed package,</li>
+	<li>and, finally, how to uninstall packages.</li>
+</ul>
+
+<p>For further details, try opening the <a href="https://pip.pypa.io/en/stable/#" rel="noopener noreferrer nofollow">documentation</a> or running the command <code>help</code>.</p>
+
+<p>Now let's practice the acquired knowledge so that you'll be able to use it in the future.</p>

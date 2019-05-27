@@ -1,0 +1,56 @@
+<p>Sometimes programs need to interact with users, either to get data or to provide some sort of result. And that's when the <code>input</code><strong> </strong>function comes ahead.</p>
+
+<h2 style="text-align: center;">Reading input from a user</h2>
+
+<p>The input data we want to get is nothing but some value from the user. The <code>input</code> function reads this value and returns it in a program as a string. As an example, the following program reads the user name and prints a greeting.</p>
+
+<pre><code class="language-python">user_name = input()
+print('Hello, ' + user_name)</code></pre>
+
+<p>In the first line, the program will wait for the user to enter something and the fact that we assign the input to the variable will let us perform some actions with it later. In the second line, the program appends the entered name to the end of <code>'Hello, '</code> string and print the whole result.</p>
+
+<p>If a user enters <code>Sauron</code>, this program prints:</p>
+
+<pre><code>Hello, Sauron</code></pre>
+
+<p>So, your program printed a result that depends on the entered data (name).</p>
+
+<h2 style="text-align: center;">Clear messages</h2>
+
+<p>It is highly recommended to show clear messages if we want the user to understand what (s)he is supposed to do while the program waits for an input. For this purpose, the <code>input</code> function may take an optional argument representing a message:</p>
+
+<pre><code class="language-python">user_name = input('Please, enter your name: ')
+print('Hello, ' + user_name)</code></pre>
+
+<p>After starting this program, the user will see the message, enther his/her name and get the result:</p>
+
+<pre><code>Please, enter your name: Sauron
+Hello, Sauron
+</code></pre>
+
+<p>Alternatively, we may print the message for the user separately: </p>
+
+<pre><code class="language-python">print('Enter your name: ')
+user_name = input()
+print('Hello, ' + user_name)</code></pre>
+
+<p>The difference isn't that significant: in the previous example, the input will be printed in the same line as the message, while in this case it will be written in the next line. So, you may choose whatever you like.</p>
+
+<p>[ALERT-warning]Although it is recommended to print messages for users, avoid them in our educational programming challenges, otherwise your code may not pass our tests.[/ALERT]</p>
+
+<h2 style="text-align: center;">Important details</h2>
+
+<p>But how long can the user's input be? And how will the program understand that the person has written everything (s)he wanted?</p>
+
+<p>That's actually an important point about the <code>input()</code> function: as soon as the program has run into this function, it stops and waits for the user to write something and <strong>press Enter</strong>. That also means that if there's no input from the user, it will not execute any further.</p>
+
+<p>Another important point is that anything you enter will be regarded by the function as a <strong>string</strong>. Whether you enter digits or letters, the input will be converted to a string.</p>
+
+<p>If you want a number to be a <strong>number</strong>, you should write it explicitly:</p>
+
+<pre><code class="language-python">print("What's your favourite number?")
+value = int(input())  # now value keeps an integer number</code></pre>
+
+<p>However, be careful: in these circumstances, if a user writes not an integer, an Error will appear.</p>
+
+<p>Congratulations, now you know how to work with <code>input()</code>, a function that lets you interact with the user. Believe me, this is something you will definetely appreciate within your programming experience.</p>

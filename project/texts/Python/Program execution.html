@@ -1,0 +1,45 @@
+<p>Have you ever thought about what it means to write a program in Python? From the <strong>programmer’s point of view</strong>, it simply means to write a set of familiar to Python statements in a text file and later make Python execute the file. Thus one can create <strong>a .txt file</strong> with</p>
+
+<pre><code class="language-python">print(“Hello, World!”)</code></pre>
+
+<p>statement and run it via Python or OS console. Of course, by convention all the Python files are supposed to be called <strong>with .py </strong>extension and typically people don’t use text editors to write Python code - they use<strong> IDEs</strong>, but the idea is clear: from the programmer’s point of view source code is just <strong>a set of statements</strong>. But that’s not exactly it.</p>
+
+<p>If you’ve been programming for at least some time, you probably have heard such terms as <strong>interpreted</strong> or <strong>compiled</strong> languages. And most likely you’ve heard, that <strong>Python is an interpreted one</strong>, without any details. So, let’s figure this all out!<br>
+Right now, the process of program execution must look for you something like this:</p>
+
+
+
+<p>In fact, taking into account the part with “interpretation” process, you can turn on your logical thinking and change the middle part:</p>
+
+
+
+<p>...and that’ll do. Actually, the majority of Python programmers stop going deeper this step. It’s usually enough to know that “<strong>Python is an interpreted language</strong>” and to explain anything using this mantra. Here we are going to be better - we’ll go deeper!</p>
+
+<h2 style="text-align: center;">The interpreter</h2>
+
+<p>Generally, what is the interpretation process? One may say that it resembles the <strong>reading</strong> a program. Some software just “<strong>reads</strong>” your program and executes what is written in it <strong>line by line</strong>. This software is unexpectedly called “<strong>Interpreter</strong>” and is a part of the standard Python installation package. Another inherent part of it is <strong>a standard library</strong> with all built-in modules, functions, data etc.<br>
+An interesting fact: interpreter can be written in basically <strong>any programming language</strong>. The default interpreter for Python is written in C and is called <strong>CPython</strong>. Some other Python interpreters are:</p>
+
+<ul>
+	<li><strong>PyPy</strong> is written in a restricted subset of Python called RPython (Restricted Python), which provides some restrictions to usual Python code.</li>
+	<li><strong>Jython</strong> translates Python code into Java-compatible byte code, which is later executed by JVM - Java Virtual Machine.</li>
+	<li><strong>IronPython</strong> is an implementation of Python for the .NET framework.</li>
+</ul>
+
+<p>Now let’s try to understand, what is really happening during interpretation. In fact, this step consists of 3 smaller ones:</p>
+
+
+
+<p>The compiler turns your set of statements (your source code) into so-called <strong>byte code</strong>. Byte code itself is <strong>lower level </strong>(thus more detailed), <strong>platform independent</strong>, and <strong>more efficient </strong>version of source code, but it's <strong>not binary machine code </strong>like instructions for an Intel or AMD chip. Byte code is a <strong>Python-specific</strong> representation of source code. That's why some Python programs are executed not as fast as the analogs in C++ or C — traditional compiled languages.</p>
+
+<h2 style="text-align: center;">Python Virtual Machine</h2>
+
+<p>After compilation, the byte code is given into the <strong>PVM (Python Virtual Machine)</strong>. Although it sounds quite impressive, in fact, it is not more than a big <strong>piece of code,</strong> that iterates through byte code instructions received from a compiler and executes them <strong>one by one</strong>, thus performing the desirable by the programmer operations. It is an internal part of Python system and you don’t need to install it as it’s not a separate program. In fact, the thing which <strong>really executes</strong> your code is PVM, so we can say it is <strong>the last step </strong>of executing any Python program. All this complexity is deliberately hidden from a programmer. The “interpretation part” is <strong>fully automated</strong>, so usually you won’t need to think about it. Remember: Python programmers simply write the code and run the files, everything else is done by <strong>Python itself</strong>.</p>
+
+<h2 style="text-align: center;">Conclusion</h2>
+
+<p>Now you should understand that yes, Python <strong>is</strong> an interpreted language indeed, but before the interpretation stage, there is an internal process of compiling the source code into the byte code. Thus, executing a Python program implies both steps:  compilation <strong>and </strong>interpretation.</p>
+
+<p>When your program is turned into byte-code, it's executed<strong> line by line</strong> <strong>from top to bottom</strong>, so generally you can expect your program to work exactly the way you have written it.</p>
+
+<p> </p>

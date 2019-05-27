@@ -1,0 +1,43 @@
+<div><span>The call stack can be called a machine or execution stack. It’s </span>dynamic<span> data structure that lives by the rule Last In First Out (LIFO). This means that the elements are pushed in at the top, and move everything down; so to remove something from the bottom, you need to remove everything previously entered. You could imagine it as a stack of plates or a pistol magazine. Also, you might have seen a </span><a href="https://s3.amazonaws.com/media.eremedia.com/uploads/2012/08/24111405/stackoverflow-logo-700x467.png" rel="nofollow noopener noreferrer" title="Link: https://s3.amazonaws.com/media.eremedia.com/uploads/2012/08/24111405/stackoverflow-logo-700x467.png">StackOverflow logo</a><span> before. </span><br></div><br>Let’s imagine that your program has 3 methods (functions), which declare a number, then divide it by 2, and then get a factorial of a divided number. <br><br><pre><code class="language-java">public static void main(String[] args) {
+    int x = 6;
+    int divided = divideBy2(x);
+    int answer = getFact(divided);
+}</code></pre> <br><p>Here is a sequence of invoking methods and a stack.</p><p><span class="image-wrapper"></span></p>The first one will be main, and all his local variables will be pushed in our stack:<p><span class="image-wrapper"></span></p>And then when we call the divideBy2 method, the stack pushes up every single parameter, that we need in our next method, like integer “x”. Also, we need to get the address of the main method, to come back to later.<p><span class="image-wrapper"></span></p><p>Then we have all the local variables in our stack from the divideBy2 method. So every local variable from the method main is not lost; they are moving to the bottom of the stack, as it should be in every Last In First Out data structure. So now we can work with variables of the second method.</p><pre><code class="language-java">public static int divideBy2(int x) {
+    int two =  2;
+    x = x / two;
+    return x;
+}</code></pre><p><span class="image-wrapper"></span></p><p>So now you have the local variables of divideBy2, such as int two. Look at the example code above. It’s not a very useful solution but will help you understand real-world example.<br>
+
+
+
+
+</p><p><span class="image-wrapper"></span></p>Remember that you can call another method inside your called one, like: <br><br><pre><code class="language-java">public static int divideBy2(int x) {
+    int two =  2;
+    x = x / two;
+    String str = x + "";
+    printAnswer(str);
+    return x;
+}
+
+public static void printAnswer(String str) {
+    System.out.println(str);
+}</code></pre><p>If this happens, then it will make our stack change a bit.<br>
+
+
+
+
+</p>The printAnswer method will be called before our third getFact method, so in our stack, all local variables, parameters, and addresses from printAnswer will be retrieved before the getFact method. But let’s continue to just work with 3 methods.<br>
+<br>And finally, let's discuss our third method.  <br>
+
+
+
+
+<pre><code class="language-java">public static int getFact(int x) {
+    if (x == 0) return 1;
+    return x * getFact(x-1);
+}</code></pre><p>You already understand that we will get all local variables of the third method.<br><span class="image-wrapper"><br></span> </p><p>What you might not know is that we don’t need the address of the third method. JVM already knows that our program is over, so it will clear all local variables from the third method<br>
+
+
+
+
+</p><p><span class="image-wrapper"></span></p>and go back to our previous methods using the address that was saved before. JVM will clean the address of this method after reaching it.<p><span class="image-wrapper"></span><span class="image-wrapper"></span><br>It will start cleaning parameters that it needed to send and start cleaning local variables. When it finds another address, it will go for the next one.</p><p><span class="image-wrapper"></span></p><p><span class="image-wrapper"></span></p><p>And when the stack is clean, our program will be over, and your JVM or IDE will notify you.   <br><br><span class="image-wrapper"></span></p><p>Like all normal stacks, this one has an option to be overflowed. So when you make recursive calls, be aware of this. The number of possible calls depends on the amount of virtual memory allocated to the stack. Java stack memory is used for execution of a thread. They contain method-specific values that are short-lived and references to other objects in the heap (<a href="https://hyperskill.org/learn/lesson/68608" rel="nofollow noopener noreferrer">the only one mention of the heap I saw </a>for now, later can redirect to Garbage Collector) that is getting referred from the method. The stack size can be set with the -Xss command line switch.</p>

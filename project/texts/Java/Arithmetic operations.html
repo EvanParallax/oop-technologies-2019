@@ -1,0 +1,84 @@
+<p>In real life, we often perform arithmetic operations. They help us to determine the change from a purchase, calculate the area of a room, count the number of people in a queue, and so on. The same operations are used in programs.</p>
+
+<h2 style="text-align: center;">Binary arithmetic operators</h2>
+
+<p>The Java programming language provides operators to perform arithmetic operations:</p>
+
+<ul>
+	<li>addition <code>+</code></li>
+	<li>subtraction <code>-</code></li>
+	<li>multiplication <code>*</code></li>
+	<li>integer division <code>/</code></li>
+	<li>remainder <code>%</code></li>
+</ul>
+
+<p>The operators are called binary because they take two values as operands.</p>
+
+<p>The following example prints results of <strong>addition</strong>, <strong>subtraction</strong>, and <strong>multiplication</strong>.</p>
+
+<pre><code class="language-java">System.out.println(13 + 25); // prints 38
+System.out.println(20 + 70); // prints 90
+
+System.out.println(70 - 30); // prints 40
+System.out.println(30 - 70); // prints -40
+
+System.out.println(21 * 3);  // prints 63
+System.out.println(20 * 10); // prints 200</code></pre>
+
+<p>The <code>/</code> operator returns the integer part of the division of two integer numbers, and any fractional part is discarded.</p>
+
+<pre><code class="language-java">System.out.println(8 / 3); // prints 2
+System.out.println(41 / 5); // prints 8</code></pre>
+
+<p>The <code>%</code> operator finds the remainder of a division.</p>
+
+<pre><code class="language-kotlin">System.out.println(10 % 3) // prints 1, because 10 divided by 3 leaves a remainder of 1
+System.out.println(12 % 4) // prints 0, because 12 divided by 4 leaves no a remainder</code></pre>
+
+<h2 style="text-align: center;">Writing complex expressions</h2>
+
+<p>The operations can be combined to write more complex expressions:</p>
+
+<pre><code class="language-java">System.out.println(1 + 3 * 4 - 2); // prints 11</code></pre>
+
+<p>The calculation order coincides with arithmetic rules. Multiplication has a higher priority level than addition and subtraction, so the operation <code>3 * 4</code> is calculated first.</p>
+
+<p>To specify the order of execution we can use <strong>parentheses</strong> as in the following:</p>
+
+<pre><code class="language-java">System.out.println((1 + 3) * (4 - 2)); // prints 8
+</code></pre>
+
+<p>As in arithmetic, <strong>parentheses</strong> can be nested. You can also use them for clarity.</p>
+
+<h2 style="text-align: center;">Unary operators</h2>
+
+<p>A unary operator takes a single value as the operand.</p>
+
+<ul>
+	<li>The<strong> unary plus</strong> operator indicates a positive value. It's an optional operator.</li>
+</ul>
+
+<pre><code class="language-java">System.out.println(+5); // prints 5
+</code></pre>
+
+<p> </p>
+
+<ul>
+	<li>The <strong>unary minus</strong> operator negates a value or an expression.</li>
+</ul>
+
+<pre><code class="language-java">System.out.println(-8);  // prints -8
+System.out.println(-(100 + 4)); // prints -104</code></pre>
+
+<p>They both have a higher level of precedence than the <strong>multiplication</strong> and <strong>division</strong> operators.</p>
+
+<h2 style="text-align: center;">The precedence order</h2>
+
+<p>There is a <a href="https://introcs.cs.princeton.edu/java/11precedence/" rel="nofollow noopener noreferrer" title="Link: https://introcs.cs.princeton.edu/java/11precedence/">precedence order</a> of all arithmetic operators, including parentheses. The list below is sorted from the highest to the lowest precedence level.</p>
+
+<ul>
+	<li>parentheses</li>
+	<li>unary plus/minus</li>
+	<li>multiplication, division</li>
+	<li>addition, subtraction</li>
+</ul>

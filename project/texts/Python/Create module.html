@@ -1,0 +1,131 @@
+<h2 style="text-align: center;">Module design</h2>
+
+<p>Basically, a module is just a file that has a <strong>.py </strong>extension and contains statements and definitions. Modules are used to organize and reuse code. Once you wrote a module you can load it from the interpreter or another module.</p>
+
+<p>A simple module that is written for direct execution is often called <strong>script</strong>. The difference between module and script in Python is only in the way they are used. Modules are loaded from other modules or scripts and scripts are executed directly.</p>
+
+<p>Consider the example of a simple script:</p>
+
+<pre><code class="language-python"># hello.py script
+
+print("Hello, World!")</code></pre>
+
+<p>You have already seen this example but now we want to turn in into a script. What you need to do is simply save this code in a file named <samp>hello.py</samp> and then run it with Python. To run a script just use <code>python &lt;script&gt;</code>, where <samp>&lt;script&gt;</samp> is the path to your Python file.</p>
+
+<pre><code class="language-bash">~$ python hello.py
+Hello, World!</code></pre>
+
+<p>Congratulations! That was your first script in Python.</p>
+
+<h2 style="text-align: center;">Module importing</h2>
+
+<p>A module can be loaded from another module. That allows you to write common code once and then use it from everywhere you want. This becomes important when you work on larger projects and want to separate concerns between different modules. We already saw the examples of importing a module from another module in the previous section.</p>
+
+<p>When working in the interactive mode of the interpreter it is also possible to load modules. To import your module it should be placed in the directory from which you run Python. For example, you can load <samp>hello.py</samp> file we discussed in the previous section from the interpreter like this:</p>
+
+<pre><code class="language-python">~$ python
+Python 3.6.6 (default, Sep 12 2018, 18:26:19)
+[GCC 8.0.1 20180414 (experimental) [trunk revision 259383]] on linux 
+Type "help", "copyright", "credits" or "license" for more information.
+
+&gt;&gt;&gt; import hello
+Hello, World!</code></pre>
+
+<h2 style="text-align: center;">Common mistakes</h2>
+
+<p>Now we will cover some common mistakes you can make when defining or importing modules.                           </p>
+
+<p>If you accidentaly import a module from itself, the code of the module will be executed twice and that is generally not what you want.</p>
+
+<pre><code class="language-python"># itself.py
+
+import itself
+
+print("Hello, it's me!")</code></pre>
+
+<p>The output:</p>
+
+<pre><code class="language-no-highlight">Hello, it's me!
+Hello, it's me!</code></pre>
+
+<p>So you should be careful and avoid situations when you import a module from itself.</p>
+
+<p>Another common mistake is name <strong>shadowing</strong>. For example, if you create a local module that has the same name as some built-in module, you won't be able to import anything from the original module, because importing system will search names in your custom module.</p>
+
+<p>Imagine, you created a module <samp>socket.py</samp> and in it you try to import some function from standard Python socket module.</p>
+
+<pre><code class="language-python"># socket.py
+
+from socket import socket
+
+print("All cool!")</code></pre>
+
+<p>You'll see an error message that says that Python cannot import <code>socket</code> from <samp>socket</samp> module:</p>
+
+<pre><code class="language-no-highlight">...
+
+ImportError: cannot import name 'socket'</code></pre>
+
+<p>One way to avoid this is not to name your scripts and modules the same as the built-in modules you are try to use. Just suffix <samp>_script</samp> to the name of your file and you will be safe from this name shadowing problem.</p>
+
+<p>Whenever the module is imported it is fully executed and then added to your current namespace. Even special forms of import statement such as <code>from module import something</code> doesn't affect that fact. This may become a problem in situations when you want to be able to both import your module and execute it as a script.</p>
+
+<p>Consider the example:</p>
+
+<pre><code class="language-python"># unsafe_module.py
+
+name = "George"
+
+print("Hello,", name)</code></pre>
+
+<p>If you define another script and import <samp>name</samp> from <samp>unsafe_module</samp> you'll see <em>Hello, George</em> printed.</p>
+
+<pre><code class="language-python"># unsafe_bye.py script
+
+from unsafe_module import name
+
+print("Bye, ", name)</code></pre>
+
+<p>The output:</p>
+
+<pre><code class="language-bash">Hello, George
+Bye, George</code></pre>
+
+<p>To solve this issue you can simply separate you file into two: one containing only definitions, another containing the code that imports definitions from the first file and uses them. But it's also common to use the<strong> __main__</strong> <strong>pattern</strong>.</p>
+
+<h2 style="text-align: center;">__main__ pattern</h2>
+
+<p>Lets see by example what is another option to make your script safe to import. We will change the <samp>unsafe_module.py</samp> file from the previous section.</p>
+
+<pre><code class="language-python"># safe_module.py
+
+name = "George"
+
+if __name__ == "__main__":
+    print("Hello, ", name)</code></pre>
+
+<p>The name of the module is always available in the built-in variable <code>__name__</code>. When you are executing a script <code>__name__</code> has a value <code>"__main__"</code>.  So here we check the value of <code>__name__</code> and print the line only if the module is executed as a script.</p>
+
+<pre><code class="language-python"># safe_bye.py script
+
+from safe_module import name
+
+print("Bye, ", name)</code></pre>
+
+<p>The output:</p>
+
+<pre><code class="language-bash">Bye, George</code></pre>
+
+<p>In general, if you have more than just one line to execute in a script it's convenient to move all that code into a function called main an then call it like that:</p>
+
+<pre><code class="language-python"># safe_main_module.py
+
+name = "George"
+
+def main():
+    print("Hello, ", name)
+
+if __name__ == "__main__":
+    main()</code></pre>
+
+<p>Note, that the naming itself doesn't affect the way a function is executed, it's just a convention to indicate that this function is run only when the file is used like a script.</p>

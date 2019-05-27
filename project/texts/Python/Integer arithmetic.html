@@ -1,0 +1,72 @@
+<p>In real life, we often perform arithmetic operations. They help us to calculate the change from a purchase, determine the area of a room, count the number of people in a line, and so on. The same operations are used in programs.</p>
+
+<h2 style="text-align: center;">Basic operations</h2>
+
+<p>Python supports basic arithmetic operations:</p>
+
+<ul>
+	<li>addition <code>+</code></li>
+	<li>subtraction <code>-</code></li>
+	<li>multiplication <code>*</code></li>
+	<li>division <code>/</code></li>
+	<li>integer division <code>//</code></li>
+</ul>
+
+<p>The examples below show how it works for numbers.</p>
+
+<pre><code class="language-python">print(10 + 10)   # 20
+print(100 - 10)  # 90
+print(10 * 10)   # 100
+print(77 / 10)   # 7.7
+print(77 // 10)  # 7</code></pre>
+
+<p>There is a difference between division <code>/</code> and integer division <code>//</code>. The first produces a floating-point number (like <code>7.7</code>), while the second one produces an integer value (like <code>7</code>) ignoring the decimal part.</p>
+
+<p>Python raises an error if you try to divide by zero.</p>
+
+<pre><code class="language-python">ZeroDivisionError: division by zero</code></pre>
+
+<h2 style="text-align: center;">Writing complex expressions</h2>
+
+<p>Arithmetic operations can be combined to write more complex expressions:</p>
+
+<pre><code class="language-python">print(2 + 2 * 2)  # 6</code></pre>
+
+<p>The calculation order coincides with the rules of arithmetic operations. Multiplication has a higher priority level than addition and subtraction, so the operation <code>2 * 2</code> is calculated first.</p>
+
+<p>To specify an order of execution, you can use <strong>parentheses,</strong> as in the following:</p>
+
+<pre><code class="language-python">print((2 + 2) * 2)  # 8</code></pre>
+
+<p>Like in arithmetic, parentheses can be nested inside each other. You can also use them for clarity.</p>
+
+<p>The minus operator has a unary form that negates the value or expression:</p>
+
+<pre><code class="language-python">print(-10)  # -10
+print(-(100 + 200))  # -300</code></pre>
+
+<h2 style="text-align: center;">Other operations</h2>
+
+<p><strong>The remainder</strong><strong> of the division.</strong> Another useful operation is % a remainder of the division.</p>
+
+<pre><code class="language-python">7 % 2  # 1, means 7 is an odd number</code></pre>
+
+<p><strong>Raise a number.</strong> There are at least two ways to raise a number to a power.</p>
+
+<pre><code class="language-python">10 ** 2  # 100</code></pre>
+
+<p>This operation has a higher priority over multiplication.</p>
+
+<h2 style="text-align: center;">Operation priority</h2>
+
+<p>To sum up, there is a list of priorities for all considered operations:</p>
+
+<ol>
+	<li>parentheses</li>
+	<li>power</li>
+	<li>unary minus</li>
+	<li>multiplication, division, and remainder</li>
+	<li>addition and subtraction</li>
+</ol>
+
+<p>Try to memorize this list.</p>

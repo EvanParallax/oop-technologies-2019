@@ -1,0 +1,48 @@
+<p>There is a number of approaches to repeat a block of code while a certain condition is <code class="java">true</code>. In this lesson, we will learn how to do it using two kinds of loops: <code>while</code> and <code>do..while</code>. The difference between these loops is the order of the repetition of a block and the condition evaluation.</p><h2 style="text-align: center;">The while loop<b></b><br></h2><p>The <code>while</code> loop consists of a block of code and a condition that is presented by a boolean expression. If the condition is <code class="java">true</code>, statements within the block is executed. This repeats until the condition becomes <code class="java">false</code>. Because this loop checks the condition before the block is executed, the control structure is often also known as a <b>pre-test loop</b>. In some sense, this loop can be thought of as a repeating conditional statement.<br></p><p>The base syntax of the <code>while</code> loop is the following:<br></p><pre><code class="language-kotlin">while (condition) {
+    // body: do something repetitive
+}</code></pre><p><b></b></p><p><b></b>The loop's body can contain any correct statements: declaring variables, reading data from the standard input, conditional expressions, and even nested loops.<br></p><p>It is also possible to write an <b>infinite loop</b> if the condition is invariably <code class="java">true</code></p><p><b></b></p><pre><code class="language-kotlin">while (true) {
+    // body: do something indefinitely
+}</code></pre><b></b><p>The usage of infinite loops will be considered in the following topics.</p><p><b>Example 1.</b> The following program uses while loop to print integer numbers while a variable is less than 5.</p><div><b><div></div></b><div></div></div><div><div><pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+    var i = 0
+
+    while (i &lt; 5) {
+        println(i)
+        i++
+    }
+
+    println("Completed")
+}</code></pre></div></div><b><div></div></b><div><br></div><div>Here is an explanation how this loop works. First, the value 0 is assigned to the mutable variable <code class="java">i</code>. Before the first execution of the loop's body, the program checks <code class="java">i &lt; 5</code> that is <code class="java">true</code> (because <code class="java">i</code> is 0), so the body of the loop starts executing. The body has two statements: displaying the current value of <code class="java">i</code> and increment it by 1. After this, the expression <code class="java">i &lt; 5 </code>is evaluated again for <code class="java">i</code> equal 1, which is also <code class="java">true</code> and the loop's body is repeated again. This is repeated until <code class="java">i</code> has taken the value 5, after which the expression <code class="java">i &lt; 5</code> ceases be <code class="java">true</code> and the execution of this loop terminates. The program proceeds to the next statement followed the loop to print <b>"Completed"</b>.</div><div><br></div><div><b></b>It prints:</div><div><br></div><div></div><div></div><div><b></b><pre><code class="language-kotlin">0
+1
+2
+3
+4
+Completed</code></pre></div><p>Loops are also used to process characters, strings and any other data types, not only numbers.<b><br></b></p><p><b>Example 2. </b>The following program displays English letters in a single line.<br></p><pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+    var letter = 'A'
+    
+    while (letter &lt;= 'Z') {
+        print(letter)
+        letter++
+    }
+}</code></pre><p>The program takes the first letter <code class="java">'A'</code> and then repeats:</p><ul><li>if the letter is less or equal to <code class="java">'Z'</code> the program executes to the loop's body, otherwise, it stops the loop.<br></li><li>inside the body, it prints the current character and gets the next letter.</li></ul><p>The program prints:</p><pre><code class="language-kotlin">ABCDEFGHIJKLMNOPQRSTUVWXYZ</code></pre><p>We remember, that it is possible to get the next character (according to the Unicode table) using the increment operator.</p><p><b>Example 3. </b>This program reads any number of words from the standard input and prints them. It uses <code>hasNext</code> function of <code>Scanner</code> to check whether input has a value.</p><pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+    val scanner = Scanner(System.`in`)
+    while (scanner.hasNext()) {
+        val next = scanner.next()
+        println(next)
+    }
+}</code></pre> <div><br></div>The input words:<div><br></div><div><pre><code class="language-kotlin">Kotlin is a modern language</code></pre></div><div><br></div><div>It prints:</div><div><br></div><div><pre><code class="language-kotlin">Kotlin
+is
+a
+modern
+language</code></pre></div><div><br></div><div>Use <code>scanner.hasNext()</code> for strings and <code>scanner.hasNextInt()</code> for integers when you do not know the size of input data.<br><div><h2 style="text-align: center;">The do..while loop<br></h2>In the <code>do..while</code> loop, the body is executed first and after the condition is tested. If the condition is <code class="java">true</code>, statements within the block is executed again. This repeats unill the condition becomes <code class="java">false</code>. Because <code>do..while</code> loops check the condition after the block is executed, the control structure is often also known as a <b>post-test loop</b>. In contrast with the <code>while</code> loop, which tests the condition before the code within the block is executed, the <code>do..while</code> loop is an exit-condition loop. So, the body is always executed at least once.<div><br></div><div>This loop contains three parts: the <code class="java">do</code> keyword, a body and <code class="java">while(condition)</code>:</div><div><br><div><pre><code class="language-java">do {
+    // body: do something
+} while (condition);</code></pre><p>The following program reads an integer number from the standard input and displays the number. If the number 0 is entered the program prints it and then stops. It demonstrates the <code>do..while</code> loop.</p><pre><code class="language-java">fun main(args: Array&lt;String&gt;) {
+    val scanner = Scanner(System.`in`)
+    do {
+        val n = scanner.nextInt()
+        println(n)
+    } while (n &gt; 0)
+}
+</code></pre><p><b>Note,</b> you can use a variable declared in the body of <code>do..while</code> loop in its condition.</p><p>Input numbers:</p><pre><code class="language-java">1 2 4 0 3</code></pre><p>The program prints:</p><pre><code class="language-java">1
+2
+4
+0</code></pre>The <code>do..while</code> loop can be infinite like the <code>while</code> loop.</div></div><div>In practice, <code>do..while</code> loop is less used than <code>while</code>. A good example of using this loop is a program that reads data from the standard input until a user entered a certain number or a string. It is assumed, the program will be executed at least once, and repeated execution is optional.</div></div></div>

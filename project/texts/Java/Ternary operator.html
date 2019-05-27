@@ -1,0 +1,29 @@
+<p>The<b> ternary operator </b>is an operator which evaluates a condition and chooses one of two cases to execute. It is also called <b></b>the <b>conditional operator</b>. The operator can be considered as a form of the <code class="java">if</code>-then-<code class="java">else</code> statement. The ternary operator should not be confused with the conditional statement, despite their ideological similarity. This operator can be used in places where an expression is expected.<br></p><p>Sometimes <b>the ternary operator</b> is more readable and concise than the corresponding <b>if statement</b>.</p><p>Let's start learning this operator with an example. Suppose we have to find the maximum of two int variables, <code class="java">a</code> and <code class="java">b</code>. It is easy to write using a conditional statement:</p><pre></pre><pre><code class="language-java">int a = ..., b = ..., max = ...;
+
+if (a &gt; b) {
+    max = a;
+} else {
+    max = b;
+}</code></pre><p>The equal ternary operator looks like:</p><pre><code class="language-java">int max = a &gt; b ? a : b;</code></pre><p>This code is more concise than the code above, isn't it?</p><p>The general syntax of the ternary operator is the following:<br></p><pre><code class="language-java">result = condition ? trueCase : elseCase;</code></pre><p>It includes two special symbols <code class="java">?</code> and <code class="java">:</code>.</p><p>Here, the <code>condition</code> is a Boolean expression that evaluates to either <code class="java">true</code> or <code class="java">false</code>. If this expression is <code class="java">true</code>, the ternary operator evaluates <code class="java">trueCase</code>, otherwise <code class="java">elseCase</code> is evaluated. It is important that <code>trueCase</code> and <code>elseCase</code> are expressions which can be reduced to a common type. This type determines the type of the <code>result</code>.</p><p>Let's consider another example that prints whether a number is even or odd.</p><pre><code class="language-java">int num = ...;  // it's initialized by a value
+System.out.println(num % 2 == 0 ? "even" : "odd");</code></pre><p>This ternary operator consists of three operands: the value of the expression <code>num % 2 == 0</code>, and two string literals <code>"even"</code> and <code>"odd"</code>. The result type of it is <code>String</code>.<b><br></b></p><p><b>Note,</b> it's possible to nest one ternary operator into another one, but it can be less readable than the corresponding conditional statement. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+If you do this, be careful.
+
+
+
+</p>

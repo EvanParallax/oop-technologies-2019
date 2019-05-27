@@ -1,0 +1,91 @@
+<h2 style="text-align: center;">Boolean type</h2>
+
+<p><strong>Boolean</strong> type or simply <code>bool</code> is a special data type that has only two possible values: <code>True</code> and <code>False</code>. In Python <code>bool</code> value names start with a capital letter.</p>
+
+<p>Boolean or <strong>logical</strong> type is a common way in programming languages to represent something that has only two opposite states like <em>on</em> or <em>off</em>, <em>yes</em> or <em>no</em>, etc.</p>
+
+<p>If you are writing an application that keeps track of door's openings you'll find it natural to use <code>bool</code> to store current door state.</p>
+
+<pre><code class="language-python">is_open = True
+is_closed = False
+
+print(is_open)  # True
+print(is_closed)  # False</code></pre>
+
+<h2 style="text-align: center;">Boolean operations</h2>
+
+<p>There are three built-in boolean operators in Python: <code>and</code>, <code>or</code> and <code>not</code>. The first two are <strong>binary</strong> operators which means that they expect two arguments. <code>not</code> is an <strong>unary</strong> operator, it is always applied to a single operand.</p>
+
+<ul>
+	<li><strong>and</strong> is a binary operator, it takes two arguments and returns True if both arguments are True, otherwise, it returns False.
+
+	<pre><code class="language-python">a = True and True  # True
+b = True and False  # False
+c = False and False  # False
+d = False and True  # False</code></pre>
+	</li>
+	<li><strong>or</strong> is a binary operator, it returns True if at least one argument is True, otherwise, it returns False.
+	<pre><code class="language-python">a = True or True  # True
+b = True or False  # True
+c = False or False  # False
+d = False or True  # True</code></pre>
+	</li>
+	<li><strong>not</strong> is an unary operator, it reverses the boolean value of its argument.
+	<pre><code class="language-python">to_be = True  # to_be is True
+not_to_be = not to_be  #  not_to_be is False</code></pre>
+	</li>
+</ul>
+
+<h2 style="text-align: center;">The precedence of boolean operation</h2>
+
+<p>Logical operators have a different priority and it affects the order of evaluation. Here are the operators in order of ascending of their priorities: <code>or</code>, <code>and</code>, <code>not</code>. Having this in mind, consider the following expression:</p>
+
+<pre><code class="language-python">a = False or not False  # True, because not False evaluates first</code></pre>
+
+<p>Although, while dealing with bare boolean values things may seem obvious, the precedence of logical operations will be very important to remember when you start working with so-called truthy and falsy values.</p>
+
+<h2 style="text-align: center;">Truthy and falsy values</h2>
+
+<p>Though Python have native boolean data type we often want to use non-boolean values in a logical context. And Python lets you test almost any object for truthness. Values of non-boolean types (integers, strings, etc.) when used with logical operations are called either <strong>truthy</strong> or <strong>falsy</strong> depending on whether they are considered True or False. Here is what generally considered falsy in Python:</p>
+
+<ul>
+	<li>constants defined to be false: <code>None</code> and <code>False</code>.</li>
+	<li>
+	<p>zero of any numeric type: <code>0</code>, <code>0.0</code>.</p>
+	</li>
+	<li>empty sequences and collections: <code>''</code>, <code>[]</code>, <code>{}</code>.</li>
+</ul>
+
+<p>Anything else is considered truthy.</p>
+
+<p>Now we can more clearly demonstrate the difference in operators priority:</p>
+
+<pre><code class="language-python">truthy_integer = False or 5 and 100  # 100, because and has a higher priority than or</code></pre>
+
+<p>Generally speaking, <code>and</code> and <code>or</code> could take as arguments and return anything that can be tested for truth value. Remember, <code>or</code> and <code>and</code> return one of their operands, not necessarily of a Boolean type. But <code>not</code> <u> always</u> returns <code>bool</code>.</p>
+
+<p>Another tricky example involving an empty collection:</p>
+
+<pre><code class="language-python">tricky = not (False or '')  # True</code></pre>
+
+<p>Let's break it into parts. A pair of parentheses is a way to create a tuple, so <span style="color: #000000;">''</span> represents an empty tuple that is considered falsy just like any other empty collection. Since the left argument of <code>or</code> is also falsy it returns <code>''</code>. Then the result of the enclosed expression is negated and finally we get <code>True</code>, because <code>not</code> operator always returns Boolean values.</p>
+
+<h2 style="text-align: center;">Short-circuit evaluation</h2>
+
+<p>The last thing to mention is that logical operators in Python are <strong>short-circuited</strong> or <strong>lazy</strong>. That means that the second operand is only evaluated if the first one is not sufficient to evaluate the whole expression.</p>
+
+<ul>
+	<li>
+	<p><code>x and y</code> returns x if x is false, otherwise, it evaluates and returns y</p>
+	</li>
+	<li>
+	<p><code>x or y</code> returns x if x is true, otherwise, it evaluates and returns y</p>
+	</li>
+</ul>
+
+<p>For instance:</p>
+
+<pre><code class="language-python">lazy_or = True or (1 / 0)  # division is never evaluated, because the first argument is True
+lazy_and = False and (1 / 0)  # division is never evaluated, because the first argument is False</code></pre>
+
+<p> </p>

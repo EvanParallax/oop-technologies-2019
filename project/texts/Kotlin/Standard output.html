@@ -1,0 +1,30 @@
+<div><b>Standard output</b> is a place to which a program can send information (text). It is supported by all common operating systems. Not all programs generate such output. By default, the standard output displays data on the screen, but it is possible to redirect it to a file.<br></div><div><br></div><div>Throughout this course, you will often write programs which send some data (e.g. strings and numbers) to the <b>standard output</b>.<div><h2 style="text-align: center;">Printing text</h2>Kotlin has two useful functions to send data to the standard output. The functions are called <code>println</code> and <code>print</code>.<br><br></div><div><p>The function <code>println</code> 
+
+<b></b>(print line)<b></b>
+
+displays the passed string followed by a new line on the screen. For example, the following code fragment prints four lines:<br></p><pre><code class="language-kotlin">println("I")
+println("know")
+println("Kotlin")
+println("well.")
+</code></pre><b>Output:</b><pre><code class="language-java">I
+know
+Kotlin
+well.</code></pre><p><b>Note </b>that<b> </b>all the strings were printed as-is, without the double quotes.<br></p><p>This function allows you to print an empty line when no string is given:</p><pre><code class="language-kotlin">println("Kotlin is a modern programming language.")
+println() // prints an empty line
+println("It is used all over the world!")</code></pre><p><b>Output:</b></p><pre><code class="language-java">Kotlin is a modern programming language.
+
+It is used all over the world!</code></pre><p>The function <code>print</code> displays the passed value and places the cursor (the place where to print) after it. As an example, the code below outputs all strings in a single line.</p><pre><code class="language-kotlin">print("I ")
+print("know ")
+print("Kotlin ")
+print("well.")
+</code></pre><p><b>Output:</b></p><pre><code class="language-java">I know Kotlin well.</code></pre><div><div><h2 style="text-align: center;">Printing numbers and characters</h2><p>The functions <code>println</code> and <code>print</code> allow a program to print not only strings, but also numbers as well as characters.</p><p>Let's print two secret codes.</p></div><div><pre><code class="language-kotlin">print(108)   // prints a number
+print('c')   // prints a character
+print("Q")   // prints a string
+println('3') // prints a character that represents a digit 
+
+print(22)
+print('E')
+print(8)
+println('1')
+</code></pre></div></div><div><b>Output:</b></div><div></div><div><pre><code class="language-java">108cQ3
+22E81</code></pre></div><div><b>Note </b>that<b> </b>in the output none of the characters contain quotes.</div></div></div>

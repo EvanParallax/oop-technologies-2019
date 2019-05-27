@@ -136,6 +136,7 @@ void Window::onVertexDeleted(Vertex *v)
     GraphDbHelper *helper = new GraphDbHelper();
     helper->deleteVert(graph, v);
     delete helper;
+
     graph->removeVertex(v->displayName);
     onGraphChanged(graph);
 }
@@ -143,6 +144,7 @@ void Window::onVertexDeleted(Vertex *v)
 void Window::onEdgeDeleted(Edge *e)
 {
     e->graphName = graph->graphName;
+
     graph->removeEdge(e->getFrom()->displayName, e->getTo()->displayName);
     onGraphChanged(graph);
     GraphDbHelper *helper = new GraphDbHelper();

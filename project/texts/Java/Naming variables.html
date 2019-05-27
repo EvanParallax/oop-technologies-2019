@@ -1,0 +1,47 @@
+<h2 style="text-align: center;">Why is naming important?</h2>
+
+<p>As you may know, every <strong>variable</strong> has a <strong>name</strong> that uniquely identifies it among other variables. Giving a good name to a variable may not be as simple as it seems. Experienced programmers put a lot of care into naming to make their programs easy to understand. It is important because programmers spend much time on reading and understanding code written by other programmers. If variables have bad names, even your own code will seem unclear to you in a few months.</p>
+
+<p>Always try to give descriptive and concise names to all variables. As a result, any programmer will enjoy your code for a long time.</p>
+
+<p>In addition, there are two sets of rules that restrict the possible names for variables.</p>
+
+<h2 style="text-align: center;">Rules for naming variables</h2>
+
+<p>Java has some rules for naming variables</p>
+
+<ul>
+	<li>names are case-sensitive;</li>
+	<li>a name can include <a href="https://en.wikipedia.org/wiki/Unicode" rel="nofollow noopener noreferrer" title="Link: https://en.wikipedia.org/wiki/Unicode">Unicode</a> letters, digits, and two special characters (<code>$</code>, <code>_</code>);</li>
+	<li>a name cannot start with a digit;</li>
+	<li>a name must not be a keyword (<code>class</code>, <code>static</code>, <code>int</code> are illegal names).</li>
+</ul>
+
+<p>Based on these rules, you may conclude that whitespaces are not allowed in the name of a variable.</p>
+
+<p>[ALERT-warning]<strong>It is important</strong> not to break these rules; otherwise, the program will not work.[/ALERT]</p>
+
+<p>Here are some valid names of variables:</p>
+
+<pre><code class="language-java">number, $ident, bigValue, _val, abc, k, var</code></pre>
+
+<p>[ALERT-primary]<strong>Note,</strong> the word <code>var</code> as a variable name still works even after Java 10 released to keep the backward compatibility.[/ALERT]</p>
+
+<p>And here are some invalid ones:</p>
+
+<pre><code class="language-java">@ab, 1c, !ab, class</code></pre>
+
+<p>Since Java 9 the single character <code>_</code> is an invalid name for a variable, but<code> _a</code> and <code>__</code> (double <code>_</code> ) are legal names.</p>
+
+<h2 style="text-align: center;">Naming conventions for variables</h2>
+
+<p>Also, there are the following conventions for naming variables:</p>
+
+<ul>
+	<li>if a variable name is a single word it should be in lowercase (for instance: <code>number</code>, <code>price</code>);</li>
+	<li>if a variable name includes multiple words it should be in <code>lowerCamelCase</code>, i.e. the first word should be in lowercase and each word after the first should have its first letter written in uppercase (for instance: <code>numberOfCoins</code>);</li>
+	<li>variable names should not start with <code>_</code>  and <code>$</code> characters, although they are allowed;</li>
+	<li>choose a name that makes sense, e.g. <code>score</code> makes more sense than s, although they are both valid.</li>
+</ul>
+
+<p>These conventions are optional, but it is strongly recommended to follow them. As we mentioned at the beginning of this lesson, they make your code more readable for you and other Java programmers.</p>

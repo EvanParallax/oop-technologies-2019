@@ -1,0 +1,89 @@
+<p>The standard input is a stream of data going into a program. It is supported by the operating system. By default, the standard input obtains data from the keyboard input but it's possible to redirect it to a file.</p>
+
+<p>Actually, not all programs need to use the standard input. But we will often use it. The typical way to solve programming problems in this course is the following:</p>
+
+<pre><code class="language-java">1) read data from the standard input (System.in);
+2) process data to obtain a result
+3) output the result to the standard output (System.out)</code></pre>
+
+<p>The simplest way to obtain data from the standard input is to use the standard class <code>Scanner</code>. It allows a program read values of different types (string, numbers, etc) from the standard input.</p>
+
+<p>To use this class you should add the following import statement to the top of your file with the source code.</p>
+
+<pre><code class="language-java">import java.util.Scanner;</code></pre>
+
+<p>Then you can create an object of this class like:</p>
+
+<pre><code class="language-java">Scanner scanner = new Scanner(System.in);</code></pre>
+
+<p>Note, <code>System.in</code> is an object that represents the standard input stream in Java.</p>
+
+<p>Now we can read data from the standard input:</p>
+
+<pre><code class="language-java">String line = scanner.nextLine(); // read a whole line, for example "Hello, Java"
+
+int num = scanner.nextInt(); // read a number, for example 123
+
+double d = scanner.nextDouble(); // read double, for example 123.01
+
+String string = scanner.next(); // read a string (not a line), for example "Hello"</code></pre>
+
+<p>After you call <code>scanner.nextLine()</code> or <code>scanner.nextInt()</code> or something similar, the program will wait for the input data.</p>
+
+<p>Here is an example of a correct input data:</p>
+
+<pre><code class="language-java">Hello, Java
+123 123.01 Hello</code></pre>
+
+<p>The following input example is also correct:</p>
+
+<pre><code class="language-java">Hello, Java
+123
+123.01
+Hello</code></pre>
+
+<p>It's possible to read a number as a string using <code>scanner.next()</code> or <code>scanner.nextLine()</code> (if the number is in a new line).</p>
+
+<p>Also, the class <code>Scanner</code> has methods for reading values of some other types. See the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html" rel="nofollow noopener noreferrer">documentation</a> for details.</p>
+
+<p>The following program read two numbers from the same line and outputs them in reverse order in two different lines.</p>
+
+<pre><code class="language-java">import java.util.Scanner; // importing scanner from the standard library
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); // an object for reading data 
+
+        int num1 = scanner.nextInt(); // read the first number
+        int num2 = scanner.nextInt(); // read the second number
+
+        System.out.println(num2); // print the second number
+        System.out.println(num1); // print the first number
+    }
+}</code></pre>
+
+<p><strong>The input/output example 1</strong></p>
+
+<p>The input:</p>
+
+<pre><code class="language-java">11 12</code></pre>
+
+<p>The output:</p>
+
+<pre><code class="language-java">12
+11</code></pre>
+
+<p><strong>The input/output example 2</strong></p>
+
+<p>The input:</p>
+
+<pre><code class="language-java">301
+402</code></pre>
+
+<p>The output:</p>
+
+<pre><code class="language-java">402
+301</code></pre>
+
+<p>We recommend you to use the class <code>Scanner</code> when solving programming problems in this course. It's one of the most simple ways to get values from the standard input. More complex ways to read data will be studied in other topics.</p>

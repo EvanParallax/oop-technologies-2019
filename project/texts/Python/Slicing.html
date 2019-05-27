@@ -1,0 +1,89 @@
+<h2 style="text-align: center;">Getting sections of sequences</h2>
+
+<p>As you know, Python provides the possibility to access individual elements of lists, strings, and tuples by using indices. It is possible because these types are considered as <strong>sequences</strong> which are ordered.</p>
+
+<p>Here we have an example with a list containing Fibonacci numbers. We can just print any numbers from the list. Don't forget, indices start from zero, not one:</p>
+
+<pre><code class="language-python">fib_nums = [0, 1, 1, 2, 3, 5, 8, 13, 21]
+
+print(fib_nums[0])  # 0, the first element
+print(fib_nums[8])  # 21, the last element</code></pre>
+
+<p>Another thing you may want to do with any sequence is retrieving its <strong>part</strong>. Usually, it means getting elements from a particular section by their indices. This is called <strong>slicing</strong>, and a special notation is used for that. It looks like accessing data by its index but in an improved manner:</p>
+
+<pre><code class="language-python">print(fib_nums[2:5])  # [1, 2, 3]</code></pre>
+
+<p>Looks great, isn't it? Just like with the indexing, we use <strong>square brackets</strong>, but here we add a <strong>colon</strong> to indicate that we're slicing. Actually, slicing is one of the most famous and widely used features of Python. It allows developers to do a lot of cool things.</p>
+
+<p><strong>Pay attention</strong> to the end index: it is not the index of the last element of the slice, but rather an index of the first element that is NOT in the slice (i.e. excluded index)! So the last element <strong>is not included.</strong></p>
+
+<p>A string can also be sliced:</p>
+
+<pre><code class="language-python">text = 'Python is not only a snake!'
+print(text[10:18])  # 'not only'</code></pre>
+
+<p>In the same way, slicing can be applied to tuples. We hope you can try it yourself. Next, we will explore the slicing with the help of lists.</p>
+
+<h2 style="text-align: center;">Forms of slicing</h2>
+
+<p>We've demonstrated the use of slicing with starting and ending indices. But this is not the only possible form.</p>
+
+<p>The full syntax for slicing looks like this:</p>
+
+<pre><code class="language-python">sequence[start:stop:step]  # from start to end-1, by step</code></pre>
+
+<p style="text-align: justify;">This statement produces a slice of the sequence where <code>start</code> is an index of the first needed element (inclusive) and <code>stop</code> is an index of the last element (non-inclusive), <code>step</code> is the interval between elements to be chosen.<span style="background-color: transparent; color: #000000; font-size: 11pt; font-variant: normal;"> </span></p>
+
+<p style="text-align: justify;">Let's slice a list of planets choosing every second planet, starting from the third (with the index 2) till the seventh (with the index 6). The eighth planet (with the index 7) is not included in the slice.</p>
+
+<pre><code class="language-python">planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+print(planets[2:7:2])  # ['Earth', 'Jupiter', 'Uranus']</code></pre>
+
+<p style="text-align: justify;">Each part of the slice has a default value, so it can be omitted. If we ignore <code>start</code>, it is considered to be <strong>0</strong>; if we don't mention <code>stop</code>, it will be equal <strong>to the length of the sequence</strong>. The default <code>step</code> is <strong>1</strong>, i.e. every element between the beginning and the end is put in the slice.</p>
+
+<p style="text-align: justify;">Here's what will happen if we slice without mentioning some indices:</p>
+
+<pre><code class="language-python">sequence[:end]  # element from the 1st element to end-1
+sequence[start:]  # elements from start to the last element
+sequence[:]  # the full copy of the sequence
+sequence[::step]  # every element with a given step</code></pre>
+
+<p>Let's take a look at some examples to make understanding more practical.</p>
+
+<pre><code class="language-python">snakes = ['python', 'cobra', 'viper']
+print(snakes[:2])  # ['python', 'cobra']
+
+degrees_of_two = [1, 2, 4, 8, 16, 32, 64, 128]
+print(degrees_of_two[4:])  # [16, 32, 64, 128]
+
+colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+print(colors[::3])  # ['red', 'green', 'violet']</code></pre>
+
+<p>An interesting way to use slicing is to create <strong>an independent copy</strong> of the sequence using <code>[:]</code> notation.</p>
+
+<pre><code class="language-python">sheep = ['Dolly', 'Polly', 'Molly']
+cloned_sheep = sheep[:]  # ['Dolly', 'Polly', 'Molly']</code></pre>
+
+<p>All indices can also be <strong>negative. </strong>We saw this before when we were getting access to one element: it means that we're looking backward. Especially, if the <code>step</code> index is negative, then the elements are returned in reverse order.</p>
+
+<pre><code class="language-python">pets = ['dog', 'cat', 'parrot', 'gecko']
+
+print(pets[-2:])   # ['parrot', 'gecko']
+print(pets[:-2])   # ['dog', 'cat']
+print(pets[::-1])  # ['gecko', 'parrot', 'cat', 'dog']
+print(pets[::-2])  # ['gecko', 'cat']</code></pre>
+
+<p>If you're using negative <code>step</code> with the <code>start</code> and <code>end</code> indices, those should be chosen accordingly: the <code>start</code> index should be greater than the <code>end</code> index!</p>
+
+<pre><code class="language-python">numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+print(numbers[7:2:-1])  # [8, 7, 6, 5, 4]
+print(numbers[2:7:-1])  # []</code></pre>
+
+<p>We hope you now get the general idea of slicing.</p>
+
+<h2 style="text-align: center;">Conclusion</h2>
+
+<p>Slicing allows you to get sections of sequences such as lists, strings, and tuples specifying <code>start</code>, <code>end</code> and  <code>step</code>. Remember that all the indices are optional in the slice syntax because they have default values.</p>
+
+<p>In some sense, slicing is just an extension of the standard indexing with similar rules: the first index of a sequence is zero, and negative indices start from the end. We believe, after a bit of practice, you will be good with it.</p>

@@ -1,0 +1,28 @@
+<h2 style="text-align: center;">Loops</h2><p>Sometimes, you need to repeat a group of statements several times. You can just <b>copy-paste</b> these statement in your code. But if you want to repeat something one hundred thousand times or an unknown number of times (before the start of your program), this approach will not help you.</p><p>Fortunately, Kotlin provides several special statements to repeat a block of code multiple times. These statements are known as <b>loops</b>. To solve a problem that needs repetitions, you should choose the most suitable loop and then correctly apply it to your problem.<br></p><h2 style="text-align: center;">The repeat loop</h2><h2 style="text-align: center;"></h2><h2 style="text-align: center;"></h2><div>To use the simplest loop, just write <code>repeat(n)</code> and a sequence of statements to be executed in curly braces <code>{...}</code>. The value <code>n</code> is an integer number that determines how many times these statements have to be repeated.</div><div><br></div><div><pre><code class="language-kotlin">repeat(n) {
+    // statements
+}</code></pre><br><p>As an example, the following program prints "Hello" exactly three times.</p><pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+    repeat(3) {
+        println("Hello")
+    }
+}</code></pre><div><br></div>It prints:</div><div><br></div><div><pre><code class="language-kotlin">Hello
+Hello
+Hello</code></pre><br></div><div>There is a funny fact, if <code>n</code> is less or equal zero, the loop will be ignored. If <code>n</code> is one, all statements will be executed only once like no loops here.</div><div><h2 style="text-align: center;">Reading and processing data in a loop</h2><p>Inside the curly braces of <code>repeat</code>, you can read data from the standard input, declare variables and even perform calculations.<br></p><p>As a complex example, the following program reads numbers from the standard input and calculates their sum. We assumed, the first number is not a part of the sum, it determines the length of the input sequence.</p><pre><code class="language-kotlin">import java.util.*
+
+fun main(args: Array&lt;String&gt;) {
+    val scanner = Scanner(System.`in`)
+    
+    val n = scanner.nextInt()
+    var sum = 0
+    
+    repeat(n) {
+        val next = scanner.nextInt()
+        sum += next
+    }
+    
+    println(sum)
+}</code></pre> <p>This code reads a length of the number's sequence and assigns it to the variable <code>n</code>. It creates a variable to store an accumulated sum. This code read the next number and adds it to the sum exactly <code>n</code> times. After this loop stops, the program prints the accumulated sum.</p><p>Here is an example of input numbers:</p><pre><code class="language-kotlin">5
+40
+15
+30
+25
+50</code></pre><p>The output is:</p><pre><code class="language-kotlin">160</code></pre><p>Of course, this program is simple enough but it demonstrates the key aspects of any loops in programs. In the next lesson, we will learn some advanced loops and apply them to solve more complex problems.</p></div>

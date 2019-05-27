@@ -1,0 +1,150 @@
+<p>We already know how to declare functions with fixed names. Now let's learn the last factor of being a first-class citizen: the opportunity to create a function at runtime and without a predefined name.</p>
+
+<h2>Functions without names</h2>
+
+<p>To create a function that isn't bound to its name in Kotlin you can create an <strong>anonymous</strong> one or a <strong>lambda expression</strong>:</p>
+
+<ul>
+	<li><code>fun(arguments): ReturnType { body }</code> – this one is commonly called an "anonymous function".</li>
+	<li><code>{ arguments -&gt; body }</code> – this one is commonly called a "lambda expression".</li>
+</ul>
+
+<p>To make it clearer, consider the following example. Here two functions are declared; they are declared in different ways but do the same:</p>
+
+<pre><code class="language-kotlin">fun(a: Int, b: Int): Int {
+    return a * b
+}
+
+{ a: Int, b: Int -&gt; a * b }</code></pre>
+
+<p>As you may understand, they compute the multiplication of two numbers.</p>
+
+<p>Both these functions has a reasonable type: <code>(Int, Int) -&gt; Int</code>. So types work just like for top-level functions discussed in previous lessons.</p>
+
+<p>Need to add that if you want to declare a <strong>lambda without arguments</strong>, you shouldn't write the "arrow symbols". So a lambda without arguments definition looks like this: <code>{ body }</code>.</p>
+
+<p>You ask: and how to use a function without a known name? The answer is: there are some variants.</p>
+
+<p>For example, you can <strong>assign the function to a variable</strong> and then invoke it by invoking the variable:</p>
+
+<pre><code class="language-kotlin">val mul1 = fun(a: Int, b: Int): Int {
+    return a * b
+}
+
+val mul2 = { a: Int, b: Int -&gt; a * b }
+
+println(mul1(2, 3))  // prints "6"
+println(mul2(2, 3))  // prints "6" too</code></pre>
+
+<p>Also, you can <strong>pass such a function as a parameter</strong> or <strong>return such a function from another function</strong>.</p>
+
+<p>Finally, you can <strong>place parentheses with desired arguments right after the function</strong> definition to invoke it in place. Though that doesn't make much sense. So mostly the three first described variants are used.</p>
+
+<p>The process of creating these two functions is quite similar, but lambdas have a more concise  and convenient syntax. Therefore, almost always lambdas are used to create a function at runtime in <strong>real life</strong>. Moreover, there are programmers that don't listen to Kotlin official naming rules and can say "an anonymous function" instead of "a lambda". Despite the fact that everybody understands those programmers, we suggest you call a spade a spade.</p>
+
+<p>For the same reason of convenience, we will now talk only about lambdas.</p>
+
+<h2>Lambdas and syntactic sugar</h2>
+
+<p>There are ways to make the code more readable for human without changing the code logic. If such a way is provided by the programming language and relates to syntax, the way is called <strong>syntactic sugar</strong>. Kotlin promotes Functional Programming so there is syntactic sugar for it.</p>
+
+<p>Let's recall the following example of passing the function as an argument:</p>
+
+<pre><code class="language-kotlin">fun isNotDot(c: Char): Boolean = c != '.'
+val originalText = "I don't know... what to say..."
+val textWithoutDots = originalText.filter(::isNotDot)</code></pre>
+
+<p>Rewrite it to pass a lambda:</p>
+
+<pre><code class="language-kotlin">val originalText = "I don't know... what to say..."
+val textWithoutDots = originalText.filter({ c: Char -&gt; c != '.' })</code></pre>
+
+<p>Now we act! First of all, Kotlin <strong>infers types</strong> of many objects, and here specifying the <code>c</code> type isn't necessary:</p>
+
+<pre><code class="language-kotlin">originalText.filter({ c -&gt; c != '.' })</code></pre>
+
+<p>Secondly, there are situations when the lambda is passed as the <strong>last argument</strong>. This is the case. Kotlin provides a way to eliminate these bracket sequences ({ }), allowing to write the lambda outside the parentheses:</p>
+
+<pre><code class="language-kotlin">originalText.filter() { c -&gt; c != '.' }</code></pre>
+
+<p>If the parentheses are left empty after this operation, they can be removed:</p>
+
+<pre><code class="language-kotlin">originalText.filter { c -&gt; c != '.' }</code></pre>
+
+<p>Finally, when there is a <strong>single parameter in a lambda</strong>, there is an opportunity to skip it. The parameter is available under the <code>it</code> name. The final version of the code removing dots is the following:</p>
+
+<pre><code class="language-kotlin">val originalText = "I don't know... what to say..."
+val textWithoutDots = originalText.filter { it != '.' }</code></pre>
+
+<p>Pretty expressive, huh?</p>
+
+<h2>Complex lambdas</h2>
+
+<p>Sometimes the code in a lambda isn't short enough to be fit in one line, so it's needed to split the code into lines. In such a case, the <strong>last line</strong> inside the lambda is treated as the lambda <strong>return value</strong>:</p>
+
+<pre><code class="language-kotlin">val textWithoutSmallDigits = originalText.filter {
+    val isNotDigit = !it.isDigit()
+    val stringRepresentation = it.toString()
+
+    isNotDigit || stringRepresentation.toInt() &gt;= 5
+}</code></pre>
+
+<p>Also, a lambda can contain earlier returns. They must be written using the <strong>qualified return syntax</strong>. This means that after the <code>return</code> keyword the <code>@</code> symbol and the label name are written. The label name is usually the function name where the lambda has been passed. Let's rewrite the previous lambda not changing its result:</p>
+
+<pre><code class="language-kotlin">val textWithoutSmallDigits = originalText.filter {
+    if (!it.isDigit()) {
+        return@filter true
+    }
+        
+    it.toString().toInt() &gt;= 5
+}</code></pre>
+
+<h2>Capturing variables</h2>
+
+<p>Now let's discuss the advantage of function creation at runtime. It's that all the variables and values which are visible where the lambda is created are visible inside the lambda too. If a lambda uses a variable that is declared outside the lambda, then it's said that <strong>the lambda captures the variable</strong>.</p>
+
+<p>This works intuitively. In case of a captured <strong>value</strong>, the lambda can just read it. If a <strong>variable</strong> is captured, the lambda and the outside code can change it, and its changes will be visible in the lambda and in the outside code.</p>
+
+<p>Consider the example:</p>
+
+<pre><code class="language-kotlin">var count = 0
+
+val changeAndPrint = {
+    ++count
+    println(count)
+}
+
+println(count)    // 0
+changeAndPrint()  // 1
+count += 10
+changeAndPrint()  // 12
+println(count)    // 12</code></pre>
+
+<p>Here we declare a lambda and assign it to the <code>changeAndPrint</code> value. The lambda captures the <code>count</code> variable, <strong>increments</strong> it (increases it by 1), and prints the new value. Take a look at the printed numbers: they may seem okay but it's vital to understand that the <code>count</code> variable is available for changes from inside and outside the lambda and it changes everywhere.</p>
+
+<p>Let's consider another example.</p>
+
+<pre><code class="language-kotlin">fun placeArgument(value: Int, f: (Int, Int) -&gt; Int): (Int) -&gt; Int {
+    return { i -&gt; f(value, i) }
+}</code></pre>
+
+<p>The <code>placeArgument</code> transforms the <code>f</code> function that takes two arguments to a function that takes a single argument. This is achieved by creating a lambda that takes only one argument and calls the given function with this argument and the given value. Here the lambda captures the <code>value</code> and the <code>f</code>.</p>
+
+<p>Recall the <code>sum</code> function from previous lessons and the <code>mul2</code> lambda expression from this lesson:</p>
+
+<pre><code class="language-kotlin">fun sum(a: Int, b: Int): Int = a + b
+val mul2 = { a: Int, b: Int -&gt; a * b }</code></pre>
+
+<p>We can create other functions using them. Please note that the <code>sum</code> name refers to a function, so we need to receive the object by writing a doubled colon before the name:</p>
+
+<pre><code class="language-kotlin">val increment = placeArgument(1, ::sum)
+val triple = placeArgument(3, mul2)
+
+println(increment(4))   // 5
+println(increment(40))  // 41
+println(triple(4))      // 12
+println(triple(40))     // 120</code></pre>
+
+<h2>Conclusion</h2>
+
+<p>Now we are able to create functions at runtime. This is convenient when calling functions from <strong>Kotlin standard library</strong> such as processing data as it allows to write less code. Also, sometimes it's needed to make custom Functional Programming-style functions, and this knowledge will help too. Finally, we have just completely proved that functions are first-class citizens in the Kotlin language.</p>

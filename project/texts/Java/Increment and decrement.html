@@ -1,0 +1,14 @@
+<div><p>In this topic, we will discuss one of the most famous operators in programming - <b>increment</b>. This operation is used in many programming languages (including Java) to increase a variable by one. It is interesting this operation is used in the name of C++, and signifies the evolutionary nature of the changes from C.</p><h2 style="text-align: center;">Using ++ and -- in Java</h2><p>Java has two opposite operations called increment (<code>++</code>) and decrement (<code>--</code>) to increase/decrease the value of a variable by one.</p><pre><code class="language-java">int n = 10;
+n++; // 11
+n--; // 10</code></pre><p>The code above is actually the same as below.</p><pre><code class="language-java">int n = 10;
+n += 1; // 11
+n -= 1; // 10</code></pre><h2 style="text-align: center;">Prefix and postfix forms</h2><p>Both <b>increment</b> and <b>decrement </b>operators have two forms which are very important when using the result in the current statement:<br></p><ul><li><b>prefix (++n or --n)</b> increases/decreases the value of a variable before it is used;</li><li><b>postfix (n++ or n--)</b> increases/decreases the value of a variable after it is used.</li></ul><p>The following examples demonstrate both forms of increment.</p><p><b>Prefix increment:</b></p><pre><code class="language-java">int a = 4;
+int b = ++a;
+
+System.out.println(a); // 5
+System.out.println(b); // 5</code></pre></div><div><b></b>In this case, the value of <code>a</code> has been incremented and then assigned to <code>b</code>. So, <code>b</code> is 5.<b></b></div><div><b><br></b></div><div><b>Postfix increment:</b></div><div><br></div><div><pre><code class="language-java">int a = 4;
+int b = a++;
+
+System.out.println(a); // 5
+System.out.println(b); // 4
+</code></pre><br></div><div><div>In this case, the value of <code>a</code> has been assigned to <code>b</code> and then incremented by 1. So, <code>b</code> is 4.<b></b></div><div></div></div><div><br></div><div>We hope, you clearly understand what is increment and decrement as well as both their forms.</div>

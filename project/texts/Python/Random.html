@@ -1,0 +1,84 @@
+<p>Sometimes a situation happens when we need to make up a new password quickly. Of course, you can resort to plan B and use the data of your wedding or the birthday of your elder son but can you really rely on this combination of symbols? It would make more sense to shift the responsibility to the computer, notably the Python’s built-in module <strong>random. </strong>Random search is used to generate elements and is performed using an algorithm whose starting point is a seed. Therefore, the results given aren't random at all and we should call this module pseudo-random.</p>
+
+<h2 style="text-align: center;">Random method: first steps </h2>
+
+<p>First of all, we need to import the module:</p>
+
+<pre><code class="language-python">import random</code></pre>
+
+<p>After we’ve managed to do the previous task, it’s possible to try <code><strong>random.random()</strong></code>function that will provide us with a pseudo-random number from 0 till 1:</p>
+
+<pre><code class="language-python">print(random.random())
+
+# 0.5557276751294531
+
+</code></pre>
+
+<p>We can also control the pseudo-random behavior by specifying the seed manually, i.e. configure the new sequence of pseudo-random numbers using <code><strong>random.seed([x]</strong></code> function.  You can set your own number or omit the optional argument x and consequently current system time would be used by default.  </p>
+
+<pre><code class="language-python">random.seed()
+print(random.random())
+
+# 0.956177930864557
+
+</code></pre>
+
+<p>Now try to set the <strong>x</strong> argument. Haven’t you noticed the change of the result? If you choose 5, you’ll get 0.6229016948897019 as a result, if 20 – 0.9056396761745207 etc. Thus, the seed controls the behavior of pseudo-random in Python and can be used with any other function of random module.</p>
+
+<h2 style="text-align: center;">Random basic functions</h2>
+
+<p>Moving forward, other useful functions are:</p>
+
+<p><code><strong> random.uniform(a, b)</strong></code>  – returns a pseudo-random float number  in range between a and b:</p>
+
+<pre><code class="language-python">print(random.uniform(3, 100))
+
+# 35.94079523197162
+
+</code></pre>
+
+<p><strong><code>random.randint(a, b)</code> – </strong>returns a  pseudo-random integer number in range between a and b:</p>
+
+<pre><code class="language-python">print(random.randint(35, 53))
+
+# 52
+
+</code></pre>
+
+<p><strong><code>random.choice(seq)</code>– </strong>returns pseudo-random element from any sequences :</p>
+
+<pre><code class="language-python">print(random.choice('Voldemort'))
+
+# m
+
+</code></pre>
+
+<p><strong><code>random.randrange(a, b, c)</code> – </strong>returns a  pseudo-random number from a range between a and b with a step c:</p>
+
+<pre><code class="language-python">print(random.randrange(3, 100, 5))
+
+# 18
+
+</code></pre>
+
+<p><code><strong>random.shuffle(seq, [random])</strong></code> – shuffle the sequence. Attention: doesn’t work for immutable datatypes!</p>
+
+<pre><code class="language-python">list = ['a', 'apple', 'b', 'banana', 'c', 'cat']
+random.shuffle(list)
+print(list)
+
+# ['apple', 'banana', 'a', 'cat', 'b', 'c']
+
+</code></pre>
+
+<p><code><strong>random.sample(k, population)</strong></code>– returns a pseudo-random k length list from the population sequence. This function is used for random sampling without replacement:</p>
+
+<pre><code class="language-python">print(random.sample(range(100), 3))
+
+# [24, 33, 91]
+
+</code></pre>
+
+<p>Furthermore, there are plenty of other functions that are used in common mathematical practice, e.g. <code><strong>random.gammavariate(alpha, beta)</strong></code><strong> </strong>that is used for gamma distribution or <strong><code>random.gauss(mu, sigma)</code> </strong>that returns Gaussian distribution. If you need such narrow-specialized function, you can address the <a href="https://docs.python.org/3/library/random.html?highlight=random#module-random" rel="noopener noreferrer nofollow">Python documentation</a>.</p>
+
+<p> </p>

@@ -1,0 +1,125 @@
+<p>A good programmer doesn’t have to know everything, but what he has to know is where to find and how to test the needed information. Nowadays, in the era of the Internet the answer to “where” is quite straightforward - on the Internet, of course! In this article, we’ll partly talk about the Internet, but mostly - about the “how” part.</p>
+
+<p>When you start programming, there are plenty of cases when you need to test something before implementing it in your code. It would be rather inconvenient to create a new scratch file every time you need to check a type of a variable or what a function returns, what kind of data you are working with etc. To avoid creating unnecessary files, Python has a great tool for executing small (or large) pieces of code. This tool’s known under different names: the Python interactive console, the Python interpreter or Python shell. </p>
+
+<h2 style="text-align: center;">Make sure you have installed Python</h2>
+
+<p>Before accessing the shell, you have to make sure that you have already installed Python. If not, please, follow the detailed instructions from <a href="https://realpython.com/installing-python/" rel="noopener noreferrer nofollow">here</a>. To make sure everything's correct, you can execute the following command in a terminal / command line:</p>
+
+<pre><code class="language-python">python --version</code></pre>
+
+<p>The output should be something like this, but with your version of Python:</p>
+
+<pre><code class="language-python">Python 3.6.7
+</code></pre>
+
+<h2 style="text-align: center;">Interactive interpreter capabilities</h2>
+
+<p>When you enter the shell, the first thing you see is a welcome message, which specifies the version of Python, information about your operating system along with some commands you can enter to get additional information.<br>
+The Python interactive interpreter accepts Python syntax, which you place after:</p>
+
+<ul>
+	<li>
+	<p><strong>the primary prompt</strong>, which starts with three greater-than signs <strong>(&gt;&gt;&gt;);</strong></p>
+	</li>
+	<li>or <strong>the secondary prompt</strong>, which start with three dots <strong>(...).</strong></li>
+</ul>
+
+<p>Every new command to execute starts with the<strong> primary prompt.</strong> For example, we can assign values to variables:</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; a = "call me"
+</code></pre>
+
+<p>Once you have written and executed your code by hitting the “<strong>Return</strong>” button, you will see the result of your command and another primary prompt:</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; a = "call me"
+&gt;&gt;&gt; </code></pre>
+
+<p>You can use the shell for <strong>making calculations</strong>:</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; 5 + 12
+17
+&gt;&gt;&gt; 17 * 2
+34</code></pre>
+
+<p>It's quite handy if you want to test something, say list operations:</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; a = [1,2,3]
+&gt;&gt;&gt; b = [1,2]
+&gt;&gt;&gt; a + b
+[1, 2, 3, 1, 2]
+&gt;&gt;&gt; a.append(b)
+&gt;&gt;&gt; a
+[1, 2, 3, [1, 2]]
+</code></pre>
+
+<p>It's quite likely that for your experiments you will need something more than just Python built-ins. You are free to use <strong>import statements</strong> in the interactive mode:</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; import random
+&gt;&gt;&gt; random.randint(0, 100)
+65
+&gt;&gt;&gt;</code></pre>
+
+<p>Sometimes you can check the documentation of an object or the methods available for a specific object without even going to the Internet by just executing the following commands in the Interactive shell:</p>
+
+<pre><code class="language-python">help(list)
+
+dir(tuple)</code></pre>
+
+<h2 style="text-align: center;">Multi-line constructions</h2>
+
+<p>The<strong> secondary prompt </strong>is used in<strong> multi-line constructions</strong>, like:</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; construction_is_multiline = True
+&gt;&gt;&gt; if construction_is_multiline:
+...     print("You will see the secondary prompt after executing the first line”)</code></pre>
+
+<p>You don’t have to print everything in the interactive mode. In fact, if your line of code <strong>is a data structure,</strong> executing it will print this data into the command line as it is:</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; mother_called = 10
+&gt;&gt;&gt; if mother_called &gt; 5:
+...     "go home immediately!"
+... else:
+...     "you will have problems"</code></pre>
+
+<p>Another thing is that when it comes to multi-line programs, you have to make indentations according to Python syntax. The only allowance here is you don’t have to make indentations a multiple of four spaces, so the following code will be executed successfully too:</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; mother_called = 10
+&gt;&gt;&gt; if mother_called &gt; 5:
+...               print("go home immediately!")
+... else:
+...      print("you will have problems")</code></pre>
+
+<p>The main thing is to keep the indentation of <strong>instructions</strong> on the same level. Of course, you should always aim to follow the style, so it's always better to write clean code with correct indentations. </p>
+
+<p>The following code will throw a syntax error because <strong>else</strong> is not on the same level with <strong>if</strong>, to which it belongs:</p>
+
+<pre><code>&gt;&gt;&gt; mother_called = 10
+&gt;&gt;&gt; if mother_called &gt; 5:
+...               print("go home immediately!")
+...   else:
+...      print("you will have problems")</code></pre>
+
+<h2 style="text-align: center;">Navigation in Python shell</h2>
+
+<p>After you're done with experimenting, you might need to continue working in command line or terminal. To quit Python shell, press <strong>CTRL + Z</strong> or <strong>CTRL + D</strong>. </p>
+
+<p><strong>CTRL + Z</strong> will leave <strong>a trace</strong> in your command line:</p>
+
+<pre><code class="language-no-highlight">&gt;&gt;&gt; 
+[5]+  Stopped                 python
+user:~$ 
+</code></pre>
+
+<p> while <strong>CTRL + D</strong> is <strong>a silent exit</strong>, which just stops the interactive mode:</p>
+
+<pre><code class="language-no-highlight">&gt;&gt;&gt; 
+user@compuhter-back:~$ </code></pre>
+
+<p>Another way of quitting the interactive mode is to execute <strong>quit() </strong>or<strong> exit() </strong>command.</p>
+
+<p><strong>CTRL +C</strong> is a <strong>KeyboardInterrupt</strong>, which allows you breaking the multiline structures or infinite loops.  </p>
+
+<p>Since Python 3.4, the interactive mode session is being logged into a .python_history file on *nix OS, so <strong>quit() </strong>function leaves a trace in this file, while hotkeys don't.</p>
+
+<p>If you need to clean up the working space in your command line, you can use<strong> CTRL + L</strong>, which creates the necessary for your screen size amount of empty lines. </p>

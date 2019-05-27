@@ -1,0 +1,39 @@
+<p>Python provides special notes to explain what and why is happening in certain lines of code. Such notes are called <strong>comments</strong>. They are especially useful for beginners. Throughout this course, we will often use comments to explain our examples.</p>
+
+<h2 style="text-align: center;">What is a comment?</h2>
+
+<p>Any string starting with a <strong>hash </strong>(<code>#</code>) is considered as a comment by Python, and everything after the hash mark and up to the end of the line will be <strong>ignored </strong>when running the code.</p>
+
+<pre><code class="language-python">print("This will run.")  # This won't run</code></pre>
+
+<p>The one in the example above is called<strong> inline comment </strong>because it follows a piece of code in the same line. Another kind is a <strong>block comment</strong> that refers to the code that follows it:</p>
+
+<pre><code class="language-python"># printing three numbers
+print("1")
+print("2")
+print("3")</code></pre>
+
+<p>Now we intend to use the comments primarily for learning purposes. Pros and cons of using comments in real programs will be discussed in other topics.</p>
+
+<h2 style="text-align: center;">Formatting the comments</h2>
+
+<p>Although it is pretty easy to write a comment, let's discuss how to do this in accordance with best practices.</p>
+
+<p>To begin with, after a hash mark there should be <strong>one space</strong>, and in inline comments, there should be <strong>two spaces</strong> between the end of the code and the hash mark.</p>
+
+<pre><code class="language-python">print("Learning Python is fun!")  # This is a proper comments' formatting
+print("PEP-8 is important!")#This is a very bad example</code></pre>
+
+<p>A block comment is indented at the same level as a statement to mark. E.g. the following example is wrong:</p>
+
+<pre><code class="language-python">    # this comment is at a wrong place
+print("This is a statement to print.")</code></pre>
+
+<p>It is a good practice to split a long comment into several lines: you can do so either by adding a hash mark at the beginning of each new line:</p>
+
+<pre><code class="language-python"># Imagine that this is an example of a really long comment
+# that we need to spread over three lines, so we continue
+# to write it even here
+print("The long comment above explains this line of code.")</code></pre>
+
+<p>We hope our comments will help you understand our code examples!</p>

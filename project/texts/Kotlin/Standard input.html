@@ -1,0 +1,30 @@
+The <b>standard input</b> is a stream of data that goes into a program. It is supported by the operating system. By default, the standard input obtains data from the keyboard, but it is also possible to get it from a file.<div><br></div><div><p>Actually, not all programs need to use the standard input, but we will use it
+
+often. The typical way to solve programming problems in this course is the following:</p><pre><code class="language-java">1) read data from the standard input (stdin);
+2) process data to obtain a result
+3) output the result to the standard output (stdout)</code></pre><p>Before we start writing programs that do something useful, you should understand how to read data from the standard input.</p><h2 style="text-align: center;">Using the readLine function</h2><div>Kotlin has one useful function to read data from the standard input. This function is called <code>readLine</code>. It reads the whole line as a string.<br></div><div><br></div><div><pre><code class="language-kotlin">val line = readLine()</code></pre></div><div>The line variable has the String type because the function returns a value of this type.</div><div><br></div><div>Here is a program that reads a line from the standard input and send to the standard output.</div><div><br></div><div><pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+    val line = readLine()
+    println(line)
+}</code></pre></div><div><div>Here is an example of valid input data:</div><div><br></div><div><pre><code class="language-kotlin">Hyperskill</code></pre></div><div>The output is:</div><div><br></div><div><pre><code class="language-kotlin">Hyperskill</code></pre></div><div>This function has a number of shortcomings. If you'd like to read several values from the same line one by one, then you need to perform additional actions.</div><div><br></div><h2 style="text-align: center;">Using Java scanner</h2><div>The simplest way to obtain data from the standard input is to use the standard type <code class="java">Scanner</code> from Java. It can be directly accessed from Kotlin because it is an interoperabile with Java libraries. <span>A scanner allows a program to read values of different types (strings, numbers, etc) from the standard input.</span></div><div><br></div><div>To use this class you should add the following import statement to the top of your file with the source code.<br></div><div><br><pre><code class="language-kotlin">import java.util.Scanner
+</code></pre></div><div>or</div><div></div><div><pre><code class="language-kotlin">import java.util.*</code></pre>Then you can use any of the following methods to add <code>Scanner</code> to your program. <span>We will discuss importing in more detail later.</span><b></b></div><div>Let's create a variable initialized by <code>Scanner</code>:</div><div><br></div><div><pre><code class="language-kotlin">val scanner = Scanner(System.`in`)</code></pre></div><div><b>Note,</b> <code class="java">System.`in`</code> is an object that represents the standard input stream.</div><div><br></div><div>Now we can read data from the standard input:</div><div><br></div><div><pre><code class="language-kotlin">val line = scanner.nextLine() // read a whole line, for example "Hello, Kotlin"
+
+val num = scanner.nextInt()   // read a number, for example 123
+
+val string = scanner.next()   // read a string (not a line), for example "Hello"</code></pre></div><div></div><div>After you call <code class="java">scanner.nextLine()</code> or <code class="java">scanner.nextInt()</code> or something similar, the program will wait for the input data.</div><div><br></div><div>Here is an example of correct input data:<br></div><div><br></div><div><pre><code class="language-java">Hello, Kotlin
+123 Hello</code></pre></div><div></div><div>The following input example is also correct:</div><div><br></div><div><pre><code class="language-java">Hello, Kotlin
+123
+Hello</code></pre></div><div></div><div>It's possible to read a number as a string using <code class="java">scanner.next()</code> or <code class="java">scanner.nextLine()</code> (if the number is in a new line).</div><div><br></div><div>Also, the class <code class="java">Scanner</code> has methods (i.e. functions) for reading some values of other types. See the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html" rel="nofollow noopener noreferrer">documentation</a> for details.</div><div><br></div><div>The following program reads two numbers and outputs them in reverse order in two different lines.</div><div><br></div><div><pre><code class="language-kotlin">import java.util.Scanner // a class (type) from the Java standard library
+
+fun main(args: Array&lt;String&gt;) {
+    val scanner = Scanner(System.`in`) // reads data
+
+    val num1 = scanner.nextInt() // reads the first number
+    val num2 = scanner.nextInt() // reads the second number
+
+    println(num2) // prints the second number
+    println(num1) // prints the first number
+}
+</code></pre></div><div><b>Example 1</b></div><div><br></div><div>Input:</div><div></div><div><pre><code class="language-java">11 12</code></pre></div><div>Output:</div><div><br></div><div><pre><code class="language-java">12
+11</code></pre></div><div><div><b>Example 2</b></div><div></div><br></div><div>Input:</div><div><br></div><div><pre><code class="language-java">301
+402</code></pre></div><div>Output:</div><div><br></div><div><pre><code class="language-java">402
+301</code></pre></div><div>We recommend you use the <code>readLine</code> function or the class <code class="java">Scanner</code> when solving programming problems in this course. They are the simplest ways to get values from the standard input.</div></div></div>

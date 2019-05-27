@@ -1,0 +1,55 @@
+<h2 style="text-align: center;"><b></b>Processing arrays using loops</h2><div>Often, it's needed to perform some kind of algorithms on the elements of an array. For instances: sort them, find the maximum element, print only positive numbers, reverse the order, calculate the arithmetic average of numbers and so on.<br></div><div><p>A convenient way to process an array is to iterate over the array using a loop. The property <code>length</code> of an array can help us to avoid <code>ArrayIndexOutOfBoundsException</code>.</p><p><b>Example 1.</b> Filling an array with the squares of indexes of its elements.<br></p><pre><code class="language-java">int n = 10; // the size of an array
+int[] squares = new int[n]; // creating an array with the specified size
+
+System.out.println(Arrays.toString(squares)); // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+/* iterating over the array */
+for (int i = 0; i &lt; squares.length; i++) {
+    squares[i] = i * i; // set the value by the element index 
+}
+
+System.out.println(Arrays.toString(squares)); // [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</code></pre><p>In this code, an array with the size 10 and filled with zeros is created. Then the value of each element of the array is set to the square of the element's index. Then the program converts the array to the string representation (with square brackets) and prints it to the standard output.</p><p><b>Example 2.</b> Checking the order of elements.<br></p><p>The following program checks the given array is sorted ascending and prints "OK", otherwise it prints "BROKEN".</p><pre><code class="language-java">int[] numbers = { 1, 2, 3, 4, 5, 10, 6 }; // the order is broken
+
+boolean broken = false; // suppose the array is well-ordered
+
+/* iterating over the array */
+for (int i = 1; i &lt; numbers.length; i++) {
+    
+    if (numbers[i] &lt; numbers[i - 1]) { // if the order is broken
+        broken = true; // write a result
+        break;         // terminate the loop
+    }
+}
+
+System.out.println(broken ? "BROKEN" : "OK");</code></pre><p>For the given array the program prints <b>"BROKEN"</b>.</p><p>To iterate over arrays while and do-while loops are also admissible, but they are used less often.</p><h2 style="text-align: center;">Reading an array from the standard input</h2><p>Using a loop we can read all elements of an array from the standard input.</p></div><div><p>For example, the input consists of two lines. The first line contains the length of an array, the second line - all elements of the array.</p><pre><code class="language-java">5
+101 102 504 302 881</code></pre><p>Let's read these numbers using the <code>Scanner</code> (you can use another tool for reading) and then output all read numbers.</p><pre><code class="language-java">
+import java.util.Scanner;
+import java.util.Arrays;
+
+
+public class ReadingArrayExample {
+    
+    public static void main(String args[]) {
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        int len = scanner.nextInt(); // reading a length
+        int[] array = new int[len];  // creating an array with the specified length
+        
+        for (int i = 0; i &lt; len; i++) {
+            array[i] = scanner.nextInt(); // read the next number of the array
+        }
+        System.out.println(Arrays.toString(array)); // output the array
+    }
+}
+</code></pre><p>The program outputs:</p><pre><code class="language-java">[101, 102, 504, 302, 881]</code></pre></div><div><p><br></p><h2 style="text-align: center;"><b></b>Iterating over arrays using the for-each loop</h2><p>Since Java 5 there is a special form of the for-loop called for-each. It is used to iterate through each element of an array, string or a collection (we will learn them in next lessons) without indexes.</p><p>Let's write code for calculating the number of <code>'a'</code> letters in the given character array. To iterate over the array we'll use <b>for-each</b> loop.<br></p><pre><code class="language-java">char[] characters = { 'a', 'b', 'c', 'a', 'b', 'c', 'a' };
+
+int counter = 0;
+for (char ch : characters) {
+    if (ch == 'a') {
+        counter++;
+    }
+}
+
+System.out.println(counter); // it outputs "3"
+</code></pre><br>As you can see, the absence of indexes makes the code more readable. It also allows you to avoid <code>ArrayIndexOutOfBoundsException</code>.</div>

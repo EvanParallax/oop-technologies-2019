@@ -1,0 +1,113 @@
+<p>We know how to declare functions, how to invoke them, and what is their purpose. Actually, Kotlin provides a way to work with functions as with objects. So let's learn how to store a function as an object and how it can be used.</p>
+
+<h2>First-class citizen</h2>
+
+<p>First-class citizens in programming are the objects that:</p>
+
+<ol>
+	<li>can be stored as variables,</li>
+	<li>can be returned by a function,</li>
+	<li>can be passed to a function as an argument,</li>
+	<li>don't depend on their name,</li>
+	<li>can be created at the program <strong>runtime</strong> (the time when the program is working).</li>
+</ol>
+
+<p>For example, an <code>Int</code> is a first-class citizen in Kotlin. To clarify the fourth requirement, an <code>Int</code> with the <code>ten</code> name doesn't need be <code>10</code>. And vice versa: the <code>10</code> value needn't to be stored under the <code>ten</code> name. You can create as many differently named variables for the same value and the value won't change because of the name changing.</p>
+
+<p>In fact, functions are <strong>first-class citizens</strong> in the Kotlin language too. Let's prove it! In this lesson, we will cover only the first four requirements. Opportunities to create functions at runtime will be discussed in the next lesson.</p>
+
+<h2>Function types</h2>
+
+<p>First of all, Kotlin has built-in support for <strong>function types</strong>. The syntax of a function type is the following:</p>
+
+<pre><code class="language-no-highlight">(arguments' types) -&gt; return value type</code></pre>
+
+<p>In a function type there are <strong>arrow symbols</strong> (<code>-&gt;</code>) in the <strong>middle</strong>, also, there are <strong>bracketed arguments' types split by commas</strong> on the <strong>left</strong>, and, finally, the <strong>return value type</strong> is written on the <strong>right</strong>. Thus the arrow seems to be pointing from what the function takes to what it returns.</p>
+
+<p>Let's recall some functions from previous lessons and use them as examples:</p>
+
+<pre><code class="language-kotlin">fun sum(a: Int, b: Int): Int = a + b</code></pre>
+
+<p><code>sum</code> has a type of <code>(Int, Int) -&gt; Int</code>.</p>
+
+<pre><code class="language-kotlin">fun sayHello() {
+    println("Hello")
+}</code></pre>
+
+<p><code>printHello</code> has a type of <code>() -&gt; Unit</code> (this function takes nothing so parentheses with arguments' types are empty,  and, also, it returns nothing so the result type is <code>Unit</code>).</p>
+
+<h2>Function references as objects</h2>
+
+<p>Also, Kotlin allows getting <strong>references to functions</strong>. To get a reference to a <strong>top-level function</strong>, we simply need to write double colon (<code>::</code>) before its name and don't write parentheses and arguments after the name. Consider the example: <code>::sum</code> gives us an object of the <code>(Int, Int) -&gt; Int</code> type.</p>
+
+<p>Now we are ready to <strong>assign function references</strong> to values! We can create values like this:</p>
+
+<pre><code class="language-kotlin">val sumObject = ::sum</code></pre>
+
+<p>Don't confuse this assignment with saving function result to a value like this: <code>val sumResult = sum(1, 2)</code>. The <code>sumResult</code> value has the <code>Int</code> type because the <strong>result </strong>of the invoked <code>sum</code> function is just a <strong>number</strong>. But the <code>sumObject</code> value is initialized with a reference to the <code>sum</code> function (<code>::sum</code>), so it has the type of the <code>sum</code> function.</p>
+
+<p>We can also specify the type of the <code>sumObject</code> value explicitly:</p>
+
+<pre><code class="language-kotlin">val sumObject: (Int, Int) -&gt; Int = ::sum</code></pre>
+
+<p>In both cases, we then have an opportunity to invoke the original <code>sum</code> function by <strong>invoking the object</strong>: <code>sumObject(10, 20)</code> returns <code>30</code> as if we have invoked the original function with these arguments directly.</p>
+
+<h2>Functions returning other functions</h2>
+
+<p>If a function can be stored as an object, why not to create a function that returns such an object? Let's do this. Consider the example:</p>
+
+<pre><code class="language-kotlin">fun getRealGrade(x: Double) = x
+fun getGradeWithPenalty(x: Double) = x - 1
+
+fun getScoringFunction(isCheater: Boolean): (Double) -&gt; Double {
+    if (isCheater) {
+        return ::getGradeWithPenalty
+    }
+
+    return ::getRealGrade
+}</code></pre>
+
+<p>Here we have a real grade function, which returns its argument, and a grade with penalty function, which returns its argument minus one (in other words, the <strong>decrement</strong> of its argument). Also, we have another function which provides us one of the previous two functions.</p>
+
+<p>So if we do <code>val wantedFunction = getScoringFunction(false)</code>, the <code>wantedFunction</code> value will contain a reference to a grade function for an honest student. Seeing the <code>getScoringFunction</code> function implementation, we can say that in such case the <code>wantedFunction</code> value contains a reference to the <code>getRealGrade</code> function. So the result of the <code>wantedFunction(9.0)</code> will be equal to <code>9.0</code>.</p>
+
+<h2>Function references as function parameters</h2>
+
+<p>Also, it is possible to create functions which take other <strong>functions as arguments</strong>. Let's create one:</p>
+
+<pre><code class="language-kotlin">fun applyAndSum(a: Int, b: Int, transformation: (Int) -&gt; Int): Int {
+    return transformation(a) + transformation(b)
+}</code></pre>
+
+<p>It receives two integers, transforms them using the received transformation function, and returns the sum of the transformed integers. We can declare some transformation functions:</p>
+
+<pre><code class="language-kotlin">fun same(x: Int) = x
+fun square(x: Int) = x * x
+fun triple(x: Int) = 3 * x</code></pre>
+
+<p>And then pass them to the former function:</p>
+
+<pre><code class="language-kotlin">applyAndSum(1, 2, ::same)    // returns 3 = 1 + 2
+applyAndSum(1, 2, ::square)  // returns 5 = 1 * 1 + 2 * 2
+applyAndSum(1, 2, ::triple)  // returns 9 = 3 * 1 + 3 * 2</code></pre>
+
+<h2>Real-world usage</h2>
+
+<p>The previous example seems to be a bit synthetic. What about more realistic examples? For now, here is one.</p>
+
+<p>The <code>String</code> type has the <code>filter</code> method to filter symbols. How does it know which symbols to remove from the string and which ones to leave in it? The answer is simple – the method takes a <strong>predicate</strong> as an argument and then uses it for internal computations. A predicate is a function that takes an argument and returns a <code>Boolean</code> result. So in the <code>filter</code> method, the predicate says if the symbol should be left and has the <code>(Char) -&gt; Boolean</code> type.</p>
+
+<p>Let's try to use the method. If we want to remove dots from a string, we declare the following predicate:</p>
+
+<pre><code class="language-kotlin">fun isNotDot(c: Char): Boolean = c != '.'</code></pre>
+
+<p>Then we can do something like this:</p>
+
+<pre><code class="language-kotlin">val originalText = "I don't know... what to say..."
+val textWithoutDots = originalText.filter(::isNotDot)</code></pre>
+
+<p>As a result, the <code>textWithoutDots</code> string is equal to <code>"I don't know what to say"</code>.</p>
+
+<h2>Conclusion</h2>
+
+<p>It was the basis of a huge programming paradigm – <strong>Functional programming</strong>. Having function objects, we can create functions that receive other functions as arguments. The paradigm is frequently used in <strong>Kotlin standard library</strong>. We have discussed a few examples, but you will definitely find other examples in the next lessons.</p>

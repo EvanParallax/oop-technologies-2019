@@ -1,0 +1,25 @@
+<h2 style="text-align: center;">Basic information about Int and Long types</h2><div>Integer numbers are often used in real programs. As you may recall, Kotlin has several types to store them. The most used types are <code>Int</code> (32 bits) and <code>Long</code> (64 bits). You can perform all types of arithmetic operations (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>) with variables of these types. Let's look at some examples.</div><div><br></div><div><pre><code class="language-kotlin">val two = 2  // Int
+val ten = 10 // Int
+
+val twelve = two + ten // 12
+val eight = ten - two  // 8
+val twenty = two * ten // 20
+val five = ten / two   // 5
+val zero = ten % two   // 0, no remainder </code></pre><div><br></div>You probably already know what these operations actually do. The same operations work with the <code>Long</code> type. To declare a variable of the <code>Long</code> type, you may choose one of the following ways:<br><div><br></div><div><pre><code class="language-kotlin">val longNumber1 = 1_000_000_000_000_000
+val longNumber2: Long = 1_000_000
+val longNumber3 = 1000L
+
+val result = longNumber1 + longNumber2 - longNumber3
+println(longResult) // 1_000_000_000_999_000</code></pre><br></div><div>The value <code>longNumber1</code> is <code>Long</code> because it is greater than the possible value of the <code>Int</code> type. The value <code>longNumber2</code> is <code>Long</code> because we specified the type. The value <code>longNumber3</code> is <code>Long</code> because we tagged the value with the suffix <code>L</code> (<code>Long</code>). The <code>result</code> is <code>Long</code> because it is the result of the sum of three <code>Long</code>s.</div></div><div><br></div><div>Use <code>Long</code>s only if it is really necessary (to process large values).</div><div><br></div><h2 style="text-align: center;">Reading numbers from the standard input</h2><div>As a rule, to solve a problem you need to read some data from the outside world, process it, and output the result. For example, the following program reads two numbers from the standard input, adds them, and outputs the sum.</div><div><br></div><div><pre><code class="language-kotlin">import java.util.Scanner
+
+fun main(args: Array&lt;String&gt;) {
+    val scanner = Scanner(System.`in`)
+
+    val a = scanner.nextInt()
+    val b = scanner.nextInt()
+
+    val sum = a + b
+
+    println(sum)
+}</code></pre></div><div><br></div><div>This simple code uses <code>Scanner</code> to read data. It works for positive, negative and zero numbers because the <code>Int</code> type supports all of them.</div><div><br></div><div>If we know that the input numbers can be quite large, we can read <code>Long</code>'s instead of <code>Int</code>'s:<br></div><div><br></div><div><pre><code class="language-kotlin">val a = scanner.nextLong()
+val b = scanner.nextLong()</code></pre> <br></div><div>No more lines need to be changed in this code.</div><div><br></div><div>Now you have enough knowledge to write useful programs that process data. You may use the template above for solving code challenges in this lesson. Try to give meaningful names to variables when solving problems.</div>

@@ -1,0 +1,106 @@
+<p>You already know how to create empty and non-empty lists, so, naturally, at some point, you will want to manipulate your lists in some way. There is a large set of possible operations with lists that are fully described in the <a href="https://docs.python.org/3/tutorial/datastructures.html" rel="noopener noreferrer nofollow">documentation</a>. In this topic, we will consider only some of them.</p>
+
+<h2 style="text-align: center;">Adding and removing elements</h2>
+
+<p>A list is a <strong>dynamic collection</strong> which means elements can always be added and removed. Let's start our consideration of such operations with creating an empty list of dragons.</p>
+
+<pre><code class="language-python">dragons = []  # we do not have dragons yet</code></pre>
+
+<p>The first thing that comes to mind is, of course, <strong>adding new elements </strong>to the list.</p>
+
+<p>To add a new element to the end of an existing list, you need to invoke <code>list.append(element)</code> function. It takes only a single argument, so this way you can add only one element to the list at a time. </p>
+
+<pre><code class="language-python">dragons.append('Rudror')
+dragons.append('Targiss')
+dragons.append('Coporth')</code></pre>
+
+<p>Now you have exactly three dragons, moreover, they are ordered the way you added them:</p>
+
+<pre><code class="language-python">print(dragons)  # ['Rudror', 'Targiss', 'Coporth']</code></pre>
+
+<p>There is also <code>list.extend(another_list)</code> operation which adds all the elements from another iterable to the end of the list.</p>
+
+<pre><code class="language-python">numbers = [1, 2, 3, 4, 5]
+numbers.extend([10, 20, 30])
+print(numbers)  # [1, 2, 3, 4, 5, 10, 20, 30]</code></pre>
+
+<p>If you use <code>list.append(element)</code> instead of <code>list.extend(another_list)</code>, it will add the entire list, not its elements:</p>
+
+<pre><code class="language-python">numbers = [1, 2, 3, 4, 5]
+numbers.append([10, 20, 30])
+print(numbers)  # [1, 2, 3, 4, 5, [10, 20, 30]]</code></pre>
+
+<p>Please, do not confuse these operations.</p>
+
+<p>The opposite of adding elements — <strong>deleting them </strong>— is done with the help of <code>list.remove(element)</code> operation.</p>
+
+<pre><code class="language-python">dragons.remove('Targiss')
+print(dragons)  # ['Rudror', 'Coporth']
+</code></pre>
+
+<p>Now you have only two dragons in the list.</p>
+
+<p>If the element you want to delete occurs several times in the list, then the first instance of that element is removed.</p>
+
+<pre><code class="language-python">numbers = [0, 1, 1, 2, 3, 5, 8, 13, 21]
+numbers.remove(1)
+print(numbers)  # [0, 1, 2, 3, 5, 8, 13, 21]</code></pre>
+
+<p> </p>
+
+<h2 style="text-align: center;">Inserting elements at a specified position</h2>
+
+<p>We've learnt how to add new elements to the end of a list. If we want to add a new element in the middle of a list, we should use the <code>list.insert(position, element)</code> operation. The first argument is the index of the element <strong>before</strong> which to insert, so <code>list.insert(0, element)</code> inserts an element to the beginning of the list, and <code>list.insert(len(a), element)</code> is completely equivalent to <code>list.append(element)</code>.</p>
+
+<p>Here is an example:</p>
+
+<pre><code class="language-python">years = [2016, 2018, 2019]
+years.insert(1, 2017)  # [2016, 2017, 2018, 2019]
+years.insert(0, 2015)  # [2015, 2016, 2017, 2018, 2019]
+years.insert(len(years), 2020)  # [2015, 2016, 2017, 2018, 2019, 2020]</code></pre>
+
+<p>Now, you can fill any empty list with something useful :)</p>
+
+<h2 style="text-align: center;">Reversing and sorting lists</h2>
+
+<p>There are two commonly-used operations to modify the order of elements in a list.</p>
+
+<p>Invoking <code>list.reverse()</code> just reverses the order of elements in the list.</p>
+
+<pre><code class="language-python">numbers = [1, 2, 3, 4, 5]
+numbers.reverse()
+print(numbers)  # [5, 4, 3, 2, 1]</code></pre>
+
+<p>The <code>reverse()</code> function is self-explanatory. Just mind that it performs the operation in place, i.e. it returns nothing, so you can't assign the result of this function to another variable, although the initial list will still be changed:</p>
+
+<pre><code class="language-python">initial_list = [1, 2, 3, 4, 5]
+reversed_list = initial_list.reverse()
+print(reversed_list)  # None
+print(initial_list)  # [5, 4, 3, 2, 1]</code></pre>
+
+<p>Invoking <code>list.sort()</code> sorts the list in the ascending order according to the natural order of stored elements.</p>
+
+<pre><code class="language-python">numbers = [3, 2, 5, 4, 1]
+numbers.sort()
+print(numbers)  # [1, 2, 3, 4, 5]
+</code></pre>
+
+<p>To sort a list in the descending order, you need to specify <code>reverse</code> argument as <code>True</code>.</p>
+
+<pre><code class="language-python">numbers = [3, 2, 5, 4, 1]
+numbers.sort(reverse=True)
+print(numbers)  # [5, 4, 3, 2, 1]
+</code></pre>
+
+<p>This function can also sort strings according to their <strong>lexicographic order</strong> (as in a dictionary).</p>
+
+<pre><code class="language-python">strings = ['aa', 'b', 'aaa', 'q', 'qq']
+strings.sort()
+print(strings)  # ['aa', 'aaa', 'b', 'q', 'qq']
+</code></pre>
+
+<p>If your list has uncomparable types (like strings and integers together), it will throw an error:</p>
+
+<pre><code class="language-no-highlight">TypeError: '&lt;' not supported between instances of 'str' and 'int'</code></pre>
+
+<p>This concludes our discussion of the basic operations with lists. Check out the <a href="http://docs.python.org/3/tutorial/datastructures.html" rel="noopener noreferrer nofollow">documentation</a> if you need more information.</p>

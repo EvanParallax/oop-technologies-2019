@@ -1,0 +1,139 @@
+<p>We know how to declare simple classes with simple properties. Now let's talk about one more kind of class members – a constructor.</p>
+
+<h2>Default constructor</h2>
+
+<p><strong>Constructors</strong> are class members that <strong>initialize a new object</strong> of the class. In other words, constructors set a new object state by setting its properties. So a constructor is invoked when you create an object.</p>
+
+<p>Remember how we create objects? We write the class name and empty parentheses after it. It's exactly the constructor call and it's like calling the function with no arguments. Actually, it's because when there is no explicitly defined constructor, there is an implicit default constructor that just creates an object and doesn't have any logic inside.</p>
+
+<h2>Custom constructor</h2>
+
+<p>Often you know the object properties before you create it. To reduce and beautify your code, the properties can be set in the constructor. Just make the constructor receive the parameters.</p>
+
+<p>As an example, let's use the <code>Size</code> class:</p>
+
+<pre><code class="language-kotlin">class Size {
+    var width: Int = 0
+    var height: Int = 0
+}</code></pre>
+
+<p>Add the following constructor:</p>
+
+<pre><code class="language-kotlin">class Size {
+    var width: Int = 0
+    var height: Int = 0
+
+    constructor(_width: Int, _height: Int) {
+        width = _width
+        height = _height
+    }
+}</code></pre>
+
+<p>And now you are able to create properly set objects in one line:</p>
+
+<pre><code class="language-kotlin">val size1 = Size(3, 4)
+val size2 = Size(5, 1)</code></pre>
+
+<p>So to <strong>declare</strong> a custom constructor, write the <strong><code>constructor</code> keyword</strong> inside the class <strong>and parathesis with</strong> its <strong>arguments</strong> after the keyword. <strong>Then</strong> write <strong>curly braces with</strong> the <strong>constructor logic</strong> inside them. Sometimes such constructors are called <strong>secondary</strong> ones.</p>
+
+<p>Note that you either use an implicit constructor or declare your own, you can't use the both at the same time. You can create a replica of the default constructor explicitly, though (empty curly braces can be removed):</p>
+
+<pre><code class="language-kotlin">class Size {
+    var width: Int = 0
+    var height: Int = 0
+
+    constructor() {
+    }
+}</code></pre>
+
+<h2>The <code>this</code> keyword</h2>
+
+<p>Inside the class code, you can also access the object members using the "dot and the member name" syntax. Since usually you don't know the object name, there is a special keyword considered as the <strong>current object</strong> – <strong><code>this</code></strong>. For example, it can be used to name the constructor arguments as the class properties. Let's change the <code>Size</code> class:</p>
+
+<pre><code class="language-kotlin">class Size {
+    var width: Int = 0
+    var height: Int = 0
+
+    constructor(width: Int, height: Int) {
+        this.width = width
+        this.height = height
+    }
+}</code></pre>
+
+<h2>Omitting default values</h2>
+
+<p>Classes in Koltin have useful feature: you <strong>don't</strong> have to <strong>declare</strong> a <strong>default property value</strong> if the value is assigned in the constructor of the class:</p>
+
+<pre><code class="language-kotlin">class Size {
+    var width: Int
+    var height: Int
+
+    constructor(width: Int, height: Int) {
+        this.width = width
+        this.height = height
+    }
+}</code></pre>
+
+<p>In this case, we can change <code>var</code>s to <code>val</code>s and a <code>Size</code> object will be immutable. Let's add another property just for illustration:</p>
+
+<pre><code class="language-kotlin">class Size {
+    val width: Int
+    val height: Int
+    val area: Int
+
+    constructor(width: Int, height: Int) {
+        this.width = width
+        this.height = height
+        this.area = width * height
+    }
+}</code></pre>
+
+<h2>Primary constructor</h2>
+
+<p>Another syntactic sugar Kotlin provides is a primary constructor. It allows to move the constructor keyword and the constructor <strong>arguments</strong> right <strong>after</strong> the <strong>class name</strong>:</p>
+
+<pre><code class="language-kotlin">class Size constructor(width: Int, height: Int) {
+    val width: Int = width
+    val height: Int = height
+    val area: Int = width * height
+}</code></pre>
+
+<p>The keyword of the primary constructor can be removed:</p>
+
+<pre><code class="language-kotlin">class Size(width: Int, height: Int) {
+    val width: Int = width
+    val height: Int = height
+    val area: Int = width * height
+}</code></pre>
+
+<p>Moreover, you can put <strong>simple properties declarations inside</strong> the <strong>primary constructor</strong>. Firstly, let's move one property:</p>
+
+<pre><code class="language-kotlin">class Size(val width: Int, height: Int) {
+    val height: Int = height
+    val area: Int = width * height
+}</code></pre>
+
+<p>And finally - the remaining one:</p>
+
+<pre><code class="language-kotlin">class Size(val width: Int, val height: Int) {
+    val area: Int = width * height
+}</code></pre>
+
+<h2>Single line classes</h2>
+
+<p>If there are <strong>no other class members</strong> remaining (imagine the <code>area</code> property is missing), as always, we can <strong>omit empty curly braces</strong>:</p>
+
+<pre><code class="language-kotlin">class Size(val width: Int, val height: Int)</code></pre>
+
+<p>You can see such classes frequently in real life. For example, classes that just store data are defined like this.</p>
+
+<p>So a primary constructor is a handy way to concisely define a class.</p>
+
+<h2>Conclusion</h2>
+
+<ul>
+	<li>Any Kotlin class has a constructor to initialize its objects.</li>
+	<li>A constructor is available for invocation under the class name.</li>
+	<li>There are different ways to declare a constructor but a primary constructor is the most concise.</li>
+	<li>If a class has no custom constructors, then there is an implicit default constructor with no arguments and it does nothing.</li>
+</ul>

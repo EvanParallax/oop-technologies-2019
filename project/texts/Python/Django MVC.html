@@ -1,0 +1,99 @@
+<h2>MVC Paradigm</h2>
+
+<p>Complex software products have their own architecture. Though each example is unique, usually they all contain common design patterns. Patterns are repeatable and rather language-independent structures, so getting familiar with just one of them means understanding a whole bunch of applications that share it. It is basically a general language to express ideas, and Model-View-Controller (<strong>MVC</strong>) is one particularly useful pattern to learn, since many popular frameworks like Django (Python), Spring (Java), and Ruby On Rails (Ruby) are using it.</p>
+
+<p>The main idea of MVC is dividing responsibilities between three components. <strong style="font-size: inherit;">The Model</strong> part contains business logic, <strong style="font-size: inherit;">the View</strong> represents the application and <strong style="font-size: inherit;">the Controller</strong> manages data flow between two of them. The advantage of this framework is that we can design different views from the same models, so we write less code by reusing the existing parts. Distinguishing one component from another is the main principle to be guided by.</p>
+
+<p>Each component has its associated files in the default Django layout.</p>
+
+<p>Let's say that we are creating an online magazine. The folder "magazine" is the root of your site and "blog" is one of your applications. You can link the components with those files:</p>
+
+<pre><code class="language-bash">magazine/
+├── blog
+    ├── ...
+    ├── models.py    # Model
+    └── views.py     # Controller
+├── magazine
+    ├── ...
+    └── urls.py      # Controller
+└── templates        # View</code></pre>
+
+<p>Let's take a closer look at the files that you will need in order to make a web service.</p>
+
+<h2>Starting a New Project</h2>
+
+<p>For this example, we will use <strong>"magazine"</strong> for a project and <strong>"blog"</strong> for an application. If you want to get creative and use other names, feel free to change the given ones in the code. </p>
+
+<p>The django-admin utility helps organize the layout of your project. You may create all these files manually, but using django-admin will be a good guide to the common structure of a project for you. Note that different versions of Django have different default layouts, and whichever version you use, try to stick to its provided structure: it will make your code easier to maintain.</p>
+
+<p>To create a project and the first application, run the following in the command line:</p>
+
+<pre><code class="language-bash">django-admin startproject magazine
+cd magazine
+django-admin startapp blog</code></pre>
+
+<p>Having executed these commands, you'll get a whole file tree for the project with a piece of code. Now let's get down to using our MVC pattern.</p>
+
+<h2>Model</h2>
+
+<pre><code class="language-bash">magazine/
+└── blog
+    └── models.py</code></pre>
+
+<p>It's nice to have the same content for all users, but if we want to customize it a bit, we need tools from Python interface. </p>
+
+<p>The Model component includes all the work with the business objects in your project. A <strong>business object</strong> is an entity with custom attributes; it reflects a structured piece of data from your application which you want to store persistently or temporarily. For example, in a shop application, it can be a customer, a product and a purchase; in a blog, business objects can be authors, posts and comments.</p>
+
+<p>To keep your code clear, you should implement all operations with the business objects in the "models.py" module. The bigger the codebase gets, the harder it is to maintain everything in one file, but it's a good starting point. </p>
+
+<p>You may use <strong>User</strong> and <strong>Group</strong> models from "django.contrib.auth.models": Django provides them from the box. The User is a registered person in your web service and the Group is a collection of Users. We'll create some of those when we attach a database to your project.</p>
+
+<h2>View</h2>
+
+<pre><code class="language-bash">magazine/
+├── blog
+    └── templates
+        └── blog
+            └── index.html
+└── templates
+    └── base.html</code></pre>
+
+<p>No one will know what the service does unless it has some form of visual rendition. The View is a representation of your web service. Simply put, it is what the user sees.</p>
+
+<p>The View component is stored in templates. <strong>Templates</strong> are files that support Django/Jinja2 template languages. Besides, they can include content with HTML, CSS, and JavaScript. Template language utilizes the ability to use similar constructs you use in Python. It's has a different syntax but the same function words.</p>
+
+<p>To create "templates" directory for the project and for the application, run:</p>
+
+<pre><code class="language-bash">mkdir templates
+mkdir -p blog/templates/blog</code></pre>
+
+<p>When you create "templates" directory for your application, you should name it <em>"&lt;application name&gt;/templates/&lt;application name&gt;"</em>.  This redundancy is obligatory. If you use the same file name without the second repetition of <em>&lt;application name&gt;</em>, like "blog/templates/index.html" and "news/templates/index.html", then in both cases Django template loader will return the first file it found, which isn't always what the user actually needs. </p>
+
+<h2>Controller</h2>
+
+<pre><code class="language-bash">magazine/
+├── blog
+     └── views.py
+└── magazine
+      └── urls.py</code></pre>
+
+<p>Views and models are good instruments, but something should combine them with the user data, which is where we turn to the Controller part.</p>
+
+<p>The Controller consists of two types of files: views and urls. In "urls.py", you define the routing for your service. <strong>Routing</strong> is a process of matching request links with appropriate view handlers. You can include "urls.py" files one into another, but the main will be "<em>&lt;project_name&gt;/&lt;project_name&gt;/urls.py"</em>. If you want to create routing files for each application, do it and include them in the main one.</p>
+
+<p>In "views.py" you define view handlers, which play a proxy role between the Model and the View. A <strong>view handler</strong> is a function or a class that responds to requests. Since communication between client and server is an implementation of the HTTP protocol, handler answers with a status code. If the request was successful, the server typically responds with 200 code. In case the requested page is not found, it will be 404; if the server is down, it's 500. Other examples of codes can be found at <a href="https://httpstatuses.com/" rel="noopener noreferrer nofollow">https://httpstatuses.com/</a>. </p>
+
+<h2>Request to the Web Site</h2>
+
+<p>Now that you know how functions are divided between the components, let's see how they interact when there's a web site request.</p>
+
+<p>1. A user sees a link or a button in a View, presses it and creates a request.<br>
+2. The Controller receives the request.  <br>
+3. It passes the request to the appropriate handler.<br>
+4. The handler calls Model methods to retrieve objects from data storage.<br>
+5. It chooses the View template to render a response.<br>
+6. A user sees a response.</p>
+
+
+
+<p>Each part has its own methods and base classes in the Django package. You should separate the work with each component as Django developers do: this way other developers will understand your code and you will understand theirs.</p>

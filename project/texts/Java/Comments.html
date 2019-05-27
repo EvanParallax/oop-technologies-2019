@@ -1,0 +1,30 @@
+<p>Inside a Java program, you can write special text which will be ignored by the java compiler — known as comments. They allow you to exclude code from the compilation process (disable it) or clarify a piece of code to yourself or other developers.</p><p>The Java programming language supports three kinds of comments.</p><h2 style="text-align: center;"><b>End-of-line comments</b> </h2><p>The java compiler ignores any text from <code class="java">//</code> to the end of the line.</p><pre><code class="language-java">class Program {
+    public static void main(String[] args) {
+        // The line below will be ignored
+        // System.out.println("Hello, World");
+        // It prints the string "Hello, Java"
+        System.out.println("Hello, Java"); // Here can be any comment
+    }
+}</code></pre><p>In the example above the text after <code class="java">//</code> is ignored by the compiler.</p><h2 style="text-align: center;"><b>Multi-line comments</b></h2><p>The compiler ignores any text from <code class="java">/*</code> and the nearest <code class="java">*/</code>. It can be used as multiple and single-line comments.</p><pre><code class="language-java">class Program {
+    public static void main(String[] args) {
+        /* This is a single-line comment */
+        /*  This is a example of
+            a multi-line comment */
+  }
+}</code></pre><p>You can use comments inside other comments:</p><pre><code class="language-java">class Program {
+    public static void main(String[] args) {
+        /*
+        System.out.println("Hello"); // print "Hello"
+        System.out.println("Java");  // print "Java"
+        */
+    }
+}</code></pre><p>The part of code above is ignored by the compiler because of <code class="java">/* ... */</code> comments.</p><h2 style="text-align: center;"><b>Java</b> <b>documentation comments</b></h2><p>The compiler ignores any text from <code class="java">/**</code> to <code class="java">*/</code> just like it ignores multi-line comments.</p><p>This kind of comments can be used to automatically generate documentation about your source code using <b></b>the<b> javadoc </b>tool<b></b>. Usually, these comments are placed above declarations of classes, interfaces, methods and so on. Also, in this case, some special labels such as <code class="java">@param</code>, <code class="java">@return</code> and others are used for controlling the tool.</p><p>See an example below.</p><pre><code class="language-java">class Program {
+    /**
+     * The main method accepts an array of string arguments
+     *
+     * @param args from the command line
+     */
+    public static void main(String[] args) {
+        // do nothing
+    }
+}</code></pre><p>Do not be afraid if you have not understood <b>the documentation comments</b> completely. This will be considered in separated topics.</p><p><b>Note,</b> in this course we use comments in the theory and practice lessons to explain how and why our code works.</p>

@@ -1,0 +1,35 @@
+<h2 style="text-align: center;">Simple if-else</h2>
+
+<p>An <strong>if-else statement</strong> is another type of conditional expressions in Python. It differs from an <strong>if statement</strong> by the presence of the additional keyword <code>else</code>. A code after <code>else</code> is run when the condition of your if statement does not hold (the Boolean value is <code>False</code>). Else statement introduces an alternative, so both blocks of code can in no way be performed together. It has to be one or the other. Also, after <code>else</code> no condition is required:</p>
+
+<pre><code class="language-python">if today == "holiday":
+    print("Lucky you!")
+else:
+    print("Keep your chin up, then.")</code></pre>
+
+<p>Note that the 4-space <strong>indentation</strong> rule applies here too.</p>
+
+<p>As you may soon find out, programmers do like all sorts of shortcuts. For conditional expressions, there's a trick too – an if-else statement can be written in one line just like that:</p>
+
+<pre><code class="language-python">print("It’s a day now!") if sun else "It’s a night for sure!"</code></pre>
+
+<p>Or, more generally:</p>
+
+<pre><code class="language-python">first_alternative if condition else second_alternative</code></pre>
+
+<p>It's a matter of convenience, but keep in mind that the code you create should still be readable.</p>
+
+<h2 style="text-align: center;">Nested if-else</h2>
+
+<p>Importantly, <code>if-else</code> statements can be <strong>nested</strong> in the same manner as <code>if</code> statements. An additional conditional expression may appear after the <code>if</code> part as well as after the <code>else</code> part of a statement. And watch out for the proper indentation:</p>
+
+<pre><code class="language-python">if x &lt; 100:
+    print('x &lt; 100')
+else:
+    if x == 100:
+        print('x = 100')
+    else:
+        print('x &gt; 100')
+    print('This will be printed only because x &gt;= 100')</code></pre>
+
+<p> </p>

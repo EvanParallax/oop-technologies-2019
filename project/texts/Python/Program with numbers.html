@@ -1,0 +1,64 @@
+<h2 style="text-align: center;">Personal finance advisor</h2>
+
+<p>Let's write some simple calculator that would help you to know how much you can save.<br>
+As we would strive to write a program that could be reused later let's define first income and expenses. Currently, we'll use a fixed tax, later we can improve the program to use a progressive scale.</p>
+
+<pre><code class="language-python">annual_salary_gross = 60000
+tax = 0.13
+house_rent = 800
+utility = 100
+food = 200
+other = 250</code></pre>
+
+<p>Now if any of the variable change we can update it's definition keeping all the other calculations the same.<br>
+Let's calculate how much net income would you have monthly.</p>
+
+<pre><code class="language-python">month_income_net = annual_salary_gross / 12 * (1 - tax)</code></pre>
+
+<p>If you will get any additional income to add it to the variable month_income_net. Now let's calculate the sum of the spends to know how much you can save.</p>
+
+<pre><code class="language-python">save = month_income_net - house_rent - utility - food - other</code></pre>
+
+<p>The full program listing.</p>
+
+<pre><code class="language-python">annual_salary_gross = 60000
+tax = 0.13
+house_rent = 800
+utility = 100
+food = 200
+other = 250
+
+month_income_net = annual_salary_gross / 12 * (1 - tax)
+
+save = month_income_net - house_rent - utility - food - other</code></pre>
+
+<h2 style="text-align: center;">Compound interest calculator</h2>
+
+<p>In this example, we will write a program to calculate your interest if you invest some amount of money once and won't withdraw it for some time.</p>
+
+<p>Let's assume you inherited $10000. Some bank offers savings accounts with a 4% interest rate annually and payments each month. You're going to reinvest all the interest. For example, you are going to invest the money for 5 years.</p>
+
+<pre><code class="language-python">invest_amount = 10000
+interest_rate = 0.04
+payments_annually = 12
+years = 5</code></pre>
+
+<p>Let's just implement the formula for <a href="https://en.wikipedia.org/wiki/Compound_interest#Mathematics_of_interest_rate_on_loans" rel="noopener noreferrer nofollow">compound interest</a>.</p>
+
+<pre><code class="language-python">total_income = invest_amount * ( 1 + interest_rate / 12) ** (payments_annually * years)</code></pre>
+
+<p>We divide interest_rate as the reinvestment happens each month. We raise the monthly income in the power of payments amount as we reinvest all the income.</p>
+
+<h2 style="text-align: center;">Free air miles</h2>
+
+<p>Imagine you have a credit card with a free air miles bonus program (or maybe you already have one). Let's assume you spend about <strong>$200 </strong>each month paying with the card and the bonus program gives you 1 free air mile for each <strong>$2</strong> you spend. You can write a simple program to know when you can travel somewhere for free. </p>
+
+<pre><code class="language-python">month_spends = 200
+mile_per_spends = 2
+
+miles_per_month = month_spends / mile_per_spends
+
+distance = 215  # for example, it's a distance between London and Paris
+distance * 2 / miles_per_month</code></pre>
+
+<p>This program will save how many months you need to travel the selected distance and back.</p>

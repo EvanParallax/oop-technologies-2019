@@ -1,0 +1,49 @@
+<p>Even though invoking functions in Python is not about casting a spell or the like, it does sometimes work wonders. Let's start with the concept. Basically, a <strong>function</strong> is a structured fragment of code we may want to use in more than one place and more than one time. For another thing, functions allow us to understand both our code and that of someone else way better. Haven't they become your favorite yet?</p>
+
+<h2 style="text-align: center;">Invoking print()</h2>
+
+<p>To <strong>call</strong> <strong>(or invoke)</strong> <strong>a function</strong> in your program, simply print its name and add parentheses after it. That's all it takes! Fun fact - if you've ever typed an expression like this <code>print("Hello, world!")</code>, you already know a little about functions. In this tiny example, however, we see the message <samp>"Hello, world!"</samp> in the brackets after the name of the <code>print</code> function. What does it mean? It is actually the function's <strong>argument</strong>. And more often than not, functions do have arguments. As for the <code>print</code> function, we may as well use it with no argument at all or even with multiple arguments:</p>
+
+<pre><code class="language-python">print("Hello, world!")
+print()
+print("Bye,", "then!")</code></pre>
+
+<p>And here is the output:</p>
+
+<pre><code>Hello, world!
+
+Bye, then!</code></pre>
+
+<p>So, the first call <strong>returns</strong> one string, the second call of <code>print</code> with no argument given <strong>returns,</strong> in fact, a newline character <code><samp>\n</samp></code>, and the last call writes our two messages as one expression. Are you surprised by these results? Then you may learn how the <code>print</code> function works in more detail from its <a href="https://docs.python.org/3/library/functions.html#print" rel="noopener noreferrer nofollow">documentation</a>. The Python documentation contains all sorts of information about the function of your interest, for example, which arguments it expects or what it returns.</p>
+
+<h2 style="text-align: center;">Built-in functions</h2>
+
+<p>Functions can make life easier, provided one is aware of their existence. Many algorithms are already written, so there is no need for reinvention, except perhaps for educational purposes. The Python interpreter has a number of functions and types <strong>built into</strong> it, so they are always available. Currently, the number of built-in functions amounts to <a href="https://docs.python.org/3/library/functions.html" rel="noopener noreferrer nofollow">69</a> (in the latest version <strong>Python 3.7</strong>). Some of them are used to convert the <strong>object type</strong>, for example, <code>str()</code> returns a string, <code>int()</code> returns an integer, <code>float()</code> returns a floating point number. Others deal with <strong>numbers</strong>: you can <code>round()</code> them and <code>sum()</code> them, find the minimum <code>min()</code> or the maximum <code>max()</code>. Still others give us information about the object: its <code>type()</code> or length <code>len()</code>. Consider them in action:</p>
+
+<pre><code class="language-python">line = "111"
+print(len(line))  # 3
+integer = int(line)
+float_number = float(line)
+my_sum = sum((integer, float_number))
+print(str(my_sum))  # 222.0
+print(round(my_sum))  # 222
+print(round(0.3))  # 0
+print(round(0.5))  # 0
+print(round(0.51))  # 1
+print(min(integer, float_number))  # 111
+print(type(max(integer, float_number, my_sum)))  # &lt;class 'float'&gt;
+</code></pre>
+
+<p>In our example, it is shown that <code>len()</code> counts the number of characters in the string (the same goes for any items in a <strong>sequence</strong>, say, in a list or tuple). Then we declare the variables <code>integer</code> and <code>float_number</code> and write their sum into <code>my_sum</code>. By the way, the <code>sum()</code> function also deals with sequences. The result of summing is a float, which becomes clear after printing its string representation. It is not so clear though, how <code>round()</code> functions. For now, just take notice of the so-called "rounding down" strategy. Another noteworthy thing is that, of the two numbers 111 and 111.0, the first will be the smallest (as <code>min()</code> has shown) and the second will be the largest (apparently). There is far more to explore, but let's sum it up.</p>
+
+<h2 style="text-align: center;">Recap</h2>
+
+<p>The beauty of functions is that we can use them without clear insight into their inner structure and how they manage to perform what we need. But if you want to put a function to good use, make sure to check its documentation out (try invoking the special function <code>help()</code> with the name of the function in question wrapped in the brackets). It may become necessary if, for example, the function does not return any value, writes processed data to a file or prints the output on the screen.</p>
+
+<p>Let's make a brief summary:</p>
+
+<ul>
+	<li>functions are meant to be reusable, which means we are free to apply it multiple times with different arguments,</li>
+	<li>to call a function one should write its name followed by parentheses and place the arguments within,</li>
+	<li>normally, a function has documentation, which sometimes might be of huge help.</li>
+</ul>

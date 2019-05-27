@@ -1,0 +1,111 @@
+<h2 style="text-align: center;">Comparison operators</h2>
+
+<p><strong>Comparison</strong> or <strong>relation</strong> operations let you compare two values and determine the relation between them. There are eight comparison operators in Python:</p>
+
+<ul>
+	<li><code>&lt;</code> strictly less than</li>
+	<li><code>&lt;=</code> less than or equal</li>
+	<li><code>&gt;</code> strictly greater than</li>
+	<li><code>&gt;=</code> greater than or equal</li>
+	<li><code>==</code> equal</li>
+	<li><code>!=</code> not equal</li>
+	<li><code>is</code> object identity</li>
+	<li><code>is not</code> negated object identity</li>
+</ul>
+
+<p>The result of applying these operators is always <code>bool</code>.</p>
+
+<h2 style="text-align: center;">Comparing integers</h2>
+
+<p>In this topic, we will cover only integer comparison.</p>
+
+<pre><code class="language-python">a = 5
+b = -10
+c = 15
+
+result_1 = a &lt; b   # False
+result_2 = a == a  # True
+result_3 = a != b  # True
+result_4 = b &gt;= c  # False</code></pre>
+
+<p>Any expression that returns integer is a valid comparison operand too:</p>
+
+<pre><code class="language-python">calculated_result = a == b + c  # True</code></pre>
+
+<h2 style="text-align: center;">Comparison chaining</h2>
+
+<p>Because comparison operations return boolean values you can join them using logical operators.</p>
+
+<pre><code class="language-python">x = -5
+y = 10
+z = 12
+
+result = x &lt; y and y &lt;= z  # True</code></pre>
+
+<p>But in Python, there is a fancier way to write complex comparisons. It is called <strong>chaining</strong>. For example, <code>x &lt; y &lt;= z</code> is almost equivalent to the expression you saw in the last example. The difference is that <em>y</em> evaluated only once.</p>
+
+<pre><code class="language-python">result = 10 &lt; (100 * 100) &lt;= 10000  # True, the multiplication is evaluated once</code></pre>
+
+<h2 style="text-align: center;">Identity testing</h2>
+
+<p>The <code>is</code> and <code>is not</code> operators differ from others. They test whether given names refer to the same object in memory or not.</p>
+
+<ul>
+	<li><strong>is</strong> is a binary operator that returns <code>True</code> if both of its arguments refer to the same object. Otherwise, it returns <code>False</code>.
+
+	<pre><code class="language-python">a = 65535
+b = 65535
+
+equality_test = a == b  # True, because a and b share the same value
+identity_test = a is b  # False, because a and b refer to different objects in memory
+
+a = b
+
+same_test = a is b  # True, because now both variables refer to the same object</code></pre>
+	</li>
+</ul>
+
+<ul>
+	<li><strong>is not</strong> is a negated form of <strong>is</strong>. It returns <code>True</code> if its operands refer to different objects.
+
+	<pre><code class="language-python">a = 65355
+b = 65355
+
+a is not b  # True, as expected</code></pre>
+	</li>
+</ul>
+
+<p>Identity testing operations can lead to a lot of mistakes. The general rule is to <u>avoid</u> using them instead of <code>==</code> and <code>!=</code> operators when comparing integers if you are not sure.</p>
+
+<p>Because of the fact that small integers like <code>0</code> or <code>-1</code>  are very commonly used in programs, their creation and destruction are optimized. On start, Python interpreter typically creates integer objects from -5 to 256 (the exact range depends on the implementation). And when you use integers from this range no new objects are created, you just get a reference to a cached object.</p>
+
+<pre><code class="language-python">a = 1
+b = 1
+
+a is b  # True, a and b refer to the same object
+
+a = 10000
+b = 10000
+
+a is b  # False, a and b refer to different objects</code></pre>
+
+<p>The proper case to use <code>is</code> operator is to test if the variable is set to <code>None</code>. <code>None</code> is a special keyword in Python that is used to define <em>no value</em>. An interesting thing is that <code>None</code> is a <strong>singleton</strong>. It means that <code>None</code> object is created only once and then used whenever you refer to <code>None</code> in your code.</p>
+
+<pre><code class="language-python">a = None
+b = None
+
+equality_test = a == b  # True, but the identity test is preferred
+identity_test = a is b  # True</code></pre>
+
+<p>It is common to use <code>None</code> as a default value for optional arguments in functions. Let's imagine your function takes an optional argument, if a user doesn't provide one, you want to set some initial value. This is a proper situation to use <code>is</code> operator.</p>
+
+<pre><code class="language-python">optional_int = 0
+
+if not optional_int: # wrong, because 0 and None are both considered false
+  optional_int = 0
+
+
+if optional_int is None: # right, a new value will be set only if optional_int is None
+  optional_int = 0</code></pre>
+
+<p> </p>

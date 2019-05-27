@@ -1,0 +1,73 @@
+<h2 style="text-align: center;">Program decomposition</h2><div>As you may know, a function is a sequence of instructions grouped together to perform an operation – it is a kind of subprogram. A function has a name to invoke it when you need to. Kotlin's standard library has a lot of functions, such as <code>println</code>, but when those are not enough, you can declare a new function and then invoke it in the same way as any standard function.<br></div><div><div><br></div><div>The main reason to declare new functions is to divide a program into small reusable subroutines. <b></b>The term for this in computer science is <a href="https://en.wikipedia.org/wiki/Decomposition_(computer_science)" rel="nofollow noopener noreferrer" title="Link: https://en.wikipedia.org/wiki/Decomposition_(computer_science)">decomposition</a>. S<b></b>ubroutines can be called as many times as you like, instead of <b></b>repeatedly inserting the same block of<b></b> code. A decomposed program has a modular structure and it is much easier to modify and maintain than a program consisting of a single <code>main</code> function with thousands of lines of code. This idea comes from <a href="https://en.wikipedia.org/wiki/Procedural_programming" rel="nofollow noopener noreferrer" title="Link: https://en.wikipedia.org/wiki/Procedural_programming">procedural programming</a>.</div></div><div><br></div><h2 style="text-align: center;">Basic syntax of a function</h2><div>To declare a new function you should write the keyword <code>fun</code> followed by a name, a list of parameters in parentheses, and the type of result value. So, it should look like this:</div><div><br></div><div><pre><code class="language-kotlin">fun functionName(p1: Type1, p2: Type2, ...): ReturnType {
+    // body
+    return result
+}</code></pre></div><div><br></div><div>A function has the following components:</div><div><ul><li>a name that follows the same rules and recommendations as the name of a variable;</li><li>a list of parameters in parentheses to represent input data, each parameter has a name and a type separated by a colon <code>:</code>, all parameters are separated by commas <code>,</code>;</li><li>the type of return value (optional);<br></li><li>a body containing statements and expressions to perform the operation.</li><li>the keyword <code>return</code> followed by the result (not always required).</li></ul></div><div>The types of parameters and a result can have any type including <code>Int</code>, <code>Double</code>, <code>Boolean</code>, <code>String</code>, and so on.</div><div><br></div><div><h2 style="text-align: center;">Defining a simple function<br></h2></div><div>As an example, let's declare a function that calculates the sum of integer numbers and then invoke it from <span>main</span>. <br></div><div><br></div><div><pre><code class="language-kotlin">fun sum(a: Int, b: Int): Int {
+    val result = a + b
+    return result
+}
+
+fun main(args: Array&lt;String&gt;) {
+    val result1 = sum(2, 5)
+    println(result1) // 7
+    
+    val result2 = sum(result1, 4)
+    println(result2) // 11
+}</code></pre></div><div><br></div><div>When we invoke the function <code>sum</code> for the first time, we pass the two values 2 and 5 to it. Inside the function, these values are assigned to the arguments <code>a</code> and <code>b</code> respectively. The function returns the value of the result variable to the place where we invoked it. The type of the <code>result</code> is the same as the type of the return value declared in the function (<code>Int</code>). When we invoke the function the second time, we pass the value of <code>result1</code> (7) and 4 as its arguments. The function returns 11.</div><div><br></div><div><b>Note</b> that the arguments of a function are available only from the function.<br></div><div><br></div><h2 style="text-align: center;">Function' parameters</h2><div>As you may know, parameters represent the input data of a function. It is possible to declare a function that takes one or more parameters of the same or different types. Also, you can declare a function that does not have parameters at all; just <b></b>remember that parentheses<b></b> are still required.</div><div><br></div><div>Here are several examples:</div><div><br></div><div><pre><code class="language-kotlin">/**
+ * The function returns its argument
+ */
+fun identity(a: Int): Int {
+    return a
+}
+
+/**
+ * The function returns the sum of two Ints
+ */
+fun sum(a: Int, b: Int): Int {
+    return a + b
+}
+
+/**
+ * The function just returns 3
+ */
+fun get3(): Int {
+    return 3
+}
+
+fun main(args: Array&lt;String&gt;) {
+    println(identity(1000)) // 1000
+    println(sum(200, 300)) // 500    
+    println(get3()) // 3
+}
+</code></pre> </div><div><br></div><div>As you see above, we can invoke a function from the <code>main</code> function, but it is also possible to invoke a function from another regular function.</div><h2 style="text-align: center;">Return type</h2><div><p>A function can return a single value or nothing. If a function returns something, its body must have the keyword <code>return</code> followed by the result. We have already seen some examples above.</p><p>Sometimes, you need a function that returns nothing. We will learn the reasons to use such functions later, but one of them is to print something to the standard output.</p><p>There are two ways to declare a function that returns nothing:</p><ul><li>do not specify the return type at all<br></li></ul><pre><code class="language-kotlin">/**
+ * The function prints the values of a and b
+ */
+fun printAB(a: Int, b: Int) {
+    println(a)
+    println(b)
+}</code></pre><ul><li>specify the special type <code>Unit</code> as the return type:</li></ul><pre><code class="language-kotlin">/**
+ * The function prints the sum of a and b
+ */
+fun printSum(a: Int, b: Int): Unit {
+    println(a + b)
+}</code></pre><p>The first way (without <code>Unit</code>) is preferred in Kotlin programming.</p></div><div><h2 style="text-align: center;">Function' body</h2><p>In the body of a function, you can write any statements, just like inside the <code>main</code> function. In addition to parameters, you can declare new variables which are visible only within the function.</p><p>For example, the following function extracts the last digit of a number and then returns it.</p><pre><code class="language-kotlin">fun extractLastDigit(number: Int): Int {
+    val lastDigit = number % 10
+    return lastDigit
+}</code></pre><p>You can simplify this code by excluding the extra variable:</p><pre><code class="language-kotlin">fun extractLastDigit(number: Int): Int {
+    return number % 10
+}</code></pre><div>You can perform any operations in the body of a function. As another example, the following function demonstrates using a relational operation. It checks if the given number is positive (i.e., is greater than 0):</div><div><br></div><div><pre><code class="language-kotlin">fun isPositive(number: Int): Boolean {
+    return number &gt; 0
+}</code></pre></div><div><br></div><div><p>The function <code>isPositive</code> takes an integer number and returns a <code>Boolean</code> value because the result of the expression <code>number &gt; 0</code> is either <code>true</code> or <code>false</code>.<b><br></b></p><p><b>Note:</b> The line after the return statement will not be executed (unreachable code).</p><pre><code class="language-kotlin">/**
+ * It returns "Hello"
+ */
+fun getGreeting(): String {
+    return "hello"   // Ends the function
+    println("hello") // Will not be executed
+}</code></pre> </div><div><br></div><div> <b></b>It is pointless to write unreachable lines in your functions<span>, and clutters up your code, so you should avoid doing so..</span><br><br></div><h2 style="text-align: center;">Single-expression functions</h2><div>If a function returns a single expression, the body can be written without curly braces:<br></div><div><br></div><div><pre><code class="language-kotlin">fun sum(a: Int, b: Int): Int = a + b
+
+fun sayHello(): Unit = println("Hello")
+
+fun isPositive(number: Int): Boolean = number &gt; 0</code></pre><br></div><div><p>Specifying the return type is optional, it can be inferred automatically:</p><pre><code class="language-kotlin">fun sum(a: Int, b: Int) = a + b // Int
+
+fun sayHello() = println("Hello") // Unit
+
+fun isPositive(number: Int) = number &gt; 0 // Boolean</code></pre><p>Sometimes we will specify the types and sometimes - no. If your function has only a single expression, try to use this form.</p></div><h2 style="text-align: center;">Conclusion</h2><div>Define a new function if you plan to reuse a part of your code. <b></b>This code snippet should be well-separated with a clear purpose<b><b>.</b></b> Functions allow you to decompose a program into small, <b></b>clearly comprehensible<b></b> subroutines and manage them conveniently. To make your code more readable, choose meaningful names for your functions.</div></div><div><br></div><div><b>Remember,</b> a set of concise functions is better than one big function that does everything.</div>

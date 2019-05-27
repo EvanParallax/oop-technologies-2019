@@ -1,0 +1,79 @@
+<h2 style="text-align: center;"><b></b>An array of arrays</h2><p>Some structures such as matrices and tables are conveniently modeled by two-dimensional arrays. Java provides a possibility to process two and more-dimensional arrays.</p><p>To create a multi-dimensional array we should use an array as an element of another array. In this case, we create an array of arrays.</p><p>To iterate through multi-dimensional arrays nested loops are often used.</p><h2 style="text-align: center;"><b></b>2-dimensional arrays<br></h2><p>Here is an example that creates a two-dimensional array:<br></p><pre><code class="language-java">// two-dim array - the array of arrays
+int[][] twoDimArray = {
+        {1, 2, 3, 1}, // first array of int
+        {3, 4, 1, 2}, // second array of int
+        {4, 4, 1, 0}  // third array of int
+};</code></pre> <p>In this case, the length of <code>twoDimArray</code> is 3 (because it includes 3 arrays as elements). The length of each nested array is 4.</p><p>Now if you'd like to get an integer element from the array you should write two indexes:</p><pre><code class="language-java">int number = twoDimArray[0][2]; // it is 3</code></pre><p>In this case, the first index specified an element (nested array or row) of <code>twoDimArray</code>. The second index specified the element inside the nested array.</p><p>Important, all nested arrays can have a different length. See an example below:</p><pre><code class="language-java">int[][] twoDimArray = new int[3][];
+
+twoDimArray[0] = new int[] { 1, 2, 3, 4 }; // the length is 4
+twoDimArray[1] = new int[] { 5, 7, 3};     // the length is 3
+twoDimArray[2] = new int[] { 8 };          // the length is 1
+
+// let's output the array
+for (int i = 0; i &lt; twoDimArray.length; i++) {
+    System.out.println(Arrays.toString(twoDimArray[i]));
+}</code></pre><p>The code above outputs:</p><pre><code class="language-java">[1, 2, 3, 4]
+[5, 7, 3]
+[8]</code></pre><h2 style="text-align: center;"><b></b>3-dimensional arrays</h2><h2 style="text-align: center;"></h2><p>You can create an array with more than 2 dimensional (<b>3-dim</b>, <b>4-dim</b>,<b></b> <b>5-dim</b> and so on).</p><p>Let's create 3-dimensional of integers:</p><pre><code class="language-java">int[][][] cubic = new int[3][4][5];</code></pre><p>Actually, this cubic array is represented as three 2-dimensional arrays 4x5.</p><p>Let's fill each 2D array of the cubic by the following rules:</p><ul><li>the first 2D array must contain elements equal 1;</li><li>the second 2D array must contain elements equal 2;</li><li>the third 2D array must contain elements equal 3.</li></ul><p>The classic way to do that is to use three <b>for</b> loops: one outer loop and two nested.</p><pre><code class="language-java">int[][][] cubic = new int[3][4][5]; // an three-dimensiona array (cube)    
+
+int current = 1; // it stores a value to fill elements
+
+for (int i = 0; i &lt; 3; i++) { // iterating through each 2D array ("table" or "matrix")
+    for (int j = 0; j &lt; 4; j++) { // iterating through each 1D array ("vector") array of a "matrix"
+        for (int k = 0; k &lt; 5; k++) { // iterating through each element of a vector
+            cubic[i][j][k] = current; // assign a value to an element
+        }
+    }
+    current++; // get the next value to the next "matrix"
+}
+        
+for (int i = 0; i &lt; 3; i++) {
+    for (int j = 0; j &lt; 4; j++) {
+        for (int k = 0; k &lt; 5; k++) {
+            System.out.print(cubic[i][j][k] + " ");
+        }
+        System.out.println();
+    }
+    System.out.println();
+}</code></pre>This code prints <br><pre><code class="language-java">1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1 
+
+2 2 2 2 2 
+2 2 2 2 2 
+2 2 2 2 2 
+2 2 2 2 2 
+
+3 3 3 3 3 
+3 3 3 3 3 
+3 3 3 3 3 
+3 3 3 3 3 </code></pre><p>So, each 2D array (or "matrix") has its own value.</p><p>It is also possible to use<b> for-each</b> loop and methods of the class <code>Arrays</code> to fill and print multidimensional arrays.</p><pre><code class="language-java">// this code fills the 3-dimensional array
+int current = 1;
+for (int[][] dim2Array : cubic) {     // for each 2-dim array
+    for (int[] vector : dim2Array) {  // for each 1-dim array (vector) of 2-dim array
+        Arrays.fill(vector, current); // fill the vector
+    }
+   current++; // the next current
+}
+
+// this code prints all 2-dimensional arrays
+for (int[][] dim2Array : cubic) {
+    for (int[] vector : dim2Array) {
+        System.out.println(Arrays.toString(vector));
+    }
+    System.out.println();
+}</code></pre><div><br></div><div><div>This code prints three 2-dim arrays:</div><div><br></div><div><pre><code class="language-java">[1, 1, 1, 1, 1]
+[1, 1, 1, 1, 1]
+[1, 1, 1, 1, 1]
+[1, 1, 1, 1, 1]
+
+[2, 2, 2, 2, 2]
+[2, 2, 2, 2, 2]
+[2, 2, 2, 2, 2]
+[2, 2, 2, 2, 2]
+
+[3, 3, 3, 3, 3]
+[3, 3, 3, 3, 3]
+[3, 3, 3, 3, 3]
+[3, 3, 3, 3, 3]</code></pre></div></div>

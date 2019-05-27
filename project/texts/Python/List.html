@@ -1,0 +1,86 @@
+<p>Often you'll need to group several elements together so that you can process them as a single object. For that, you will need to use different collections, and one of the most useful in Python is a <strong>list</strong>. Understanding it is one of the keys knowledge in Python.</p>
+
+<ul>
+</ul>
+
+<ul>
+</ul>
+
+<h2 style="text-align: center;">Creating and printing lists</h2>
+
+<p>Consider a simple list that stores several names of dogs' breeds:</p>
+
+<pre><code class="language-python">dog_breeds = ['corgi', 'labrador', 'poodle', 'jack russel']
+print(dog_breeds)  # ['corgi', 'labrador', 'poodle', 'jack russel']</code></pre>
+
+<p>In the first line, we use square brackets to create a list with four elements and then assign it to the <code>dog_breeds</code> variable. In the second line, the list is printed through the variable's name. All elements are printed in the same order as they stored in the list because lists are <strong>ordered</strong>.</p>
+
+<p>Here is another list that contains five integers:</p>
+
+<pre><code class="language-python">numbers = [1, 2, 3, 4, 5]
+print(numbers)  #  [1, 2, 3, 4, 5]</code></pre>
+
+<p>Another way to create a list is to invoke the <code>list</code> function. This way is used when you want to create a list out of an <strong>iterable</strong> object: the kind of object where you can get its elements one by one. A list itself is iterable, so are other collections in Python, so is a string. </p>
+
+<p>The following example demonstrates the difference between using <code>list</code> and <code>[]</code> when creating a list:</p>
+
+<pre><code class="language-python">multi_elements_list = list('danger!')
+print(multi_elements_list)  # ['d', 'a', 'n', 'g', 'e', 'r', '!']
+
+single_element_list = ['danger!']
+print(single_element_list)  # ['danger!']</code></pre>
+
+<p>So, the <code>list</code> function creates a list containing each element from the given <strong>iterable</strong> object such as a string. You can use square brackets or invoke the <code>list</code> functions depending on your task.</p>
+
+<p>The square brackets and the <code>list</code> function can also be used to create <strong>empty lists</strong> which do not have elements at all.</p>
+
+<pre><code class="language-python">empty_list_1 = list()
+empty_list_2 = []</code></pre>
+
+<p>In the following topics, we will consider how to fill empty lists using some operations.</p>
+
+<h2 style="text-align: center;">Features of lists</h2>
+
+<p>Lists are able to<strong> </strong>store <strong>duplicate values</strong> as many times as needed.</p>
+
+<pre><code class="language-python">on_off_list = ['on', 'off', 'on', 'off', 'on']
+print(on_off_list)  # ['on', 'off', 'on', 'off', 'on']</code></pre>
+
+<p>Another important thing about lists is that they can contain <strong>different types</strong> of elements at the same time. So there are no restrictions, no fixed list types, and you can add whatever data you want to group together, like in the following example:</p>
+
+<pre><code class="language-python">different_objects = ['a', 1, 'b', 2]</code></pre>
+
+<p>A list can also contain other lists as its elements <strong>(nested lists):</strong></p>
+
+<pre><code class="language-python">letters = ['a', 'b', ['c', 'd'], 'e']
+list_of_lists = [[1], [2], [3]]
+print(letters)  # ['a', 'b', ['c', 'd'], 'e']</code></pre>
+
+<h2 style="text-align: center;">Length of a list</h2>
+
+<p>Sometimes you need to know how many elements are there in a list. There is a built-in function called <code>len</code> that can be applied to any<strong> iterable</strong> object, and it returns simply the <strong>length</strong> of that object. So, when it's applied to a list, it returns the number of elements in that list.</p>
+
+<pre><code class="language-python">numbers = [1, 2, 3, 4, 5]
+print(len(numbers))  # 5
+
+empty_list = list()
+print(len(empty_list))  # 0
+
+single_element_list = ['danger!']
+print(len(single_element_list))  # 1
+
+nested_list = ['dragon', ['cat', 'dog'], 'wyvern']
+print(len(nested_list))  # 3</code></pre>
+
+<p>As you can see, the <code>len</code> of the <code>nested_list</code> is <strong>3</strong>, because there are 3 elements in it: a string, a list, and another string.</p>
+
+<h2 style="text-align: center;">Recap</h2>
+
+<p>As a recap, we note that lists are:</p>
+
+<ul>
+	<li><strong>ordered</strong>, i.e. each element has a fixed position in the list;</li>
+	<li>able to store <strong>duplicate values;</strong></li>
+	<li>able to store <strong>different types of elements</strong> at once, including other lists;</li>
+	<li><strong>mutable</strong>, i.e. it is possible to add new elements or to remove existing ones.</li>
+</ul>

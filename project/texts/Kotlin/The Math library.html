@@ -1,0 +1,28 @@
+Kotlin provides a set of functions to perform math calculations. They can be used in a wide variety of domains such as statistics, geometry, machine learning, cryptography, and more.<div><br></div><div>There are two mathematical libraries to be used:</div><div><ul><li><code>Math</code> inherited from Java (only for the Java platform)</li><li><code>kotlin.math</code> developed specially for Kotlin (since Kotlin 1.2, it provides common math for the Java platform and JS)</li></ul></div><div>Both libraries have similar math functions, which work in the same way. In this lesson, we will use the first library.</div><div><br></div><h2 style="text-align: center;">List of functions</h2><div>The most common functions are listed below.<br></div><ul><li><b>Math.abs(...)</b> returns the absolute value of its argument;<br></li><li><b>Math.sqrt(...)</b> returns the square root of its argument;</li><li><b>Math.cbrt(...)</b> returns the cube root of its argument;<br></li><li><b>Math.pow(..., ...)</b> returns the value of the first argument raised to the power of the second argument;</li><li><b>Math.log(...)</b> returns the natural logarithm of its argument;</li><li><b>Math.min(..., ...)</b> returns the smaller value of two arguments;<br></li><li><b>Math.max(..., ...)</b> returns the greater value of two arguments;<br></li><li><b>Math.toRadians(...)</b> converts an angle measured in degrees to an angle measured in radians (approximately);<br></li><li><b>Math.sin(...)</b> returns the trigonometric sine of the given angle in radians;</li><li><b>Math.cos(...)</b> returns the trigonometric cosine of the given angle in radians;<br></li><li><b>Math.tan(...)</b> returns the trigonometric tangent of the given angle in radians;</li><li><b>Math.random()</b> returns a double value with a positive sign, greater than or equal to 0.0 and less than 1.0;</li><li><b>Math.floor(...)</b> returns the largest double value that is less than or equal to its argument and is equal to an integer;</li><li><b>Math.ceil(...)</b> returns the smallest double value that is greater than or equal to its argument and is equal to an integer;</li><li><b>Math.round(...)</b> returns the closest integer to the argument (rounding according to the rules of arithmetic).</li></ul><p>Also, this class has two useful constants:<br></p><ul><li><b>Math.PI</b> - the ratio of the circumference of a circle to its diameter;</li><li><b>Math.E</b> - the base of the natural logarithm.</li></ul><h2 style="text-align: center;"><b></b>Examples<b></b></h2><p>Let's see all the listed functions in practice.<br></p><pre><code class="language-kotlin">val abs = Math.abs(-10)     // 10
+val dabs = Math.abs(-10.33) // 10.33
+
+val sqrt = Math.sqrt(2.0)   // 1.4142...
+val cbrt = Math.cbrt(27.0)  // 3.0
+
+val log = Math.log(Math.E * Math.E)  // 2 
+
+val square = Math.pow(5.0, 2.0) // 25.0
+val cube = Math.pow(2.0, 3.0)   // 8.0
+
+val min = Math.min(11, 81) // 11
+val max = Math.max(20, 30) // 30
+
+val grad = Math.toRadians(30.0) // 0.5235...
+
+val pi = Math.PI // pi is 3.1415...
+val sin = Math.sin(pi / 2) // 1.0
+val cos = Math.cos(pi) // 1.0
+val tan = Math.tan(pi / 4) // 0.99999999... (an inaccurate result)
+
+val random = Math.random() // a random value &gt;= 0.0 and &lt; 1.0
+
+val floor = Math.floor(3.78) // 3.0
+val ceil = Math.ceil(4.15)   // 5.0
+val round = Math.round(4.15) // 4 (not 4.0!)</code></pre><h2 style="text-align: center;"><b>The <b>Pythagorean Theorem</b></b><br></h2><p>Let's assume we have a right triangle (one angle is 90 degrees). We know the lengths of both sides: <code>a = 3.0</code> and <code>b = 4.0</code>.</p><p>To calculate the length of the hypotenuse, we can write the following code:</p><pre><code class="language-kotlin">val a = 3.0
+val b = 4.0
+val c = Math.hypot(a, b) // c is 5.0</code></pre><p>As you can see, the <code>Math</code> class has a lot of functions for performing numeric calculations.</p><div><div><div></div></div></div>

@@ -1,0 +1,77 @@
+<h2 style="text-align: center;">Elif statement</h2>
+
+<p>Now that you’ve learned basic conditional statements, if statement and if-else statement, it’s time for the more advanced <strong>elif statement</strong>.</p>
+
+<p><strong>Elif statement</strong> is used when we want to specify several conditions in our code. It differs from <strong>if-else statements</strong> in that we add the <strong>elif</strong> keyword for our additional conditions. However, it is always used with if and else operators and the basic syntax looks like this:</p>
+
+<pre><code class="language-python"># basic elif syntax
+if condition1:
+    action1
+elif condition2:
+    action2
+else:
+    action3</code></pre>
+
+<p>Like with the <strong>if-else</strong> statements the condition is followed by a colon, the desired action is placed within the <strong>elif</strong> body and there should be an <strong>indentation</strong> of 4 spaces at the beginning of a new line. Here we first check the condition1 in the if statement and if it holds (the value of the Boolean expression is <strong>True</strong>), action1 is performed. If it is <strong>False</strong>, we skip action1 and instead check the condition2 in the <strong>elif</strong> statement. Again, if condition2 is True, action2 is performed, otherwise, we skip it and go to the <strong>else</strong> part of the code. </p>
+
+<p>See the following example:</p>
+
+<pre><code class="language-python"># elif example
+price = ... # int value
+if price &gt; 5000:
+    print("That's too expensive!")
+elif price &gt; 500:
+    print("I can afford that!")
+else:
+    print("That's too cheap!")</code></pre>
+
+<p>To decide whether we should buy something or not we first check if the price is more than 5000. If ‘price &gt; 5000’ is True, we print that it’s too expensive and go to check other conditions. The next condition is ‘price &gt; 500’, and again, if it is True, we print out that we can afford that, and if it is False, we go to the 'else' block and print that it's too cheap. So “I can afford it!” will be printed if the price is less than 5000 but more than 500, and “That’s too cheap” if the price is lower than 500.</p>
+
+<p>There can be as many <strong>elif</strong> statements as needed so the conditions can be very detailed. The syntax is the same as with just one <strong>elif</strong>, the only difference is that we add more <strong>elifs</strong>:</p>
+
+<pre><code class="language-python"># multiple elifs syntax
+if condition1:
+    action1
+elif condition2:
+    action2
+# here you can add as many elifs as you need
+elif conditionN:
+    actionN
+else:
+    actionN1</code></pre>
+
+<p>The code inside the <strong>else</strong> statement is executed only if all conditions before it are <strong>False</strong>. See the following example: </p>
+
+<pre><code class="language-python"># multiple elifs example
+light = "..." # some str
+if light == "green":
+    print("You can go!")
+elif light == "yellow":
+    print("Get ready!")
+elif light == "red":
+    print("Just wait.")
+else:
+    print("No such traffic light color, do whatever you want")</code></pre>
+
+<p>In this example, the last message will be printed for the light of all colors except green, yellow and red for which we’ve written special messages.</p>
+
+<p>Conditionals with multiple branches make a <strong>decision tree</strong> where a node is a Boolean expression and branches are marked with either <strong>True</strong> or <strong>False</strong>. The branch marked as True leads to the action that has to be executed, and the False branch leads to other conditions. The picture below shows such decision tree for the example with colors.</p>
+
+<p></p>
+
+<p>Elif statements can also be <strong>nested</strong> in a manner similar to <strong>if-else</strong> statements. Our example with the traffic lights can be rewritten with nested conditionals:</p>
+
+<pre><code class="language-python"># nested elifs example
+traffic_ligths = "green, yellow, red"
+light = "..." # str
+if light in traffic_lights:
+    if light == "green":
+        print("You can go!")
+    elif light == "yellow":
+        print("Get ready!")
+    else: # if the lights is red
+        print("Just wait.")
+else:
+    print("No such traffic light color, do whatever you want")</code></pre>
+
+<p>And this concludes the topic of conditionals so now you know how to make your program do what you want when you want it! </p>

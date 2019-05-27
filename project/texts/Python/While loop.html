@@ -1,0 +1,40 @@
+<h2 style="text-align: center;">While loop</h2>
+
+<p>Sometimes in Python one <strong>iteration</strong> (=execution) of a statement is not enough to get the required result. For this reason, we are offered to use a special statement that will execute the block of code more than once. We call it the <strong>loop </strong>command and one of the universal loops is the <strong>while </strong>loop.</p>
+
+<p>People generally don't choose Python to write <strong>fast </strong>code. The main advantages of Python are readability and simplicity. As the <strong>while loop </strong>requires the introduction of extra variables, it takes more time for an iteration. Thus the while loop is quite slow and not very popular. It resembles a conditional operator: using the while loop we can execute a set of statements as long as the condition is true.</p>
+
+<p>The condition itself (2) is written before the <strong>body</strong> of the loop (some call it the conditional code) and is being checked before the body is executed. If the condition is true (3a), the iterations continue. If the condition is false (3b), the loop execution is terminated and the program control moves further to the next operation.</p>
+
+
+
+<h2 style="text-align: center;"><strong>Visualization</strong></h2>
+
+<p>If we visualize the while loop, it’ll look the following way:</p>
+
+<pre><code class="language-python">number = 0
+while number &lt; 5:
+    print(number)
+    number +=1
+print('Number is bigger or equal to 5')
+</code></pre>
+
+<p>The variable ‘number’ plays here the role of a <strong>counter </strong>– a variable that changes its meaning after each iteration. The <strong>‘+=’</strong> symbols are equivalent to the <strong>‘number = number + 1’</strong> algorithm but provide more convenient writing and perception. Moreover, you can use other arithmetic operations (subtraction, multiplication, division) the same way.</p>
+
+<p>In this case, the iterations continue until the number is equal to 5. When the meaning of a counter reaches 5, the program control moves to the next operation – <strong>print.</strong> Here you can see the output of this code:</p>
+
+<pre><code class="language-no-highlight">1
+2
+3
+4
+Number is bigger or equal to 5</code></pre>
+
+<h2 style="text-align: center;"><strong>The infinite loop</strong></h2>
+
+<p>If you delete the part of the conditional code where you increase the value of a counter, you will bump into the <strong>infinite loop. </strong>What does it mean? As you don’t increase your variable, a condition never becomes false and can work forever. Usually, it is a logic mistake, and the loop should be stopped by using special operators or finishing the loop manually.</p>
+
+<p>Sometimes the Infinite Loop can be useful, e.g. in querying a client when the loop works continuously to provide the constant exchange of information with a user. You can implement it by writing <strong>True</strong> command after the while header.</p>
+
+<p>All in all, now you are well-informed about the while loop and its usage. Don’t forget about the role of a counter, otherwise, you’ll have to deal with the infinite loop. And after you’ve written the code, try to run through it as you were a Python program. That’ll help you to understand, how the loop works. Programming is all about simplifying so the code should be readable, short and clear. Don’t forget about comments and syntax. In the beginning, it may seem that the while loop is not that easy to implement, but after a couple of times you’ll realize that it’s a very useful tool.</p>
+
+<p> </p>

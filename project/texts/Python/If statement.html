@@ -1,0 +1,32 @@
+<h2 style="text-align: center;">Simple if statement</h2>
+
+<p>In your future programs, you may need some actions to be performed only under certain conditions. Lines of code describing these actions should be placed within the body of an <strong>if statement</strong>. The pattern is the same as in the English language: the keyword <strong><code>if</code> </strong>is followed by a condition, and after that, all actions necessary are listed. The condition is always a <strong>Boolean expression</strong>, that is, its value equals either True or False. Here is one example of how the code with a conditional expression should look like:</p>
+
+<pre><code class="language-python">biscuits = 17
+if biscuits &gt;= 5:
+    print("It's time for tea!")
+</code></pre>
+
+<p>Note that the condition is accompanied by a colon and there's an <strong>indentation</strong> at the beginning of a new line. Usually, 4 spaces are used to separate blocks of code. An <strong>if statement </strong>is executed only if its condition holds (the Boolean value is <code>True</code>), otherwise, it's skipped.</p>
+
+<h2 style="text-align: center;">Nested if statement</h2>
+
+<p>Sometimes if statements are inserted into each other, then they are called <strong>nested</strong>. The number of if statements incorporated conduces to code complexity. At all times, it's better not to increase the current complexity of a code. However, this doesn't mean that nested if statements should be avoided at whatever cost. Let's take a look at the code below:</p>
+
+<pre><code class="language-python">rainbow = "red, orange, yellow, green, blue, indigo, violet"
+warm_colors = "red, yellow, orange"
+cool_colors = "blue, green, indigo, violet"
+my_color = "orange"
+if my_color in rainbow:
+    print("Wow, your color is in the rainbow!")
+    if my_color in warm_colors:
+        print("Oh, by the way, it's a warm color.")
+    if my_color in cool_colors:
+        print("Oh, by the way, it's a cool color.")</code></pre>
+
+<p>The example above illustrates a nested if statement. If the variable <code>my_color</code> is a string with the name of a rainbow color, we shall enter the body of the first if statement to print the first message and check whether this color pertains to the warm or cool colors. Here's what we'll see in our case:</p>
+
+<pre><code class="language-no-highlight">Wow, your color is in the rainbow!
+Oh, by the way, it's a warm color.</code></pre>
+
+<p>When it comes to nested if statements, proper indentation is crucial, so do not forget that each statement headed by the <code>if</code> keyword demands its own indention.</p>

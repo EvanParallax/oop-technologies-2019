@@ -1,0 +1,175 @@
+<h2 style="text-align: center;">Introduction to arrays</h2>
+
+<p>When you need to process multiple objects of the same type, you can save them in an <strong>array</strong> and then process together as a single unit. It is a very convenient approach if you do not know how many objects the program will process during runtime.</p>
+
+<p>You may consider an <strong>array</strong> as a collection of elements of the same type. All elements are stored in the memory sequentially.</p>
+
+<p>The collection provides one name for its elements. The possible number of elements to be stored is established when the array is created and cannot be changed. But a stored element can be modified at any time.</p>
+
+<p>The picture below illustrates an array of five floating-point numbers. Each element has an integer index (0-4) to be accessed. Important, the first element has the index 0, the last element has the index equal <strong>array size - 1</strong>.</p>
+
+<p> </p>
+
+
+
+<p> </p>
+
+<p style="text-align: center;"><strong>An array of five floating-point elements</strong></p>
+
+<p>We hope, you got a general idea of what array is. Now let's use it in Kotlin.</p>
+
+<h2 style="text-align: center;">Creating an array with specified elements</h2>
+
+<p>Kotlin provides many types for representing arrays: <code>IntArray</code>, <code>LongArray</code>, <code>DoubleArray</code>, <code>FloatArray</code>, <code>CharArray</code>, <code>ShortArray</code>, <code>ByteArray</code>, <code>BooleanArray</code>. Each array store elements of the corresponding type (<code>Int</code>, <code>Long</code>, <code>Double</code> and so on). Note, there is no <code>StringArray</code>.</p>
+
+<p> </p>
+
+<p>To create an array of a specified type, we should invoke a special function and pass all elements to be stored together:</p>
+
+<ul>
+	<li><code>intArrayOf</code> creates <code>IntArrays</code></li>
+	<li><code>charArrayOf</code> creates <code>CharArray</code>;</li>
+	<li><code>doubleArrayOf</code> creates <code>DoubleArray</code>;</li>
+	<li>and so on.</li>
+</ul>
+
+<p>As an example, let's create three arrays:</p>
+
+<p> </p>
+
+<pre><code class="language-kotlin">val numbers = intArrayOf(1, 2, 3, 4, 5) // It stores 5 elements of the Int type
+println(numbers.joinToString()) // 1, 2, 3, 4, 5
+
+val characters = charArrayOf('K', 't', 'l') // It stores 3 elements of the Char type
+println(characters.joinToString()) // K, t, l
+
+val doubles = doubleArrayOf(1.25, 0.17, 0.4) // It stores 3 elements of the Double type
+println(doubles.joinToString()) // 1.15, 0.17, 0.4</code></pre>
+
+<p> </p>
+
+<p>This code snippet prints three arrays:</p>
+
+<p> </p>
+
+<pre><code class="language-kotlin">1, 2, 3, 4, 5
+K, t, l
+1.25, 0.17, 0.4</code></pre>
+
+<p> </p>
+
+<p>The <code>joinToString</code> function converts an array to a string to be printed.</p>
+
+<p> </p>
+
+<h2 style="text-align: center;">Creating an array with a specified size</h2>
+
+<p>To create an array with a specified size we should write its type and pass it after the type's name in round brackets (constructor):</p>
+
+<p> </p>
+
+<pre><code class="language-kotlin">val numbers = IntArray(5) // an array for 5 integer numbers
+println(numbers.joinToString())
+
+val doubles = DoubleArray(7) // an array for 7 doubles
+println(doubles.joinToString())
+</code></pre>
+
+<p> </p>
+
+<p>These arrays with the predefined size filled by default values of the corresponding types (zeros for numeric types):</p>
+
+<p> </p>
+
+<pre><code class="language-kotlin">0, 0, 0, 0, 0
+0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0</code></pre>
+
+<p> </p>
+
+<p>Despite the fact that the size of an array cannot be changed, the elements can be modified. Next, we will look at how to do this.</p>
+
+<p> </p>
+
+<h2 style="text-align: center;">The size of an array</h2>
+
+<p>Regardless of how an array was created, it always has a size (the number of elements). To obtain it we should take the value of the <code>size</code> property (it is a number of the Int type).</p>
+
+<pre><code class="language-kotlin">val numbers = intArrayOf(1, 2, 3, 4, 5)
+println(numbers.size) // 5 </code></pre>
+
+<p><strong>Remember, </strong>the size of an array cannot be changed after creation.</p>
+
+<h2 style="text-align: center;">Accessing elements</h2>
+
+<p>The values of elements of an array can be changed. To set (get) a value to (from) array the index is used.</p>
+
+<p>Set the value by the index:</p>
+
+<pre><code class="language-kotlin">array[index] = elem</code></pre>
+
+<p>Get the value by the index</p>
+
+<pre><code class="language-kotlin">val elem = array[index]</code></pre>
+
+<p>Indexes of an array are numbers from <code>0</code> (the first element) to <code>array.size - 1</code> (the last element) inclusive.</p>
+
+<p>Here is an example with a 3-element array of integers.</p>
+
+<pre><code class="language-kotlin">val numbers = IntArray(3) // numbers: 0, 0, 0
+
+numbers[0] = 1 // numbers: 1, 0, 0
+numbers[1] = 2 // numbers: 1, 2, 0
+numbers[2] = numbers[0] + numbers[1] // numbers: 1, 2, 3
+
+println(numbers[0]) // 1, the first element
+println(numbers[2]) // 3, the last element</code></pre>
+
+<p>Let's explain the code above. First, there is an array with three elements is created. By default, all elements are equal to 0. Then, the value 1 is assigned to the first element of the array by the index 0. Then, the value 2 is assigned to the second element of the array by the index 1. After, the value 3 (the sum of 1 and 2) is assigned to the last element of the array by the index 2. Then we print the first and the last element of the 3-element array.</p>
+
+<p>Note, if we try to access a non-existing element by an index then the program will fail with an exception. Let's try to get fourth element (with the index 3) of the considered array <code>numbers</code>.</p>
+
+<pre><code class="language-java">val elem = numbers[3]</code></pre>
+
+<p>The program throws <code>ArrayIndexOutOfBoundsException</code>.</p>
+
+<p><strong>Be careful</strong> while indexing elements of an array.</p>
+
+<p>As you already know, the last element has the index that equals array size - <code>1</code>. Let's access the last and the previous element.</p>
+
+<pre><code class="language-kotlin">val strings = arrayOf("abc", "cdf", "efg")
+
+val last = strings[strings.size - 1] // "efg"
+val prelast = strings[strings.size - 2] // "cdf"</code></pre>
+
+<p>Kotlin provides several convenient ways to access the first and the last element of an array as well as the last index:</p>
+
+<pre><code class="language-kotlin">println(strings.first()) // "abc"
+println(strings.last()) // "efg"
+println(strings.lastIndex) // 2</code></pre>
+
+<p>Use this approach to make your code more readable and prevent accessing unexisting indexes.</p>
+
+<h2 style="text-align: center;">Comparing arrays</h2>
+
+<p>To compare two arrays, invoke the <code>contentEquals</code> function of an array, passing another one as the argument. This function returns <code>true</code> when two arrays contain exactly the same elements (in the same order), otherwise, it returns <code>false</code>.</p>
+
+<pre><code class="language-kotlin">val numbers1 = intArrayOf(1, 2, 3, 4)
+val numbers2 = intArrayOf(1, 2, 3, 4)
+val numbers3 = intArrayOf(1, 2, 3)
+
+println(numbers1.contentEquals(numbers2)) // true
+println(numbers1.contentEquals(numbers3)) // false</code></pre>
+
+<p>Do not use the operators <code>==</code> and <code>!=</code> for comparing arrays. They do not compare contents of arrays.</p>
+
+<h2 style="text-align: center;">Conclusion</h2>
+
+<p>We considered what is an array and what basic operations it provides. Remember the following points:</p>
+
+<ul>
+	<li>an array is a collection of elements accessed by indexes;</li>
+	<li>the first element of an array has the index 0;</li>
+	<li>an array has a size;</li>
+	<li>it is possible to modify an element of an array by its index;</li>
+	<li>Kotlin has arrays to different types such as <code>IntArray</code>, <code>CharArray</code>, <code>DoubleArray</code> and so on.</li>
+</ul>

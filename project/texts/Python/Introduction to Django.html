@@ -1,0 +1,69 @@
+<h2>Web Frameworks</h2>
+
+<p>Taking your first steps in web programming, you might encounter many difficulties. To serve a page like this, you should know how to interact with a web server like Apache or Nginx, handle database connections, and make a website layout. That is a lot of stuff to do! The good news is that you don't need to write all of the low-level implementations by yourself. You can get help from experienced developers who assemble these common routines to modules and then bundle the modules to frameworks.</p>
+
+<p>A <strong>framework</strong> is a platform that facilitates software development. It consists of structured code templates and can be easily extended. To relinquish control on low-level tasks and focus on the high-level implementation, you should use the API provided by the framework. It will make the project you are working on much easier.</p>
+
+<p>Frameworks have such advantages as:</p>
+
+<ul>
+	<li>Easy and useful high order functions</li>
+	<li>Well-defined documentation</li>
+	<li>Bug and security updates</li>
+	<li>Long-term support service</li>
+	<li>Wide use in companies around the world</li>
+</ul>
+
+<h2>Django Framework</h2>
+
+<p>Django is one of the most-used Python frameworks in web programming. When you are looking through boards on Pinterest, reviewing a code on Bitbucket or making comments with the help of Disqus, you are using Django products. You can find out about more well-known services on this <a href="https://www.shuup.com/django/25-of-the-most-popular-python-and-django-websites/" rel="noopener noreferrer nofollow">page</a>.</p>
+
+<p>The name of the framework is inspired by the stage name of a famous jazz guitarist Django Reinhardt, so this is why a group of developers who created many handy add-ons for the framework calls themselves Jazzband. At first, you won’t need all of the tools, but whenever you need more, you can find them at this <a href="https://github.com/jazzband" rel="noopener noreferrer nofollow">Github</a> account.</p>
+
+<p>The Django framework provides an API for templating HTML pages, making connections to databases and using HTTP backend services. Django has many useful web development shortcuts and utilities in one place. To start working with the framework, only choose the version you'll use. For Django in its <strong>A.B.C </strong>version, where <strong>A.B</strong><strong> </strong>stands for <strong>feature release</strong> and <strong>C</strong> for <strong>patch release</strong>. When choosing an appropriate version, pay attention to its feature release number. When you choose one, download the latest patch release for it.</p>
+
+<p>The first stable release of Django was issued in 2008. The first Long-Term Support (<strong>LTS</strong>) release with version 1.4 came four years later, in 2012.</p>
+
+<h2>LTS</h2>
+
+<p><strong>LTS</strong> is a well-known standard in software development. It means that developers will support this version of the framework for an extended period of time (for Django it's commonly 3 years or more). You can safely update your version to a newer patch release without fear of breaking compatibility with the source code you are using. For this period, all bugs and security losses will be fixed as soon as possible. Conversely, the non-LTS versions will be supported only until a newer feature release comes out (note that Django developers support the last two feature releases at a time).</p>
+
+<p>For example, the LTS version 1.11 is supported until April 2020, but the later, non-LTS version 2.0 is already not supported by the developing team.</p>
+
+<p>In this course, we will use the latest LTS release of Django as of April 2019 - <a href="https://docs.djangoproject.com/en/2.2/" rel="noopener noreferrer nofollow">version <strong>2.2</strong></a>.</p>
+
+<h2>Installation</h2>
+
+<p>To install Django, you need the Python package manager <strong>pip</strong>. Django is not different from any other Python package, so if you want to install it globally on your system, run:</p>
+
+<pre><code class="language-bash">pip install Django==2.2</code></pre>
+
+<p>To use the framework, you will probably need a database. For the sake of simplicity, you can install <strong>SQLite</strong> unless it's already present on your system.</p>
+
+<h2>Installation in Virtual Environment</h2>
+
+<p>To isolate your development environment from other Python packages on your computer, you need to create and activate Python <code>virtualenv</code>. Then install the framework to keep it separated.</p>
+
+<pre><code># If you don't have virtualenv yet
+pip install virtualenv
+
+python -m venv hyperskill-django
+source hyperskill-django/bin/activate
+
+pip install Django==2.2
+
+# If you want to deactivate a virtual environment
+deactivate</code></pre>
+
+<p>A virtual environment is also helpful if you want to keep different versions of a package on your system. You can install each one of them in separate <code>virtualenv</code>. Thus if you already have the older version of Django, you can try out the new one starting <code>virtualenv</code>.</p>
+
+<h2>Check Installation</h2>
+
+<p>After you've installed Django, you'll get <strong>django-admin</strong> command in your shell (if you've installed Django in a virtual environment, do not forget to activate it). Django-admin is a helper that can create a template layout for a new project or add an application to an existing project. You can do this manually, but it's much easier to use django-admin for this purpose.</p>
+
+<p>Now you only need to check the version of the installed package.</p>
+
+<pre><code class="language-bash">django-admin version
+# 2.2</code></pre>
+
+<p>It means your installation was successful and you can start to use Django!</p>

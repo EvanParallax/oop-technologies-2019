@@ -1,0 +1,16 @@
+<div>Java provides two special values for both floating-point types (<code class="java">float</code> and <code class="java">double</code>): <b>+Infinity</b>, <b>-Infinity</b> and <b>NaN</b>. The values appear in different cases and can be directly assigned to variables of these types.</div><div><br></div><div><ul><li><code class="java">Double.POSITIVE_INFINITY</code> is a constant that is greater than any number.</li></ul><pre><code class="language-java">double posInf = Double.POSITIVE_INFINITY;  // +Infinity
+
+double anotherPosInf = +1 / 0.0;          // it's +Infinity, not an exception
+
+double posInfAgain = anotherPosInf + 100; // +Infinity again</code></pre><div><br></div><div>In Java, when we write an expression with the division by the real zero <code class="java">0.0</code>, no errors occur. We also can divide a real value by <code class="java">0</code>.</div><div><br></div><div><ul><li><code class="java">Double.NEGATIVE_INFINITY</code> is a constant that is less than any number.</li></ul></div><div><pre><code class="language-java">double negInf = Double.NEGATIVE_INFINITY; // -Infinity
+
+double negInfAgain = negInf * 100;       // The result is -Infinity
+
+double anotherNegInf = -1.002 / 0.0;     // It is also -Infinity</code></pre> <br></div>There are no errors in this case, either. </div><div><br></div><div>In general, the operations sum and product performed on an infinity value and a regular value return infinity with the same sign. For the operations subtract, remainder, and division, the result also depends on the order of operands.</div><div><br></div><div><ul><li><code class="java">Double.NaN</code> is a special constant that represents an undetermined value (such as <code>0 / 0</code>). It does not equal any floating-point or integer number. <b>NaN </b>is an acronym for <b>Not a Number</b>.<br></li></ul><pre><code class="language-java">double nan = Double.NaN;         // the NaN constant
+
+double anotherNan = 0.0 / 0.0;   // it's the NaN, not an exception
+</code></pre> <br>Also, this value occurs after some operations on infinity values.<br><br><pre><code class="language-java">double nan = Double.NEGATIVE_INFINITY + Double.POSITIVE_INFINITY;     // NaN
+
+double nanToo = Double.POSITIVE_INFINITY - Double.POSITIVE_INFINITY;  // Also NaN
+
+double notANan = Double.POSITIVE_INFINITY + Double.POSITIVE_INFINITY; // it's +Infinity!</code></pre><br>Any arithmetic operation with <b>NaN</b> produces <b>NaN</b> as the result. Actually, the results of arithmetic operations do not contradict the common sense.</div><div><br></div><div>The <code class="java">float</code> type has the same special values: <code class="java">Float.POSITIVE_INFINITY</code>, <code class="java">Float.NEGATIVE_INFINITY</code>, <code class="java">Float.NaN</code>. The results of arithmetic operations are the same as the ones we discussed above. </div><div><pre></pre></div>

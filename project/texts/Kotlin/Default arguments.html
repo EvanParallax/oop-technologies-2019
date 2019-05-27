@@ -1,0 +1,92 @@
+<h2 style="text-align: center;">Functions with default arguments</h2>
+
+<p>Kotlin provides a possibility to assign <strong>default values</strong> for parameters of a function in its declaration. To invoke such function you can omit arguments with default values as well as to use it in a regular way passing all arguments.</p>
+
+<p>Here is a function named <code>printLine</code> with two parameters. The first parameter is a line to be printed, the second parameter is a string that ends this line. Both parameters have default values: <strong>new line</strong> and an <strong>empty line </strong>respectively.</p>
+
+<p> </p>
+
+<pre><code class="language-kotlin">fun printLine(line: String = "\n", end: String = "") = println("$line$end")
+</code></pre>
+
+<p> </p>
+
+<p>Consider this example, we just assign some values to parameters using the <code>=</code> operator after types.</p>
+
+<p> </p>
+
+<p>Here is a full code snippet to be executed. It has the function <code>printLine</code> and <code>main</code>.</p>
+
+<p> </p>
+
+<pre><code class="language-kotlin">fun printLine(line: String = "\n", end: String = "") = println("$line$end")
+
+fun main(args: Array&lt;String&gt;) {
+    printLine("Hello, Kotlin", "!!!") // prints "Hello, Kotlin!!!"
+    printLine("Kotlin") // prints "Kotlin" without an ending
+    printLine() // prints an empty line like println()
+}
+</code></pre>
+
+<p> </p>
+
+<p>In the first invocation, two arguments are passed to the function (<code>"Hello, Kotlin"</code> and <code>"!!!"</code>) just we do before. In the second invocation, only a single argument is passed (<code>"Kotlin"</code>), the value of the second parameter is used as default (<code>""</code>). In the third invocation, no arguments are passed at all, but it still works before both parameters have default values.</p>
+
+<p> </p>
+
+<p>The program outputs:</p>
+
+<p> </p>
+
+<pre><code class="language-kotlin">Hello, Kotlin!!!
+Kotlin
+
+</code></pre>
+
+<p><br>
+Note, we cannot pass only the second argument omitting the first one, Kotlin cannot understand that we want to assign a value to the second parameter instead of the first. We will learn what to do in this case in the next topics.</p>
+
+<p> </p>
+
+<h2 style="text-align: center;">Mixing default and regular arguments</h2>
+
+<p>It is also possible to mix default and regular parameters in a function's declaration. The following function finds the max of two given integer arguments. It has a special parameter determines whether it is needed to compare numbers by their absolute values. The default value of this parameter is <code>false</code>.</p>
+
+<p> </p>
+
+<pre><code class="language-kotlin">fun findMax(n1: Int, n2: Int, absolute: Boolean = false): Int {
+    val v1: Int
+    val v2: Int
+
+    if (absolute) {
+        v1 = Math.abs(n1)
+        v2 = Math.abs(n2)
+    } else {
+        v1 = n1
+        v2 = n2
+    }
+
+    return if (v1 &gt; v2) n1 else n2
+}
+
+fun main(args: Array&lt;String&gt;) {
+    println(findMax(11, 15)) // 15
+    println(findMax(11, 15, true)) // 15
+    println(findMax(-4, -9)) // -4
+    println(findMax(-4, -9, true)) // -9
+}</code></pre>
+
+<p><br>
+In the body of <code>findMax</code> function, two temporary variables are declared. They store absolute values or the same values of given arguments depending on the value of absolute. The last line compares the temporary variables and returns the value of the corresponding argument.</p>
+
+<p> </p>
+
+<p>There are four invocations of the <code>findMax</code> function in the body of <code>main</code>. The first invocation just returns the max value (15), the second invocation returns the max value of positive numbers (15), the third invocation returns the max value of two negative numbers (-4), and the last invocation returns the max by the absolute value of two negative numbers.</p>
+
+<p> </p>
+
+<p>So, default arguments allow programmers to create <strong>optional</strong> or <strong>special-case</strong> behaviour for functions.</p>
+
+<p> </p>
+
+<p> </p>

@@ -1,0 +1,45 @@
+<p>
+
+<b></b>Inside a program, you can write special text which will be ignored by the compiler known as comments.<b> </b>
+
+ They allow you to exclude code from the compilation process (disable it) or clarify a piece of code to yourself or other developers.  </p><p>Kotlin supports three kinds of comments.<br></p><h2 style="text-align: center;"><b>End-of-line comments</b></h2><p>The compiler ignores any text from <code class="kotlin">//</code> to the end of the line.</p><pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+    // The line below will be ignored
+    // println("Hello, World")
+
+    // This prints the string "Hello, Kotlin
+    println("Hello, Kotlin") // Here can be any comment
+}</code></pre><p>In the example above the text after <code class="kotlin">//</code> is ignored by the compiler.</p><h2 style="text-align: center;"><b>Multi-line comments</b></h2><p>The compiler ignores any text from <code class="kotlin">/*</code> to the nearest <code class="kotlin">*/</code>. It can be used for 
+
+single and multiple-line comments.</p><pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+    /* This is a single-line comment */
+    /*  This is an example of
+        a multi-line comment */
+
+    /* All lines below will be ignored
+        println("Hello")
+        println("World")
+    */
+}</code></pre><p>It is possible to include comments in other comments.</p><pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+    /*
+    System.out.println("Hello") // print "Hello" 
+    System.out.println("Kotlin")  // print "Kotlin"
+    */
+}</code></pre><p>The part of the code above is ignored by the compiler because of
+
+<b> </b>the comments enclosed in<b></b>
+ <code class="kotlin">/* ... */</code>.</p><h2 style="text-align: center;"><b>Documentation comments (doc comments)</b></h2><p>The compiler ignores any text from <code class="kotlin">/**</code> to <code class="kotlin">*/</code> just like it ignores multi-line comments.</p><p>This kind of comments can be used to automatically generate documentation about your source code using a special tool. Usually, these comments are placed above declarations of some program elements. Also, in this case, some special labels such as <code class="kotlin">@param</code>, <code class="kotlin">@return</code> and others are used for controlling the tool.</p><p>See the example below.</p><pre><code class="language-kotlin">/**
+ * The main method accepts string arguments from outside
+ *
+ * @param args from the command line
+ */
+fun main(args: Array&lt;String&gt;) {
+    // do nothing
+}</code></pre><p>Do not be afraid if you 
+
+<b></b>don’t completely understand<b></b>
+
+ <b>documentation comments</b> yet. They will be discussed further in lessons.</p><p><b>Note </b>that <b></b>in this course we use comments in the theory and practice lessons to explain how and why our code works.</p><p><b>Also, remember,</b> a large number of comments in a program does not mean that it will become clear. The code may be changed, and the comments become outdated. To reduce the number of comments, you must write self-documenting code, which is not simple for novices. Throughout this course, we will 
+
+<b></b>discuss <b></b>
+
+how to achieve it.</p>

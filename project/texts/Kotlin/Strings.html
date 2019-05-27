@@ -1,0 +1,28 @@
+<p>As you may know, a string is just a sequence of characters enclosed in double quotes. In Kotlin, strings are represented by the <code>String</code> type. It is one of the most used data types in practice. In this lesson, we will learn the basic operations with strings.</p><h2 style="text-align: center;">The length of a string</h2><p>It is possible to get the number of characters in a string accessing the <code>length</code> property. This property has a value of the <code>Int</code> type.<br></p><pre><code class="language-kotlin">val language = "Kotlin"
+println(language.length) // 6
+
+val empty = ""
+println(empty.length) // 0</code></pre><div></div><div><h2 style="text-align: center;">Accessing characters</h2><p>Elements of a string are individual characters that can be accessed by the index. The first element of a string has the index 0.</p><pre><code class="language-kotlin">val greeting = "Hello"
+
+val first = greeting[0]  // 'H'
+val second = greeting[1] // 'e'
+val five = greeting[4]   // 'o'</code></pre><p>The last element has the index that equals <b>the length of the string - 1</b>. For the string <code>"Hello"</code> the last element is <code>'o'</code>. The index of it is 4 because the string's length is 5.<br></p><pre><code class="language-kotlin">val last = greeting[greeting.length - 1] // 'o'
+val prelast = greeting[greeting.length - 2] // 'l'</code></pre><p>Kotlin provides several convenient ways to access the first and the last character of a string as well as the last index:</p><pre><code class="language-kotlin">println(greeting.first())   // 'H'
+println(greeting.last())    // 'o'
+println(greeting.lastIndex) // 4</code></pre> <p>Use this approach to make your code more readable.</p><h2 style="text-align: center;">Immutability</h2><p>Strings are <b>immutable</b> that means once created the string is always the same. It is impossible to modify an element of a string. So the following code does not work:</p><pre><code class="language-kotlin">val str = "string"
+str[3] = 'o' // an error here!</code></pre><p>But the following code works well:<br></p><pre><code class="language-kotlin">var str = "string"
+str = "strong"</code></pre><p>Actually, we do not modify the stored value in the <code>str</code> variable. Instead, we assign a new value to it. So, it is absolutely legal. This is one of the approaches to work with strings. If you need a modified string - just create a new one.</p><h2 style="text-align: center;">Сoncatenating strings</h2><div>Two string can be concatenated using the <code>+</code> operator:</div><div><br></div><pre><code class="language-kotlin">val str1 = "ab"
+val str2 = "cde"
+val result = str1 + str2 // "abcde"</code></pre> </div><div><br></div><div><div><b>Important,</b> when we concatenate two strings a new string is created (because strings are <b>immutable</b>).</div><br></div><div>It is possible to concatenate multiple strings in the same expression:</div><div><br></div><div><pre><code class="language-kotlin">val firstName = "John"
+val lastName = "Smith"
+val fullName = firstName + " " + lastName</code></pre><div><br></div><p><b>Note, </b><b>str1 + str2</b> is not the same as <b>str2 + str1</b> because the concatenation is not a commutative operation (unlike the addition).</p><h2 style="text-align: center;">Appending values to strings<br></h2></div><div>The <code>+</code> operator also works for appending values of different types to a string. The value will be automatically converted to a string and then concatenated to the target string.</div><div><pre><code class="language-kotlin">val str = "abc" + 10 + true
+println(str) // abc10true
+
+val code = "123" + 456 + "789"
+println(code) // 123456789</code></pre></div><div><p>Important, an expression must start with a string. So, the following code does not work at all:</p><pre><code class="language-kotlin">val str = 10 + "abc" // an error here!</code></pre><p>Maybe you will be surprised with the following code:<br></p><pre><code class="language-kotlin">val str = "abc" + 11 + 22
+println(str) // abc1122</code></pre><div><br></div>The reason is first it appends <code>11</code> to the string <code>"abc"</code> and then appends <code>22</code> to the string <code>"abc11"</code>.</div><div><h2 style="text-align: center;">Comparing strings</h2><p>To compare two strings, use <code>==</code> (equals) and <code>!=</code> (not equals) operators. Both operators take two strings as their operands and return a value of the <code>Boolean</code> type (<code>true</code> or <code>false</code>).</p><pre><code class="language-kotlin">val first = "first"
+val second = "second"
+    
+println(first == first)  // true
+println(first == second) // false
+println(first != second) // true</code></pre></div><h2 style="text-align: center;">Conclusion</h2><div>We explain only a few basic operations with strings. In fact, there are much more possible operations. We will study them in the next lessons.<br></div>
